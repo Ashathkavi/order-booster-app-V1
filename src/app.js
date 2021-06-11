@@ -42,7 +42,7 @@ const sample_Foods = sampleFoods()
 const FoodOne = store.dispatch(addFood(sample_Foods[0]))
 const FoodTwo = store.dispatch(addFood(sample_Foods[1]))
 const FoodThree = store.dispatch(addFood(sample_Foods[2]))
-const FoodFour = store.dispatch(addFood(sample_Foods[3]))
+//const FoodFour = store.dispatch(addFood(sample_Foods[3]))
 
 
 const sample_Orders = sampleOrders()
