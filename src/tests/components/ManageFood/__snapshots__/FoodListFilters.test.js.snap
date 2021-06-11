@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FoodList Coorectly 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="regular"
+    >
+      Regular
+    </option>
+    <option
+      value="full"
+    >
+      Full
+    </option>
+  </select>
+  <button
+    onClick={[Function]}
+  >
+    Select Category
+  </button>
+  <CategoryModal
+    handleCategory={[Function]}
+    handleCloseModal={[Function]}
+    modalIsOpen={false}
+  />
+  <input
+    max="2000"
+    min="0"
+    onChange={[Function]}
+    step="10"
+    type="range"
+    value={2000}
+  />
+  <input
+    disabled={true}
+    id="textInput"
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`should render FoodList with alternate food filter 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    type="text"
+    value="ch"
+  />
+  <select
+    onChange={[Function]}
+    value="reg"
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="regular"
+    >
+      Regular
+    </option>
+    <option
+      value="full"
+    >
+      Full
+    </option>
+  </select>
+  <button
+    onClick={[Function]}
+  >
+    fri
+  </button>
+  <CategoryModal
+    handleCategory={[Function]}
+    handleCloseModal={[Function]}
+    modalIsOpen={false}
+  />
+  <input
+    max="2000"
+    min="0"
+    onChange={[Function]}
+    step="10"
+    type="range"
+    value={2000}
+  />
+  <input
+    disabled={true}
+    id="textInput"
+    type="text"
+    value=""
+  />
+</div>
+`;

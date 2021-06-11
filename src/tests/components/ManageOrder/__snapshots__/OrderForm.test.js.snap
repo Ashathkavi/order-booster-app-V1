@@ -1,0 +1,1115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render OrderForm correctly 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add Food
+    </button>
+    <OrderModal
+      isModalOpen={false}
+      onSingleOrderChange={[Function]}
+      onVisibleChange={[Function]}
+      singleTypeOrders={Array []}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Name"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Phone Number"
+      type="number"
+      value={0}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Address"
+      type="text"
+      value=""
+    />
+    <textarea
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Add a discription for your order (optional)"
+      value=""
+    />
+    <div>
+      <h3>
+        :::::::::::::
+        0
+        :::::::::::::
+      </h3>
+    </div>
+    <select
+      onChange={[Function]}
+      value="confirmed"
+    >
+      <option
+        value="confirmed"
+      >
+        Confirmed
+      </option>
+      <option
+        value="cancelled"
+      >
+        Cancelled
+      </option>
+      <option
+        value="kitchen"
+      >
+        Kitchen
+      </option>
+      <option
+        value="table"
+      >
+        Table
+      </option>
+      <option
+        value="on delivery"
+      >
+        On Delivery
+      </option>
+      <option
+        value="recieved"
+      >
+        Recieved
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Passed
+      </option>
+      <option
+        value="passed"
+      >
+        Passed
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Printed
+      </option>
+      <option
+        value="printed"
+      >
+        Printed
+      </option>
+    </select>
+    <select
+      onChange={[Function]}
+      value="20"
+    >
+      <option
+        value="20"
+      >
+        20 minutes
+      </option>
+      <option
+        value="30"
+      >
+        30 minutes
+      </option>
+      <option
+        value="40"
+      >
+        40 minutes
+      </option>
+      <option
+        value="50"
+      >
+        50 minutes
+      </option>
+      <option
+        value="60"
+      >
+        1 hour
+      </option>
+      <option
+        value="70"
+      >
+        1 hour 10 minutes
+      </option>
+      <option
+        value="80"
+      >
+        1 hour 20 minute
+      </option>
+      <option
+        value="90"
+      >
+        1 and 1\\2 hour 
+      </option>
+    </select>
+    <r
+      allowSameDay={false}
+      calendarStartDay={0}
+      customTimeInput={null}
+      dateFormat="MMMM d, yyyy h:mm aa"
+      dateFormatCalendar="LLLL yyyy"
+      disabled={false}
+      disabledKeyboardNavigation={false}
+      dropdownMode="scroll"
+      enableTabLoop={true}
+      excludeScrollbar={true}
+      focusSelectedMonth={false}
+      monthsShown={1}
+      nextMonthButtonLabel="Next Month"
+      nextYearButtonLabel="Next Year"
+      onBlur={[Function]}
+      onCalendarClose={[Function]}
+      onCalendarOpen={[Function]}
+      onChange={[Function]}
+      onClickOutside={[Function]}
+      onFocus={[Function]}
+      onInputClick={[Function]}
+      onInputError={[Function]}
+      onKeyDown={[Function]}
+      onMonthChange={[Function]}
+      onSelect={[Function]}
+      onYearChange={[Function]}
+      preventOpenOnFocus={false}
+      previousMonthButtonLabel="Previous Month"
+      previousYearButtonLabel="Previous Year"
+      readOnly={false}
+      renderDayContents={[Function]}
+      selected={1970-01-01T00:00:00.000Z}
+      shouldCloseOnSelect={true}
+      showFourColumnMonthYearPicker={false}
+      showFullMonthYearPicker={false}
+      showMonthYearPicker={false}
+      showPopperArrow={true}
+      showPreviousMonths={false}
+      showQuarterYearPicker={false}
+      showTimeInput={false}
+      showTimeSelect={true}
+      showTwoColumnMonthYearPicker={false}
+      showYearPicker={false}
+      strictParsing={false}
+      timeCaption="Time"
+      timeFormat="HH:mm"
+      timeInputLabel="Time"
+      timeIntervals={30}
+      withPortal={false}
+      yearItemNumber={12}
+    />
+    <button>
+      Save Order
+    </button>
+  </form>
+  <div>
+    <p>
+      customerName: 
+    </p>
+    <p>
+      phoneNumber: 
+      0
+    </p>
+    <p>
+      address: 
+    </p>
+    <p>
+      description: 
+    </p>
+    <p>
+      orderEndTime:  
+      Thu Jan 01 1970 05:50:00 GMT+0530
+    </p>
+    <p>
+      status: 
+      confirmed
+    </p>
+    <p>
+      kotSatus: 
+      not
+    </p>
+    <p>
+      billStatus: 
+      not
+    </p>
+    <p>
+      createdAt: 
+      Thu Jan 01 1970 05:30:00 GMT+0530
+    </p>
+    <p>
+      foods: 
+    </p>
+    <p>
+      isModaOpen: 
+      false
+    </p>
+  </div>
+</div>
+`;
+
+exports[`should render OrderForm correctly with order date 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add Food
+    </button>
+    <OrderModal
+      isModalOpen={false}
+      onSingleOrderChange={[Function]}
+      onVisibleChange={[Function]}
+      singleTypeOrders={
+        Array [
+          SingleOrder {
+            "food": Object {
+              "amount": 380,
+              "category": "Fried Rice",
+              "createdAt": 100001,
+              "foodSize": "regular",
+              "id": 2,
+              "largeAvailability": true,
+              "name": "Beef Fried Rice",
+            },
+            "foodQuantity": 2,
+          },
+          SingleOrder {
+            "food": Object {
+              "amount": 350,
+              "category": "Fried Rice",
+              "createdAt": 100000,
+              "foodSize": "regular",
+              "id": 1,
+              "largeAvailability": true,
+              "name": "Chicken Fried Rice",
+            },
+            "foodQuantity": 3,
+          },
+        ]
+      }
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Name"
+      type="text"
+      value="Ashath"
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Phone Number"
+      type="number"
+      value="0765822562"
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Address"
+      type="text"
+      value="Mamangam"
+    />
+    <textarea
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Add a discription for your order (optional)"
+      value="less oil"
+    />
+    <FoodSingleOrder
+      iterable={0}
+      onRemoveSingleOrder={[Function]}
+      singleTypeOrder={
+        SingleOrder {
+          "food": Object {
+            "amount": 380,
+            "category": "Fried Rice",
+            "createdAt": 100001,
+            "foodSize": "regular",
+            "id": 2,
+            "largeAvailability": true,
+            "name": "Beef Fried Rice",
+          },
+          "foodQuantity": 2,
+        }
+      }
+    />
+    <FoodSingleOrder
+      iterable={1}
+      onRemoveSingleOrder={[Function]}
+      singleTypeOrder={
+        SingleOrder {
+          "food": Object {
+            "amount": 350,
+            "category": "Fried Rice",
+            "createdAt": 100000,
+            "foodSize": "regular",
+            "id": 1,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 3,
+        }
+      }
+    />
+    <div>
+      <h3>
+        :::::::::::::
+        1810
+        :::::::::::::
+      </h3>
+    </div>
+    <select
+      onChange={[Function]}
+      value="confirmed"
+    >
+      <option
+        value="confirmed"
+      >
+        Confirmed
+      </option>
+      <option
+        value="cancelled"
+      >
+        Cancelled
+      </option>
+      <option
+        value="kitchen"
+      >
+        Kitchen
+      </option>
+      <option
+        value="table"
+      >
+        Table
+      </option>
+      <option
+        value="on delivery"
+      >
+        On Delivery
+      </option>
+      <option
+        value="recieved"
+      >
+        Recieved
+      </option>
+    </select>
+    <select
+      disabled={false}
+      onChange={[Function]}
+      value="passed"
+    >
+      <option
+        value="not"
+      >
+        Not Passed
+      </option>
+      <option
+        value="passed"
+      >
+        Passed
+      </option>
+    </select>
+    <select
+      disabled={false}
+      onChange={[Function]}
+      value="printed"
+    >
+      <option
+        value="not"
+      >
+        Not Printed
+      </option>
+      <option
+        value="printed"
+      >
+        Printed
+      </option>
+    </select>
+    <select
+      onChange={[Function]}
+      value="20"
+    >
+      <option
+        value="20"
+      >
+        20 minutes
+      </option>
+      <option
+        value="30"
+      >
+        30 minutes
+      </option>
+      <option
+        value="40"
+      >
+        40 minutes
+      </option>
+      <option
+        value="50"
+      >
+        50 minutes
+      </option>
+      <option
+        value="60"
+      >
+        1 hour
+      </option>
+      <option
+        value="70"
+      >
+        1 hour 10 minutes
+      </option>
+      <option
+        value="80"
+      >
+        1 hour 20 minute
+      </option>
+      <option
+        value="90"
+      >
+        1 and 1\\2 hour 
+      </option>
+    </select>
+    <r
+      allowSameDay={false}
+      calendarStartDay={0}
+      customTimeInput={null}
+      dateFormat="MMMM d, yyyy h:mm aa"
+      dateFormatCalendar="LLLL yyyy"
+      disabled={false}
+      disabledKeyboardNavigation={false}
+      dropdownMode="scroll"
+      enableTabLoop={true}
+      excludeScrollbar={true}
+      focusSelectedMonth={false}
+      monthsShown={1}
+      nextMonthButtonLabel="Next Month"
+      nextYearButtonLabel="Next Year"
+      onBlur={[Function]}
+      onCalendarClose={[Function]}
+      onCalendarOpen={[Function]}
+      onChange={[Function]}
+      onClickOutside={[Function]}
+      onFocus={[Function]}
+      onInputClick={[Function]}
+      onInputError={[Function]}
+      onKeyDown={[Function]}
+      onMonthChange={[Function]}
+      onSelect={[Function]}
+      onYearChange={[Function]}
+      preventOpenOnFocus={false}
+      previousMonthButtonLabel="Previous Month"
+      previousYearButtonLabel="Previous Year"
+      readOnly={false}
+      renderDayContents={[Function]}
+      selected={1970-01-01T00:00:00.000Z}
+      shouldCloseOnSelect={true}
+      showFourColumnMonthYearPicker={false}
+      showFullMonthYearPicker={false}
+      showMonthYearPicker={false}
+      showPopperArrow={true}
+      showPreviousMonths={false}
+      showQuarterYearPicker={false}
+      showTimeInput={false}
+      showTimeSelect={true}
+      showTwoColumnMonthYearPicker={false}
+      showYearPicker={false}
+      strictParsing={false}
+      timeCaption="Time"
+      timeFormat="HH:mm"
+      timeInputLabel="Time"
+      timeIntervals={30}
+      withPortal={false}
+      yearItemNumber={12}
+    />
+    <button>
+      Save Order
+    </button>
+  </form>
+  <div>
+    <p>
+      customerName: 
+      Ashath
+    </p>
+    <p>
+      phoneNumber: 
+      0765822562
+    </p>
+    <p>
+      address: 
+      Mamangam
+    </p>
+    <p>
+      description: 
+      less oil
+    </p>
+    <p>
+      orderEndTime:  
+      Thu Jan 01 1970 05:50:00 GMT+0530
+    </p>
+    <p>
+      status: 
+      confirmed
+    </p>
+    <p>
+      kotSatus: 
+      passed
+    </p>
+    <p>
+      billStatus: 
+      printed
+    </p>
+    <p>
+      createdAt: 
+      Thu Jan 01 1970 05:30:00 GMT+0530
+    </p>
+    <p>
+      foods: 
+      [object Object],[object Object]
+    </p>
+    <p>
+      isModaOpen: 
+      false
+    </p>
+  </div>
+</div>
+`;
+
+exports[`should render error for invalid form submission 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add Food
+    </button>
+    <OrderModal
+      isModalOpen={false}
+      onSingleOrderChange={[Function]}
+      onVisibleChange={[Function]}
+      singleTypeOrders={Array []}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Name"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Phone Number"
+      type="number"
+      value={0}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Address"
+      type="text"
+      value=""
+    />
+    <textarea
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Add a discription for your order (optional)"
+      value=""
+    />
+    <div>
+      <h3>
+        :::::::::::::
+        0
+        :::::::::::::
+      </h3>
+    </div>
+    <select
+      onChange={[Function]}
+      value="confirmed"
+    >
+      <option
+        value="confirmed"
+      >
+        Confirmed
+      </option>
+      <option
+        value="cancelled"
+      >
+        Cancelled
+      </option>
+      <option
+        value="kitchen"
+      >
+        Kitchen
+      </option>
+      <option
+        value="table"
+      >
+        Table
+      </option>
+      <option
+        value="on delivery"
+      >
+        On Delivery
+      </option>
+      <option
+        value="recieved"
+      >
+        Recieved
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Passed
+      </option>
+      <option
+        value="passed"
+      >
+        Passed
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Printed
+      </option>
+      <option
+        value="printed"
+      >
+        Printed
+      </option>
+    </select>
+    <select
+      onChange={[Function]}
+      value="20"
+    >
+      <option
+        value="20"
+      >
+        20 minutes
+      </option>
+      <option
+        value="30"
+      >
+        30 minutes
+      </option>
+      <option
+        value="40"
+      >
+        40 minutes
+      </option>
+      <option
+        value="50"
+      >
+        50 minutes
+      </option>
+      <option
+        value="60"
+      >
+        1 hour
+      </option>
+      <option
+        value="70"
+      >
+        1 hour 10 minutes
+      </option>
+      <option
+        value="80"
+      >
+        1 hour 20 minute
+      </option>
+      <option
+        value="90"
+      >
+        1 and 1\\2 hour 
+      </option>
+    </select>
+    <r
+      allowSameDay={false}
+      calendarStartDay={0}
+      customTimeInput={null}
+      dateFormat="MMMM d, yyyy h:mm aa"
+      dateFormatCalendar="LLLL yyyy"
+      disabled={false}
+      disabledKeyboardNavigation={false}
+      dropdownMode="scroll"
+      enableTabLoop={true}
+      excludeScrollbar={true}
+      focusSelectedMonth={false}
+      monthsShown={1}
+      nextMonthButtonLabel="Next Month"
+      nextYearButtonLabel="Next Year"
+      onBlur={[Function]}
+      onCalendarClose={[Function]}
+      onCalendarOpen={[Function]}
+      onChange={[Function]}
+      onClickOutside={[Function]}
+      onFocus={[Function]}
+      onInputClick={[Function]}
+      onInputError={[Function]}
+      onKeyDown={[Function]}
+      onMonthChange={[Function]}
+      onSelect={[Function]}
+      onYearChange={[Function]}
+      preventOpenOnFocus={false}
+      previousMonthButtonLabel="Previous Month"
+      previousYearButtonLabel="Previous Year"
+      readOnly={false}
+      renderDayContents={[Function]}
+      selected={1970-01-01T00:00:00.000Z}
+      shouldCloseOnSelect={true}
+      showFourColumnMonthYearPicker={false}
+      showFullMonthYearPicker={false}
+      showMonthYearPicker={false}
+      showPopperArrow={true}
+      showPreviousMonths={false}
+      showQuarterYearPicker={false}
+      showTimeInput={false}
+      showTimeSelect={true}
+      showTwoColumnMonthYearPicker={false}
+      showYearPicker={false}
+      strictParsing={false}
+      timeCaption="Time"
+      timeFormat="HH:mm"
+      timeInputLabel="Time"
+      timeIntervals={30}
+      withPortal={false}
+      yearItemNumber={12}
+    />
+    <button>
+      Save Order
+    </button>
+  </form>
+  <div>
+    <p>
+      customerName: 
+    </p>
+    <p>
+      phoneNumber: 
+      0
+    </p>
+    <p>
+      address: 
+    </p>
+    <p>
+      description: 
+    </p>
+    <p>
+      orderEndTime:  
+      Thu Jan 01 1970 05:50:00 GMT+0530
+    </p>
+    <p>
+      status: 
+      confirmed
+    </p>
+    <p>
+      kotSatus: 
+      not
+    </p>
+    <p>
+      billStatus: 
+      not
+    </p>
+    <p>
+      createdAt: 
+      Thu Jan 01 1970 05:30:00 GMT+0530
+    </p>
+    <p>
+      foods: 
+    </p>
+    <p>
+      isModaOpen: 
+      false
+    </p>
+  </div>
+</div>
+`;
+
+exports[`should render error for invalid form submission 2`] = `
+<div>
+  <p>
+    CUSTOMER NAME, PHONENUMBER, ADDRESS , ORDERDURATIONS are ORDER PLACINGS are mandatoroy to fill
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add Food
+    </button>
+    <OrderModal
+      isModalOpen={false}
+      onSingleOrderChange={[Function]}
+      onVisibleChange={[Function]}
+      singleTypeOrders={Array []}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Name"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Phone Number"
+      type="number"
+      value={0}
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Customer Address"
+      type="text"
+      value=""
+    />
+    <textarea
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Add a discription for your order (optional)"
+      value=""
+    />
+    <div>
+      <h3>
+        :::::::::::::
+        0
+        :::::::::::::
+      </h3>
+    </div>
+    <select
+      onChange={[Function]}
+      value="confirmed"
+    >
+      <option
+        value="confirmed"
+      >
+        Confirmed
+      </option>
+      <option
+        value="cancelled"
+      >
+        Cancelled
+      </option>
+      <option
+        value="kitchen"
+      >
+        Kitchen
+      </option>
+      <option
+        value="table"
+      >
+        Table
+      </option>
+      <option
+        value="on delivery"
+      >
+        On Delivery
+      </option>
+      <option
+        value="recieved"
+      >
+        Recieved
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Passed
+      </option>
+      <option
+        value="passed"
+      >
+        Passed
+      </option>
+    </select>
+    <select
+      disabled={true}
+      onChange={[Function]}
+      value="not"
+    >
+      <option
+        value="not"
+      >
+        Not Printed
+      </option>
+      <option
+        value="printed"
+      >
+        Printed
+      </option>
+    </select>
+    <select
+      onChange={[Function]}
+      value="20"
+    >
+      <option
+        value="20"
+      >
+        20 minutes
+      </option>
+      <option
+        value="30"
+      >
+        30 minutes
+      </option>
+      <option
+        value="40"
+      >
+        40 minutes
+      </option>
+      <option
+        value="50"
+      >
+        50 minutes
+      </option>
+      <option
+        value="60"
+      >
+        1 hour
+      </option>
+      <option
+        value="70"
+      >
+        1 hour 10 minutes
+      </option>
+      <option
+        value="80"
+      >
+        1 hour 20 minute
+      </option>
+      <option
+        value="90"
+      >
+        1 and 1\\2 hour 
+      </option>
+    </select>
+    <r
+      allowSameDay={false}
+      calendarStartDay={0}
+      customTimeInput={null}
+      dateFormat="MMMM d, yyyy h:mm aa"
+      dateFormatCalendar="LLLL yyyy"
+      disabled={false}
+      disabledKeyboardNavigation={false}
+      dropdownMode="scroll"
+      enableTabLoop={true}
+      excludeScrollbar={true}
+      focusSelectedMonth={false}
+      monthsShown={1}
+      nextMonthButtonLabel="Next Month"
+      nextYearButtonLabel="Next Year"
+      onBlur={[Function]}
+      onCalendarClose={[Function]}
+      onCalendarOpen={[Function]}
+      onChange={[Function]}
+      onClickOutside={[Function]}
+      onFocus={[Function]}
+      onInputClick={[Function]}
+      onInputError={[Function]}
+      onKeyDown={[Function]}
+      onMonthChange={[Function]}
+      onSelect={[Function]}
+      onYearChange={[Function]}
+      preventOpenOnFocus={false}
+      previousMonthButtonLabel="Previous Month"
+      previousYearButtonLabel="Previous Year"
+      readOnly={false}
+      renderDayContents={[Function]}
+      selected={1970-01-01T00:00:00.000Z}
+      shouldCloseOnSelect={true}
+      showFourColumnMonthYearPicker={false}
+      showFullMonthYearPicker={false}
+      showMonthYearPicker={false}
+      showPopperArrow={true}
+      showPreviousMonths={false}
+      showQuarterYearPicker={false}
+      showTimeInput={false}
+      showTimeSelect={true}
+      showTwoColumnMonthYearPicker={false}
+      showYearPicker={false}
+      strictParsing={false}
+      timeCaption="Time"
+      timeFormat="HH:mm"
+      timeInputLabel="Time"
+      timeIntervals={30}
+      withPortal={false}
+      yearItemNumber={12}
+    />
+    <button>
+      Save Order
+    </button>
+  </form>
+  <div>
+    <p>
+      customerName: 
+    </p>
+    <p>
+      phoneNumber: 
+      0
+    </p>
+    <p>
+      address: 
+    </p>
+    <p>
+      description: 
+    </p>
+    <p>
+      orderEndTime:  
+      Thu Jan 01 1970 05:50:00 GMT+0530
+    </p>
+    <p>
+      status: 
+      confirmed
+    </p>
+    <p>
+      kotSatus: 
+      not
+    </p>
+    <p>
+      billStatus: 
+      not
+    </p>
+    <p>
+      createdAt: 
+      Thu Jan 01 1970 05:30:00 GMT+0530
+    </p>
+    <p>
+      foods: 
+    </p>
+    <p>
+      isModaOpen: 
+      false
+    </p>
+  </div>
+</div>
+`;

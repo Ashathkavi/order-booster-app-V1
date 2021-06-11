@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render food list with foods 1`] = `
+<div>
+  <Connect(FoodListItem)
+    amount={350}
+    category="Fried Rice"
+    createdAt={100000}
+    foodSize="regular"
+    id={1}
+    key="1"
+    largeAvailability={true}
+    name="Chicken Fried Rice"
+  />
+  <Connect(FoodListItem)
+    amount={380}
+    category="Fried Rice"
+    createdAt={100001}
+    foodSize="regular"
+    id={2}
+    key="2"
+    largeAvailability={true}
+    name="Beef Fried Rice"
+  />
+  <Connect(FoodListItem)
+    amount={550}
+    category="Fried Rice"
+    createdAt={100006}
+    foodSize="full"
+    id={3}
+    key="3"
+    largeAvailability={true}
+    name="Chicken Fried Rice"
+  />
+  <Connect(FoodListItem)
+    amount={450}
+    category="Briyani"
+    createdAt={100005}
+    foodSize="regular"
+    id={4}
+    key="4"
+    largeAvailability={false}
+    name="Chicken Briyani"
+  />
+</div>
+`;
+
+exports[`should render food list with foods empty message 1`] = `
+<div>
+  <p>
+    No Foods to Show
+  </p>
+</div>
+`;

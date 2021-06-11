@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render food list Item with a food 1`] = `
+<div>
+  <Link
+    to="/food/edit/1"
+  >
+    <h2>
+      Chicken Fried Rice
+      : 
+      regular
+    </h2>
+  </Link>
+  <p>
+    Fried Rice
+  </p>
+  <p>
+    350
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;

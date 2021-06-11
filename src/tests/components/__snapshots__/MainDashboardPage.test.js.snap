@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MainDashboardPage 1`] = `
+<div>
+  <h4>
+    Jan 1st, 1970
+  </h4>
+  <h3>
+    This from Main dashboard componrnet
+  </h3>
+  <p>
+    <Link
+      to="/food"
+    >
+       Manage Food
+    </Link>
+  </p>
+  <p>
+    <Link
+      to="/order"
+    >
+       Manage Order
+    </Link>
+  </p>
+</div>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render order list Item with a order 1`] = `
+<div>
+  <Link
+    to="/order/edit/1"
+  >
+    <h2>
+      Ashath
+      : 
+      0765822562
+    </h2>
+  </Link>
+  <p>
+    1970-01-01T05:30:00+05:30
+  </p>
+  <p>
+    Mamangam
+  </p>
+  <p>
+    confirmed
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;

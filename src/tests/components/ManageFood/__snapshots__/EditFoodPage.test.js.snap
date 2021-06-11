@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditFoodPage correctly 1`] = `
+<div>
+  <FoodForm
+    food={
+      Object {
+        "amount": 350,
+        "category": "Fried Rice",
+        "createdAt": 100000,
+        "foodSize": "regular",
+        "id": 1,
+        "largeAvailability": true,
+        "name": "Chicken Fried Rice",
+      }
+    }
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;

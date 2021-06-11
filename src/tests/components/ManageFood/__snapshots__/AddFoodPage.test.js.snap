@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render AddFoodPage correctly 1`] = `
+<div>
+  <h1>
+    Add Food
+  </h1>
+  <FoodForm
+    onSubmit={[Function]}
+  />
+</div>
+`;

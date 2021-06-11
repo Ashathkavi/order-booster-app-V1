@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render order list with orders 1`] = `
+<div>
+  <h1>
+    Order List
+  </h1>
+  <Connect(OrderListItem)
+    address="Mamangam"
+    amount={1810}
+    billStatus={
+      Object {
+        "status": "printed",
+        "time": 300000,
+      }
+    }
+    createdAt={0}
+    customerName="Ashath"
+    description="less oil"
+    foods={
+      Array [
+        SingleOrder {
+          "food": Object {
+            "amount": 380,
+            "category": "Fried Rice",
+            "createdAt": 100001,
+            "foodSize": "regular",
+            "id": 2,
+            "largeAvailability": true,
+            "name": "Beef Fried Rice",
+          },
+          "foodQuantity": 2,
+        },
+        SingleOrder {
+          "food": Object {
+            "amount": 350,
+            "category": "Fried Rice",
+            "createdAt": 100000,
+            "foodSize": "regular",
+            "id": 1,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 3,
+        },
+      ]
+    }
+    id={1}
+    key="1"
+    kotStatus={
+      Object {
+        "status": "passed",
+        "time": 300000,
+      }
+    }
+    orderEndTime={1200000}
+    phoneNumber="0765822562"
+    status={
+      Object {
+        "status": "confirmed",
+        "time": 0,
+      }
+    }
+  />
+  <Connect(OrderListItem)
+    address="koolavadi"
+    amount={1450}
+    billStatus={
+      Object {
+        "status": "printed",
+        "time": 518400000,
+      }
+    }
+    createdAt={518400000}
+    customerName="AshathKavi"
+    description="more oil"
+    foods={
+      Array [
+        SingleOrder {
+          "food": Object {
+            "amount": 550,
+            "category": "Fried Rice",
+            "createdAt": 100006,
+            "foodSize": "full",
+            "id": 3,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 2,
+        },
+        SingleOrder {
+          "food": Object {
+            "amount": 350,
+            "category": "Fried Rice",
+            "createdAt": 100000,
+            "foodSize": "regular",
+            "id": 1,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 1,
+        },
+      ]
+    }
+    id={2}
+    key="2"
+    kotStatus={
+      Object {
+        "status": "passed",
+        "time": 518400000,
+      }
+    }
+    orderEndTime={691200000}
+    phoneNumber="0765812582"
+    status={
+      Object {
+        "status": "kitchen",
+        "time": 518400000,
+      }
+    }
+  />
+  <Connect(OrderListItem)
+    address="Mamangam"
+    amount={2350}
+    billStatus={
+      Object {
+        "status": "not",
+        "time": 0,
+      }
+    }
+    createdAt={691200000}
+    customerName="Pushpandan"
+    description="low spicy"
+    foods={
+      Array [
+        SingleOrder {
+          "food": Object {
+            "amount": 350,
+            "category": "Fried Rice",
+            "createdAt": 100000,
+            "foodSize": "regular",
+            "id": 1,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 2,
+        },
+        SingleOrder {
+          "food": Object {
+            "amount": 550,
+            "category": "Fried Rice",
+            "createdAt": 100006,
+            "foodSize": "full",
+            "id": 3,
+            "largeAvailability": true,
+            "name": "Chicken Fried Rice",
+          },
+          "foodQuantity": 3,
+        },
+      ]
+    }
+    id={3}
+    key="3"
+    kotStatus={
+      Object {
+        "status": "not",
+        "time": 0,
+      }
+    }
+    orderEndTime={777600000}
+    phoneNumber="0765165145"
+    status={
+      Object {
+        "status": "table",
+        "time": 691200000,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`should render order list with orders empty message 1`] = `
+<div>
+  <h1>
+    Order List
+  </h1>
+</div>
+`;

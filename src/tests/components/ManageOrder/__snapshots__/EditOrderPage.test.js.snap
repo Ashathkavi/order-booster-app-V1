@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditOrderPage correctly 1`] = `
+<div>
+  <OrderForm
+    onSubmit={[Function]}
+    order={
+      Object {
+        "address": "Mamangam",
+        "amount": 1810,
+        "billStatus": Object {
+          "status": "printed",
+          "time": 300000,
+        },
+        "createdAt": 0,
+        "customerName": "Ashath",
+        "description": "less oil",
+        "foods": Array [
+          SingleOrder {
+            "food": Object {
+              "amount": 380,
+              "category": "Fried Rice",
+              "createdAt": 100001,
+              "foodSize": "regular",
+              "id": 2,
+              "largeAvailability": true,
+              "name": "Beef Fried Rice",
+            },
+            "foodQuantity": 2,
+          },
+          SingleOrder {
+            "food": Object {
+              "amount": 350,
+              "category": "Fried Rice",
+              "createdAt": 100000,
+              "foodSize": "regular",
+              "id": 1,
+              "largeAvailability": true,
+              "name": "Chicken Fried Rice",
+            },
+            "foodQuantity": 3,
+          },
+        ],
+        "id": 1,
+        "kotStatus": Object {
+          "status": "passed",
+          "time": 300000,
+        },
+        "orderEndTime": 1200000,
+        "phoneNumber": "0765822562",
+        "status": Object {
+          "status": "confirmed",
+          "time": 0,
+        },
+      }
+    }
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;

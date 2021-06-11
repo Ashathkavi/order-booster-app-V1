@@ -1,0 +1,395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render OrderList Coorectly 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    placeholder="Type an Address"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Type a Customer Name"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Type a Food"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    pattern={/\\^\\[0-9\\]\\{10\\}\\$/}
+    placeholder="Type a PhoneNumber"
+    type="number"
+    value=""
+  />
+  <input
+    max="20000"
+    min="0"
+    onChange={[Function]}
+    step="100"
+    type="range"
+    value={20000}
+  />
+  <input
+    disabled={true}
+    id="textInput"
+    type="text"
+    value={[Function]}
+  />
+  <select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="confirmed"
+    >
+      Confirmed
+    </option>
+    <option
+      value="kitchen"
+    >
+      Kitchen
+    </option>
+    <option
+      value="table"
+    >
+      Table
+    </option>
+    <option
+      value="cancelled"
+    >
+      Cancelled
+    </option>
+    <option
+      value="on delivery"
+    >
+      On Delivery
+    </option>
+    <option
+      value="recieved"
+    >
+      Recieved
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="passed"
+    >
+      Passed
+    </option>
+    <option
+      value="not"
+    >
+      Not Passed
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="printed"
+    >
+      Printed
+    </option>
+    <option
+      value="not"
+    >
+      Not Printed
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+    value="date"
+  >
+    <option
+      value="date"
+    >
+      Date
+    </option>
+    <option
+      value="duration"
+    >
+      Available Time
+    </option>
+    <option
+      value="amount"
+    >
+      Amount
+    </option>
+  </select>
+  <r
+    allowSameDay={false}
+    calendarStartDay={0}
+    customTimeInput={null}
+    dateFormat="MM/dd/yyyy"
+    dateFormatCalendar="LLLL yyyy"
+    disabled={false}
+    disabledKeyboardNavigation={false}
+    dropdownMode="scroll"
+    enableTabLoop={true}
+    endDate={2658599999}
+    excludeScrollbar={true}
+    focusSelectedMonth={false}
+    monthsShown={1}
+    nextMonthButtonLabel="Next Month"
+    nextYearButtonLabel="Next Year"
+    onBlur={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
+    onChange={[Function]}
+    onClickOutside={[Function]}
+    onFocus={[Function]}
+    onInputClick={[Function]}
+    onInputError={[Function]}
+    onKeyDown={[Function]}
+    onMonthChange={[Function]}
+    onSelect={[Function]}
+    onYearChange={[Function]}
+    preventOpenOnFocus={false}
+    previousMonthButtonLabel="Previous Month"
+    previousYearButtonLabel="Previous Year"
+    readOnly={false}
+    renderDayContents={[Function]}
+    selected={-19800000}
+    selectsRange={true}
+    shouldCloseOnSelect={true}
+    showFourColumnMonthYearPicker={false}
+    showFullMonthYearPicker={false}
+    showMonthYearPicker={false}
+    showPopperArrow={true}
+    showPreviousMonths={false}
+    showQuarterYearPicker={false}
+    showTimeInput={false}
+    showTimeSelect={false}
+    showTwoColumnMonthYearPicker={false}
+    showYearPicker={false}
+    startDate={-19800000}
+    strictParsing={false}
+    timeCaption="Time"
+    timeInputLabel="Time"
+    timeIntervals={30}
+    withPortal={false}
+    yearItemNumber={12}
+  />
+</div>
+`;
+
+exports[`should render OrderList with alternate order filter 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    placeholder="Type an Address"
+    type="text"
+    value="mama"
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Type a Customer Name"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Type a Food"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    pattern={/\\^\\[0-9\\]\\{10\\}\\$/}
+    placeholder="Type a PhoneNumber"
+    type="number"
+    value=""
+  />
+  <input
+    max="20000"
+    min="0"
+    onChange={[Function]}
+    step="100"
+    type="range"
+    value={20000}
+  />
+  <input
+    disabled={true}
+    id="textInput"
+    type="text"
+    value={[Function]}
+  />
+  <select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="confirmed"
+    >
+      Confirmed
+    </option>
+    <option
+      value="kitchen"
+    >
+      Kitchen
+    </option>
+    <option
+      value="table"
+    >
+      Table
+    </option>
+    <option
+      value="cancelled"
+    >
+      Cancelled
+    </option>
+    <option
+      value="on delivery"
+    >
+      On Delivery
+    </option>
+    <option
+      value="recieved"
+    >
+      Recieved
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="passed"
+    >
+      Passed
+    </option>
+    <option
+      value="not"
+    >
+      Not Passed
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      All
+    </option>
+    <option
+      value="printed"
+    >
+      Printed
+    </option>
+    <option
+      value="not"
+    >
+      Not Printed
+    </option>
+  </select>
+  <select
+    onChange={[Function]}
+    value="date"
+  >
+    <option
+      value="date"
+    >
+      Date
+    </option>
+    <option
+      value="duration"
+    >
+      Available Time
+    </option>
+    <option
+      value="amount"
+    >
+      Amount
+    </option>
+  </select>
+  <r
+    allowSameDay={false}
+    calendarStartDay={0}
+    customTimeInput={null}
+    dateFormat="MM/dd/yyyy"
+    dateFormatCalendar="LLLL yyyy"
+    disabled={false}
+    disabledKeyboardNavigation={false}
+    dropdownMode="scroll"
+    enableTabLoop={true}
+    endDate={2658599999}
+    excludeScrollbar={true}
+    focusSelectedMonth={false}
+    monthsShown={1}
+    nextMonthButtonLabel="Next Month"
+    nextYearButtonLabel="Next Year"
+    onBlur={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
+    onChange={[Function]}
+    onClickOutside={[Function]}
+    onFocus={[Function]}
+    onInputClick={[Function]}
+    onInputError={[Function]}
+    onKeyDown={[Function]}
+    onMonthChange={[Function]}
+    onSelect={[Function]}
+    onYearChange={[Function]}
+    preventOpenOnFocus={false}
+    previousMonthButtonLabel="Previous Month"
+    previousYearButtonLabel="Previous Year"
+    readOnly={false}
+    renderDayContents={[Function]}
+    selected={-19800000}
+    selectsRange={true}
+    shouldCloseOnSelect={true}
+    showFourColumnMonthYearPicker={false}
+    showFullMonthYearPicker={false}
+    showMonthYearPicker={false}
+    showPopperArrow={true}
+    showPreviousMonths={false}
+    showQuarterYearPicker={false}
+    showTimeInput={false}
+    showTimeSelect={false}
+    showTwoColumnMonthYearPicker={false}
+    showYearPicker={false}
+    startDate={-19800000}
+    strictParsing={false}
+    timeCaption="Time"
+    timeInputLabel="Time"
+    timeIntervals={30}
+    withPortal={false}
+    yearItemNumber={12}
+  />
+</div>
+`;
