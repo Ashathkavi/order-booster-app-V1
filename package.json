@@ -27,11 +27,8 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.5",
-    "enzyme": "^3.11.0",
-    "enzyme-to-json": "^3.6.2",
     "express": "^4.17.1",
     "install": "^0.13.0",
-    "jest": "^27.0.4",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^1.6.0",
     "moment": "^2.29.1",
@@ -46,7 +43,6 @@
     "react-range": "^1.8.9",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-test-renderer": "^17.0.2",
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0",
     "regex": "^0.1.1",
@@ -56,7 +52,13 @@
     "validator": "^13.6.0",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "jest": "^27.0.1",
+    "react-test-renderer": "^17.0.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }
