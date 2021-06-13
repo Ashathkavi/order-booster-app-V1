@@ -9,7 +9,9 @@
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
     "dev-server": "webpack serve --config webpack.dev.js",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "author": "Ashathkavi",
   "license": "ISC",
@@ -24,6 +26,7 @@
     "css-loader": "^5.2.5",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
+    "express": "^4.17.1",
     "install": "^0.13.0",
     "jest": "^27.0.4",
     "live-server": "^1.2.1",
