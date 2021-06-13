@@ -2,6 +2,8 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import {EditOrderPage} from '../../../components/ManageOrder/EditOrderPage'
 import sampleOrders from '../../../fixtures/sampleOrders'
+import OrderForm from '../../../components/ManageOrder/OrderForm'
+
 
 const sample_orders = sampleOrders()
 
@@ -24,7 +26,7 @@ test('should render EditOrderPage correctly', () => {
 })
 
 test('should handle onSubmit', () => {
-    wrapper.find('OrderForm').prop('onSubmit')(sample_orders[1])
+    wrapper.find(OrderForm).prop('onSubmit')(sample_orders[1])
     expect(historySpy.push).toHaveBeenLastCalledWith('/order')
     expect(editOrderSpy).toHaveBeenLastCalledWith(sample_orders[0].id, sample_orders[1])
 })

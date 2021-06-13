@@ -2,7 +2,7 @@
 
 exports[`should render EditOrderPage correctly 1`] = `
 <div>
-  <OrderForm
+  <Connect(OrderForm)
     onSubmit={[Function]}
     order={
       Object {

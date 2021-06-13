@@ -97,7 +97,7 @@ test('should handle setPNoFilter', () => {
 })
 
 test('should handle setboundryAmount', () => {
-    const value = '0756'
+    const value = 756
     wrapper.find('input').at(4).simulate('change', {
         persist: () => { },
         target:{value}

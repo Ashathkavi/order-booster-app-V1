@@ -11,7 +11,7 @@ exports[`should render OrderForm correctly 1`] = `
     >
       Add Food
     </button>
-    <OrderModal
+    <Connect(OrderModal)
       isModalOpen={false}
       onSingleOrderChange={[Function]}
       onVisibleChange={[Function]}
@@ -272,7 +272,7 @@ exports[`should render OrderForm correctly with order date 1`] = `
     >
       Add Food
     </button>
-    <OrderModal
+    <Connect(OrderModal)
       isModalOpen={false}
       onSingleOrderChange={[Function]}
       onVisibleChange={[Function]}
@@ -331,6 +331,7 @@ exports[`should render OrderForm correctly with order date 1`] = `
     />
     <FoodSingleOrder
       iterable={0}
+      key="0"
       onRemoveSingleOrder={[Function]}
       singleTypeOrder={
         SingleOrder {
@@ -349,6 +350,7 @@ exports[`should render OrderForm correctly with order date 1`] = `
     />
     <FoodSingleOrder
       iterable={1}
+      key="1"
       onRemoveSingleOrder={[Function]}
       singleTypeOrder={
         SingleOrder {
@@ -600,7 +602,7 @@ exports[`should render error for invalid form submission 1`] = `
     >
       Add Food
     </button>
-    <OrderModal
+    <Connect(OrderModal)
       isModalOpen={false}
       onSingleOrderChange={[Function]}
       onVisibleChange={[Function]}
@@ -864,7 +866,7 @@ exports[`should render error for invalid form submission 2`] = `
     >
       Add Food
     </button>
-    <OrderModal
+    <Connect(OrderModal)
       isModalOpen={false}
       onSingleOrderChange={[Function]}
       onVisibleChange={[Function]}

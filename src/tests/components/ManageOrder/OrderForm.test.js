@@ -4,7 +4,7 @@ import {OrderForm} from '../../../components/ManageOrder/OrderForm'
 import sampleOrders from '../../../fixtures/sampleOrders'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
-import {OrderModal} from '../../../components/ManageOrder/OrderModal'
+import OrderModal from '../../../components/ManageOrder/OrderModal'
 import FoodSingleOrder from '../../../components/ManageOrder/FoodSingleOrder'
 
 

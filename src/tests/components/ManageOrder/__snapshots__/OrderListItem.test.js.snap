@@ -7,12 +7,14 @@ exports[`should render order list Item with a order 1`] = `
   >
     <h2>
       Ashath
-      : 
+      ::: 
       0765822562
+       :::
+      Rs 1,810.00
     </h2>
   </Link>
   <p>
-    1970-01-01T05:30:00+05:30
+    January 1st, 1970
   </p>
   <p>
     Mamangam
@@ -20,10 +22,5 @@ exports[`should render order list Item with a order 1`] = `
   <p>
     confirmed
   </p>
-  <button
-    onClick={[Function]}
-  >
-    Remove
-  </button>
 </div>
 `;

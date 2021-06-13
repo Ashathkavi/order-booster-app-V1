@@ -39,7 +39,7 @@ exports[`should render OrderList Coorectly 1`] = `
     disabled={true}
     id="textInput"
     type="text"
-    value={[Function]}
+    value=""
   />
   <select
     onChange={[Function]}
@@ -236,7 +236,7 @@ exports[`should render OrderList with alternate order filter 1`] = `
     disabled={true}
     id="textInput"
     type="text"
-    value={[Function]}
+    value=""
   />
   <select
     onChange={[Function]}
