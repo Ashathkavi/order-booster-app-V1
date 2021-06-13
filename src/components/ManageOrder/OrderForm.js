@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import {connect} from 'react-redux'
-import {OrderModal} from './OrderModal'
+import OrderModal from './OrderModal'
 import FoodSingleOrder from './FoodSingleOrder'
 
 
@@ -249,6 +249,7 @@ export class OrderForm extends React.Component{
                         this.state.foods.map((food)=>{
                             iterable = iterable + 1
                             return <FoodSingleOrder 
+                                    key = {iterable}
                                     iterable = {iterable}
                                     singleTypeOrder = {food}
                                     onRemoveSingleOrder = {this.onRemoveSingleOrder}

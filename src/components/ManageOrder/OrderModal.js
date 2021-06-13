@@ -61,6 +61,7 @@ export class OrderModal extends React.Component {
 
     render(){
         let iterable = -1
+        console.log(this.props)
         // if(this.props.isModalOpen){
         //     this.setState(()=>({
         //         singleTypeOrders: this.props.singleTypeOrders
@@ -88,6 +89,7 @@ export class OrderModal extends React.Component {
                                 //console.log('singleTypeOrder.foodQuantity.toString()', singleTypeOrder)
                                     return (
                                         <FoodSingleOrder 
+                                            key = {iterable}
                                             singleTypeOrder={singleTypeOrder} 
                                             iterable={iterable} 
                                             onRemoveSingleOrder={this.onRemoveSingleOrder}                                            
@@ -103,7 +105,7 @@ export class OrderModal extends React.Component {
                     </div>
                     <div>
                         {
-                            this.props.foods.map((food)=><FoodListItem {...food} 
+                            this.props.foods.map((food)=><FoodListItem key={food.id} {...food} 
                                 fromOrderModal={true} 
                                 onAddsingleTypeOrder={this.onAddsingleTypeOrder}/>)
                         }
@@ -125,7 +127,7 @@ export class OrderModal extends React.Component {
 
 
 const mapStateToProps = (state, props) => {
-    console.log(state.foods, state.foodFilters)
+    
     return {
         
         foods:selectFood(state.foods, state.foodFilters)

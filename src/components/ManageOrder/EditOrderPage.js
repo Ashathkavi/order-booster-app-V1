@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { editOrder } from '../../actions/orders'
-import {OrderForm} from './OrderForm'
+import OrderForm from './OrderForm'
 
 export const EditOrderPage = (props) => {
     

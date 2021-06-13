@@ -51,7 +51,11 @@ export const OrderListFilters = (props) => {
     }
 
     const onBoundryAmountChange = (e) => {
-        props.setBoundryAmount(e.target.value)
+        //console.log(typeof e.target.value )
+        const boundryAmount = parseInt(e.target.value)
+        //console.log(boundryAmount )
+        props.setBoundryAmount(boundryAmount)
+
         setboundryAmountDisplay(e.target.value)
     }
 
@@ -98,7 +102,7 @@ export const OrderListFilters = (props) => {
 
             {/*setBoundryAmount filter*/}
             <input type='range' min='0' max='20000' step='100' value={props.filters.boundryAmount} onChange={onBoundryAmountChange}/>
-            <input type='text' id='textInput' disabled value={setboundryAmountDisplay}></input>
+            <input type='text' id='textInput' disabled value={boundryAmountDisplay}></input>
 
             {/*setStatusFilter filter*/}
             <select value={props.filters.status} onChange={onStatusChange}>
