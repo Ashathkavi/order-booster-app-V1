@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render OrdersSummary with 1 order 1`] = `
+<div>
+  <h1>
+    Viewing 
+    1
+     
+    order
+     totalling 
+    Rs 225.00
+  </h1>
+</div>
+`;
+
+exports[`should correctly render OrdersSummary with multiple orders 1`] = `
+<div>
+  <h1>
+    Viewing 
+    13
+     
+    orders
+     totalling 
+    Rs 12,355.00
+  </h1>
+</div>
+`;
