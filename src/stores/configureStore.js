@@ -1,12 +1,15 @@
-import {createStore, combineReducers} from 'redux'
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import foodsReducer from '../reducers/foods'
 import foodFilterReducer from '../reducers/foodFilters'
 import ordersReducer from '../reducers/orders'
 import orderFilterReducer from '../reducers/orderFilters'
+import thunk from 'redux-thunk'
 
 
 
 //STORE CREATION.............................................
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default ()=>{
 
@@ -16,7 +19,8 @@ export default ()=>{
             foodFilters:foodFilterReducer,
             orders:ordersReducer,
             orderFilters:orderFilterReducer
-        })
+        }),
+        composeEnhancers(applyMiddleware(thunk))
     )
     return store
 }

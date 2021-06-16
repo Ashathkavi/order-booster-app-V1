@@ -8,7 +8,7 @@ exports[`should correctly render OrdersSummary with 1 order 1`] = `
      
     order
      totalling 
-    Rs 225.00
+    $225.00
   </h1>
 </div>
 `;
@@ -21,7 +21,7 @@ exports[`should correctly render OrdersSummary with multiple orders 1`] = `
      
     orders
      totalling 
-    Rs 12,355.00
+    $12,355.00
   </h1>
 </div>
 `;

@@ -5,12 +5,12 @@ import sampleOrders from '../../../fixtures/sampleOrders'
 
 const sample_orders = sampleOrders()
 
-let addOrderSpy, historySpy, wrapper
+let startAddOrderSpy, historySpy, wrapper
  
 beforeEach(()=>{
-    addOrderSpy = jest.fn()
+    startAddOrderSpy = jest.fn()
     historySpy = {push: jest.fn()}
-    wrapper = shallow(<AddOrderPage addOrder={addOrderSpy} history={historySpy}/>)
+    wrapper = shallow(<AddOrderPage startAddOrder={startAddOrderSpy} history={historySpy}/>)
 })
 
 test('should render AddOrderPage correctly', () => {
@@ -20,5 +20,5 @@ test('should render AddOrderPage correctly', () => {
 test('should handle onSubmit', () => {
     wrapper.find('OrderForm').prop('onSubmit')(sample_orders[0])
     expect(historySpy.push).toHaveBeenLastCalledWith('/order')
-    expect(addOrderSpy).toHaveBeenLastCalledWith(sample_orders[0])
+    expect(startAddOrderSpy).toHaveBeenLastCalledWith(sample_orders[0])
 })

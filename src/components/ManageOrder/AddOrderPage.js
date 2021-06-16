@@ -1,13 +1,13 @@
 import React from 'react'
 import {OrderForm} from './OrderForm'
-import {addOrder} from '../../actions/orders'
+import {startAddOrder} from '../../actions/orders'
 import {connect} from 'react-redux'
 
 
 export const AddOrderPage = (props) => {
 
     const onSubmit = (order) => {
-        props.addOrder(order)
+        props.startAddOrder(order)
         props.history.push('/order')
     }
 
@@ -21,7 +21,7 @@ export const AddOrderPage = (props) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    addOrder: (order) => dispatch(addOrder(order))
+    startAddOrder: (order) => dispatch(startAddOrder(order))
 })
 
 export default connect(undefined, mapDispatchToProps)(AddOrderPage)

@@ -1,12 +1,12 @@
 import React from 'react'
 import FoodForm from '../ManageFood/FoodForm'
 import {connect} from 'react-redux'
-import {addFood} from '../../actions/foods'
+import {startAddFood} from '../../actions/foods'
 
 export const AddFoodPage = (props) => {
     //console.log(props.history)
     const onSubmit = (food) => {
-        props.addFood(food)
+        props.startAddFood(food)
         props.history.push('/food')
     }
     return(
@@ -17,7 +17,7 @@ export const AddFoodPage = (props) => {
 )}
 
 const mapDispatchToProps = (dispatch) => ({
-    addFood: (food) => dispatch(addFood(food))
+    startAddFood: (food) => dispatch(startAddFood(food))
 })
 
 export default connect(undefined, mapDispatchToProps)(AddFoodPage)

@@ -1,50 +1,72 @@
 import uuid from 'uuid'
 import moment from 'moment'
+import database from '../firebase/firebase'
 
  
 //CREATING ACTION GENERATORS..........................................
 
 //ADD_ORDER : order reducer
-export const addOrder = ({
-    createdAt = moment().valueOf(), 
-    customerName='', 
-    description = "", 
-    phoneNumber='', 
-    orderEndTime = moment().add(20, 'minutes').valueOf(),
-    address='',
-    status={
-        status:'confirmed',
-        time:0
-    },
-    kotStatus={
-        status:'not',
-        time:0
-    },
-    billStatus={
-        status:'not',
-        time:0
-    },
-    foods=[],
-    amount=0,
-
-} = {})=>({
+export const addOrder = (order)=>({
     type:'ADD_ORDER',
-    order:{
-        id:uuid(),
-        createdAt, 
-        customerName, 
-        description, 
-        phoneNumber, 
-        orderEndTime,
-        address,
-        status,
-        kotStatus,
-        billStatus,
-        foods,
-        amount
-    }
+    order
     
 })
+
+
+export const startAddOrder= (orderData = {})=> {
+    return (dispatch) => {
+        const {
+            createdAt = moment().valueOf(), 
+            customerName='', 
+            description = "", 
+            phoneNumber='', 
+            orderEndTime = moment().add(20, 'minutes').valueOf(),
+            address='',
+            status={
+                status:'confirmed',
+                time:0
+            },
+            kotStatus={
+                status:'not',
+                time:0
+            },
+            billStatus={
+                status:'not',
+                time:0
+            },
+            foods=[],
+            amount=0,
+        
+        } = orderData
+        const order = {
+            createdAt, 
+            customerName, 
+            description, 
+            phoneNumber, 
+            orderEndTime,
+            address,
+            status,
+            kotStatus,
+            billStatus,
+            foods,
+            amount
+        }
+        return database.ref('orders').push(order)
+            .then((refOrder) => {
+                dispatch(addOrder({
+                    id:refOrder.key,
+                    ...order
+                }))
+            })
+    }
+}
+
+
+
+
+
+
+
 
 //REMOVE_ORDER : order reducer
 export const removeOrder = ({id} = {}) => ({
