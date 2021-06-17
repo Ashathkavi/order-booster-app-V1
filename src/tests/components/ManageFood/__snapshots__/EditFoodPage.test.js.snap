@@ -8,6 +8,7 @@ exports[`should render EditFoodPage correctly 1`] = `
         "amount": 350,
         "category": "Fried Rice",
         "createdAt": 100000,
+        "description": "",
         "foodSize": "regular",
         "id": 1,
         "largeAvailability": true,

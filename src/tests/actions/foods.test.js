@@ -1,10 +1,38 @@
-import {addFood, removeFood, editFood, startAddFood} from '../../actions/foods'
+import {addFood, removeFood, editFood, startAddFood, setFoods} from '../../actions/foods'
 import moment from 'moment'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import database from '../../firebase/firebase'
+import sampleFoods from '../../fixtures/sampleFoods'
 
 const createMockStore = configureMockStore([thunk])
+
+beforeEach((done) => {
+    const foodData = {}
+    sampleFoods().forEach(({
+        id,
+        name,
+        category,
+        amount,
+        largeAvailability,
+        foodSize,
+        description,
+        createdAt 
+    }) => {
+        foodData[id] = {
+            name,
+            category,
+            amount,
+            largeAvailability,
+            foodSize,
+            description,
+            createdAt 
+        }
+        //console.log(foodData[id])
+    })
+    //console.log(foodData)
+    database.ref('foods').set(foodData).then(()=>done())
+})
 
 test('should setup remove food action object', ()=>{
     const action = removeFood({id:'123abc'})
@@ -109,6 +137,15 @@ test('should add foods with default to database and store', (done) => {
 })
 
 
+
+
+test('shoukd setup set foods action obvject eith data', ()=>{
+    const action = setFoods(sampleFoods())
+    expect(action).toEqual({
+        type:'SET_FOODS',
+        foods:sampleFoods()
+    })
+})
 
 
 /*

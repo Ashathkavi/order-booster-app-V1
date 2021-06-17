@@ -6,7 +6,8 @@ export default () =>[
         amount:350,
         largeAvailability:true,
         foodSize:'regular',
-        createdAt:100000
+        createdAt:100000,
+        description:''
     },{
         id:2,
         name:'Beef Fried Rice',
@@ -14,7 +15,8 @@ export default () =>[
         amount:380,
         largeAvailability:true,
         foodSize:'regular',
-        createdAt:100001
+        createdAt:100001,
+        description:''
     },{        
         id:3,
         name:'Chicken Fried Rice',
@@ -22,7 +24,8 @@ export default () =>[
         amount:550,
         largeAvailability:true,
         foodSize:'full',
-        createdAt:100006
+        createdAt:100006,
+        description:''
     },{
         id:4,
         name:'Chicken Briyani',
@@ -30,6 +33,7 @@ export default () =>[
         amount:450,
         largeAvailability:false,
         foodSize:'regular',
-        createdAt:100005
+        createdAt:100005,
+        description:''
     }
 ]

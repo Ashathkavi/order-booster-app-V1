@@ -58,7 +58,8 @@ test('should edit food using id', () => {
         amount:500,
         largeAvailability:false,
         foodSize:'regular',
-        createdAt:100005
+        createdAt:100005,
+        description:'delisious seafood'
     }
     const action = {
         type:'EDIT_FOOD',
@@ -85,6 +86,16 @@ test('should not edit food if id is wrong', () => {
     }
     const state = foodsReducer(sample_foods, action)
     expect(state).toEqual(sample_foods)
+})
+
+
+test('should set foods', ()=>{
+    const action = {
+        type:'SET_FOODS',
+        foods:[sample_foods[0]]
+    }
+    const state = foodsReducer(sample_foods, action)
+    expect(state).toEqual([sample_foods[0]])
 })
 
 

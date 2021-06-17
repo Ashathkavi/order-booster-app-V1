@@ -143,7 +143,7 @@ test('should add orders with default to database and store', (done) => {
     }
     store.dispatch(startAddOrder()).then(()=>{
         const actions = store.getActions()
-        console.log(actions[0])
+        //console.log(actions[0])
         expect(actions[0]).toEqual({
             type:'ADD_ORDER',
             order:{

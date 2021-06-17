@@ -33,11 +33,13 @@ export const startAddFood = (foodData = {})=> {
         }
         return database.ref('foods').push(food)
             .then((refFood) => {
+                console.log('Data is Saved')
                 dispatch(addFood({
                     id:refFood.key,
                     ...food
                 }))
             })
+            .catch((error)=>console.log('failed :', error))
     }
 }
 
@@ -53,4 +55,12 @@ export const editFood = (id, updates) => ({
     id,
     updates
 
+})
+
+
+
+//SET_FOODS : to get all foods detail from database
+export const setFoods = (foods) => ({
+    type:'SET_FOODS',
+    foods
 })

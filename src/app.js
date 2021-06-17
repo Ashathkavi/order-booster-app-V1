@@ -7,7 +7,7 @@ import 'normalize.css/normalize.css'
 import AppRouter from './routers/AppRouter'
 import configureStore from './stores/configureStore'
 
-import {addFood} from './actions/foods'
+import {addFood, startSetFoods} from './actions/foods'
 import {setNameFilter, setSize} from './actions/foodFilters'
 import getVisibleFoods from './selectors/foods'
 import sampleFoods from './fixtures/sampleFoods'
@@ -31,15 +31,60 @@ import {
     sortByDuration
 } from './actions/orderFilters'
 import "react-datepicker/dist/react-datepicker.css";
-import "./firebase/firebase"
+import database from "./firebase/firebase"
 
 
 
 
 
+database.ref().set({
+    name:'Ashath Kavi',
+    age:26,
+    stressLevel:6,
+    job:{
+        title:'Softeare developer',
+        company:'Google'
+    },
+    location:{
+        city:'Philadelphia',
+        country:'United state'
+    }
+}).then(()=>{
+    console.log('Data is Saved')
+}).catch((error)=>{
+    console.log('This failed', error)
+
+})
 
 
 const store = configureStore()
+
+console.log('store.getState()', store.getState())
+
+const state = store.getState()
+
+const visibleFoods = getVisibleFoods(state.foods, state.foodFilters)
+const visibleOrders = getVisibleorders(state.orders, state.orderFilters)
+//console.log('visibleOrders',visibleOrders)
+
+
+
+const jsx = (
+    <Provider store={store}>
+        <AppRouter/>
+    </Provider>
+)
+
+//ReactDOM.render(<p>Loading.....</p>, document.getElementById('app'))
+
+//store.dispatch(startSetFoods()).then(()=>{
+    ReactDOM.render(jsx, document.getElementById('app'))
+//})
+
+
+
+
+/*
 
 const sample_Foods = sampleFoods()
 const FoodOne = store.dispatch(addFood(sample_Foods[0]))
@@ -83,24 +128,3 @@ store.dispatch(removeOrder({id:OrderOne.order.id}))
 //store.dispatch(setAddressFilter('maman'))
 
 //store.dispatch(setBoundryAmount(5200))
-
-console.log('store.getState()', store.getState())
-
-const state = store.getState()
-
-const visibleFoods = getVisibleFoods(state.foods, state.foodFilters)
-const visibleOrders = getVisibleorders(state.orders, state.orderFilters)
-//console.log('visibleOrders',visibleOrders)
-
-
-
-const jsx = (
-    <Provider store={store}>
-        <AppRouter/>
-    </Provider>
-)
-
-
-
-
-ReactDOM.render(jsx, document.getElementById('app'))

@@ -1,7 +1,6 @@
 {
-  "name": "Order-Booster",
+  "name": "order-booster",
   "version": "1.0.0",
-  "description": "",
   "engines": {
     "node": "15.13.0"
   },
@@ -66,5 +65,14 @@
     "jest": "^27.0.1",
     "react-test-renderer": "^17.0.2",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashathkavi/order-booster-app-V1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ashathkavi/order-booster-app-V1/issues"
+  },
+  "homepage": "https://github.com/Ashathkavi/order-booster-app-V1#readme",
+  "description": ""
 }

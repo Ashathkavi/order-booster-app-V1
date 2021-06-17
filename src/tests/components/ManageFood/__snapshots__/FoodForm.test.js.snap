@@ -182,6 +182,7 @@ exports[`should render FoodForm correctly with food date 1`] = `
       disabled={false}
       onChange={[Function]}
       placeholder="Add a description about this food"
+      value=""
     />
     <button>
       Add Food
