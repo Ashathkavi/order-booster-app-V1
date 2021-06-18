@@ -5,14 +5,14 @@ import sampleFoods from '../../../fixtures/sampleFoods'
 
 const sample_foods = sampleFoods()
 
-let editFoodSpy, historySpy, wrapper, startRemoveFoodSpy
+let startEditFoodSpy, historySpy, wrapper, startRemoveFoodSpy
  
 beforeEach(()=>{
-    editFoodSpy = jest.fn()
+    startEditFoodSpy = jest.fn()
     startRemoveFoodSpy = jest.fn()
     historySpy = {push: jest.fn()}
     wrapper = shallow(<EditFoodPage 
-        editFood={editFoodSpy} 
+        startEditFood={startEditFoodSpy} 
         startRemoveFood = {startRemoveFoodSpy} 
         history={historySpy}     
         food = {sample_foods[0]}   
@@ -26,7 +26,7 @@ test('should render EditFoodPage correctly', () => {
 test('should handle onSubmit', () => {
     wrapper.find('FoodForm').prop('onSubmit')(sample_foods[1])
     expect(historySpy.push).toHaveBeenLastCalledWith('/food')
-    expect(editFoodSpy).toHaveBeenLastCalledWith(sample_foods[0].id, sample_foods[1])
+    expect(startEditFoodSpy).toHaveBeenLastCalledWith(sample_foods[0].id, sample_foods[1])
 })
 
 test('should handle onSubmit', () => {

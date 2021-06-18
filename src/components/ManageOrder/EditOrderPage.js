@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { editOrder, startRemoveOrder} from '../../actions/orders'
+import { startEditOrder, startRemoveOrder} from '../../actions/orders'
 import OrderForm from './OrderForm'
 
 export const EditOrderPage = (props) => {
     
     const onSubmit = (order) => {
-        props.editOrder(props.order.id ,order)
+        props.startEditOrder(props.order.id ,order)
         props.history.push('/order')
     }
 
@@ -24,7 +24,7 @@ export const EditOrderPage = (props) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    editOrder: (id, order) => dispatch(editOrder(id, order)),
+    startEditOrder: (id, order) => dispatch(startEditOrder(id, order)),
     startRemoveOrder: (id) => dispatch(startRemoveOrder({id}))
 })
 

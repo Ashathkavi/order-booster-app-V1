@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { editFood, startRemoveFood} from '../../actions/foods'
+import { startEditFood, startRemoveFood} from '../../actions/foods'
 import FoodForm from '../ManageFood/FoodForm'
 
 export const EditFoodPage = (props) => {
     //console.log(props)
     const onSubmit = (food) => {
-        props.editFood(props.food.id ,food)
+        props.startEditFood(props.food.id ,food)
         props.history.push('/food')
     }
 
@@ -22,7 +22,7 @@ export const EditFoodPage = (props) => {
 )}
 
 const mapDispatchToProps = (dispatch) => ({
-    editFood: (id, food) => dispatch(editFood(id, food)),
+    startEditFood: (id, food) => dispatch(startEditFood(id, food)),
     startRemoveFood: (id) => dispatch(startRemoveFood({id}))
 })
 

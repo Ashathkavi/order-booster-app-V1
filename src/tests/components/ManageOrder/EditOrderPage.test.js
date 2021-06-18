@@ -7,14 +7,14 @@ import OrderForm from '../../../components/ManageOrder/OrderForm'
 
 const sample_orders = sampleOrders()
 
-let editOrderSpy, historySpy, wrapper, startRemoveOrderSpy
+let startEditOrderSpy, historySpy, wrapper, startRemoveOrderSpy
  
 beforeEach(()=>{
-    editOrderSpy = jest.fn()
+    startEditOrderSpy = jest.fn()
     startRemoveOrderSpy = jest.fn()
     historySpy = {push: jest.fn()}
     wrapper = shallow(<EditOrderPage 
-        editOrder={editOrderSpy} 
+        startEditOrder={startEditOrderSpy} 
         startRemoveOrder = {startRemoveOrderSpy} 
         history={historySpy}     
         order = {sample_orders[0]}   
@@ -28,7 +28,7 @@ test('should render EditOrderPage correctly', () => {
 test('should handle onSubmit', () => {
     wrapper.find(OrderForm).prop('onSubmit')(sample_orders[1])
     expect(historySpy.push).toHaveBeenLastCalledWith('/order')
-    expect(editOrderSpy).toHaveBeenLastCalledWith(sample_orders[0].id, sample_orders[1])
+    expect(startEditOrderSpy).toHaveBeenLastCalledWith(sample_orders[0].id, sample_orders[1])
 })
 
 test('should handle onSubmit', () => {

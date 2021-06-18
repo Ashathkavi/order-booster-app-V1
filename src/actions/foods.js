@@ -71,6 +71,17 @@ export const editFood = (id, updates) => ({
 
 })
 
+export const startEditFood = (id, updates)=> {
+    return (dispatch) => {        
+        return database.ref(`foods/${id}`).update(updates)
+            .then(() => {
+                console.log('Data is updated')
+                dispatch(editFood(id, updates))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}
+
 
 
 //SET_FOODS : to get all foods detail from database

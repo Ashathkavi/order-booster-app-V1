@@ -1,5 +1,5 @@
 import moment from 'moment'
-import {addOrder, removeOrder, editOrder, startAddOrder, setOrders, startSetOrders, startRemoveOrder} from '../../actions/orders'
+import {addOrder, removeOrder, editOrder, startAddOrder, setOrders, startSetOrders, startRemoveOrder, startEditOrder} from '../../actions/orders'
 import sampleFoods from '../../fixtures/sampleFoods'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -89,6 +89,26 @@ test('should setup edit order action object', ()=>{
         id:'123abc',
         updates
     })
+})
+
+test('should setup edit order from database and store', (done)=>{
+    const store = createMockStore({})
+    const id = sampleOrders()[0].id
+    const updates = {customerName :'Pradap'}
+    store.dispatch(startEditOrder(id, updates)).then(()=>{
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type:'EDIT_ORDER',
+            id,
+            updates
+        })
+        return database.ref(`orders/${id}`).once('value')        
+    }).then((snapshot)=>{
+        //console.log(snapshot.val())
+        expect(snapshot.val().customerName).toBe(updates.customerName)
+        done()
+    })
+
 })
 
 

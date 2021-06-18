@@ -93,6 +93,17 @@ export const editOrder = (id, updates) => ({
 
 })
 
+export const startEditOrder = (id, updates)=> {
+    return (dispatch) => {        
+        return database.ref(`orders/${id}`).update(updates)
+            .then(() => {
+                console.log('Data is updated')
+                dispatch(editOrder(id, updates))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}
+
 
 //SET_ORDERS : to get all orders detail from database
 export const setOrders = (orders) => ({

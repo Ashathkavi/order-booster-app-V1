@@ -1,4 +1,4 @@
-import {addFood, removeFood, editFood, startAddFood, setFoods, startSetFoods, startRemoveFood} from '../../actions/foods'
+import {addFood, removeFood, editFood, startAddFood, setFoods, startSetFoods, startRemoveFood, startEditFood} from '../../actions/foods'
 import moment from 'moment'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -77,6 +77,26 @@ test('should setup edit food action object', ()=>{
         id:'123abc',
         updates
     })
+})
+
+test('should setup edit food from database and store', (done)=>{
+    const store = createMockStore({})
+    const id = sampleFoods()[0].id
+    const updates = {name :'Egg fried rice'}
+    store.dispatch(startEditFood(id, updates)).then(()=>{
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type:'EDIT_FOOD',
+            id,
+            updates
+        })
+        return database.ref(`foods/${id}`).once('value')        
+    }).then((snapshot)=>{
+        //console.log(snapshot.val())
+        expect(snapshot.val().name).toBe(updates.name)
+        done()
+    })
+
 })
 
 
