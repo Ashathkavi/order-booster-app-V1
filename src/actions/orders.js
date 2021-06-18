@@ -81,3 +81,30 @@ export const editOrder = (id, updates) => ({
     updates
 
 })
+
+
+//SET_ORDERS : to get all orders detail from database
+export const setOrders = (orders) => ({
+    type:'SET_ORDERS',
+    orders
+})
+
+export const startSetOrders = ()=> {
+    return (dispatch) => {
+        
+        return database.ref('orders').once('value')
+            .then((snapshot) => {
+                console.log('Data is fetched')
+                const orders = []
+                snapshot.forEach((childSnapshot)=>{
+                    orders.push({
+                        
+                        ...childSnapshot.val(),
+                        id:childSnapshot.key
+                    })
+                })
+                dispatch(setOrders(orders))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}

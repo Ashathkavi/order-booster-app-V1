@@ -1,11 +1,48 @@
 import moment from 'moment'
-import {addOrder, removeOrder, editOrder, startAddOrder} from '../../actions/orders'
+import {addOrder, removeOrder, editOrder, startAddOrder, setOrders, startSetOrders} from '../../actions/orders'
 import sampleFoods from '../../fixtures/sampleFoods'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import database from '../../firebase/firebase'
+import sampleOrders from '../../fixtures/sampleOrders'
 
 const createMockStore = configureMockStore([thunk])
+
+
+beforeEach((done) => {
+    const orderData = {}
+    sampleOrders().forEach(({
+        id,
+        createdAt, 
+        customerName, 
+        description, 
+        phoneNumber, 
+        orderEndTime,
+        address,
+        status,
+        kotStatus,
+        billStatus,
+        foods,
+        amount
+    }) => {
+        orderData[id] = {
+            createdAt, 
+            customerName, 
+            description, 
+            phoneNumber, 
+            orderEndTime,
+            address,
+            status,
+            kotStatus,
+            billStatus,
+            foods,
+            amount
+        }
+        //console.log(orderData[id])
+    })
+    //console.log(orderData)
+    database.ref('orders').set(orderData).then(()=>done())
+})
 
 class SingleOrder{
     constructor(food, foodQuantity){
@@ -174,6 +211,32 @@ test('should add orders with default to database and store', (done) => {
                 time:0
             },
             amount:0
+        })
+        done()
+    })
+})
+
+
+
+
+
+test('shoukd setup set orders action obvject eith data', ()=>{
+    const action = setOrders(sampleOrders())
+    expect(action).toEqual({
+        type:'SET_ORDERS',
+        orders:sampleOrders()
+    })
+})
+
+
+
+test('should fetch order from the database and store at store', (done)=>{
+    const store = createMockStore({})
+    store.dispatch(startSetOrders()).then(()=>{
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type:'SET_ORDERS',
+            orders:sampleOrders()
         })
         done()
     })

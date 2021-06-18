@@ -14,7 +14,7 @@ import sampleFoods from './fixtures/sampleFoods'
 
 import getVisibleorders from './selectors/orders'
 import sampleOrders from './fixtures/sampleOrders'
-import {addOrder, editOrder, removeOrder} from './actions/orders'
+import {addOrder, editOrder, removeOrder, startSetOrders} from './actions/orders'
 import {
     setBoundryAmount,
     setAddressFilter,
@@ -37,24 +37,7 @@ import database from "./firebase/firebase"
 
 
 
-database.ref().set({
-    name:'Ashath Kavi',
-    age:26,
-    stressLevel:6,
-    job:{
-        title:'Softeare developer',
-        company:'Google'
-    },
-    location:{
-        city:'Philadelphia',
-        country:'United state'
-    }
-}).then(()=>{
-    console.log('Data is Saved')
-}).catch((error)=>{
-    console.log('This failed', error)
-
-})
+database.ref().set(null)
 
 
 const store = configureStore()
@@ -75,11 +58,13 @@ const jsx = (
     </Provider>
 )
 
-//ReactDOM.render(<p>Loading.....</p>, document.getElementById('app'))
+ReactDOM.render(<p>Loading.....</p>, document.getElementById('app'))
 
-//store.dispatch(startSetFoods()).then(()=>{
-    ReactDOM.render(jsx, document.getElementById('app'))
-//})
+store.dispatch(startSetFoods()).then(()=>{
+    store.dispatch(startSetOrders()).then(()=>{
+        ReactDOM.render(jsx, document.getElementById('app'))
+    })
+})
 
 
 

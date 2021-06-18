@@ -20,6 +20,8 @@ const ordersReducer = (state=orderReducerDefaultState, action) => {
                     return order
                 } 
             })
+        case 'SET_ORDERS':
+            return action.orders
         default:
             return state
     }

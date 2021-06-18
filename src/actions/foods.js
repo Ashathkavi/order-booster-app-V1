@@ -64,3 +64,25 @@ export const setFoods = (foods) => ({
     type:'SET_FOODS',
     foods
 })
+
+export const startSetFoods = ()=> {
+    return (dispatch) => {
+        
+        return database.ref('foods').once('value')
+            .then((snapshot) => {
+                console.log('Data is fetched')
+                const foods = []
+                snapshot.forEach((childSnapshot)=>{
+                    foods.push({
+                        
+                        ...childSnapshot.val(),
+                        id:childSnapshot.key
+                    })
+                })
+                dispatch(setFoods(foods))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}
+
+

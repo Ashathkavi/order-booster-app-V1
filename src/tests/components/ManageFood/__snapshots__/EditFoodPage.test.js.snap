@@ -10,7 +10,7 @@ exports[`should render EditFoodPage correctly 1`] = `
         "createdAt": 100000,
         "description": "",
         "foodSize": "regular",
-        "id": 1,
+        "id": "1",
         "largeAvailability": true,
         "name": "Chicken Fried Rice",
       }

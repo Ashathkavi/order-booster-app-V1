@@ -19,7 +19,7 @@ const onBillAmountCalculation = (foods) => {
 
 export default () =>[
     {
-        id:1,
+        id:'1',
         createdAt :moment().valueOf(), 
         customerName:'Ashath', 
         description : "less oil", 
@@ -42,7 +42,7 @@ export default () =>[
         amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)])
     },
     {
-        id:2,
+        id:'2',
         createdAt :moment().add(6, 'days').valueOf(), 
         customerName:'AshathKavi', 
         description : "more oil", 
@@ -65,7 +65,7 @@ export default () =>[
         amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)])
     },
     {
-        id:3,
+        id:'3',
         createdAt :moment().add(8, 'days').valueOf(),
         customerName:'Pushpandan', 
         description :"low spicy", 

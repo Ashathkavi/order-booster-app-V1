@@ -1,4 +1,4 @@
-import {addFood, removeFood, editFood, startAddFood, setFoods} from '../../actions/foods'
+import {addFood, removeFood, editFood, startAddFood, setFoods, startSetFoods} from '../../actions/foods'
 import moment from 'moment'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -148,24 +148,15 @@ test('shoukd setup set foods action obvject eith data', ()=>{
 })
 
 
-/*
-test('should setup add food action object with default value', ()=>{
-    const foodData = {
-        createdAt:moment().toDate(),
-        name:'',
-        category : "soups",
-        amount:0,
-        largeAvailability:false,
-        foodSize:'regular',
-        description:''
-    }
-    const action = addFood()
-    expect(action).toEqual({
-        type:'ADD_FOOD',
-        food:{
-            ...foodData,
-            createdAt:expect.any(Date)
-        }
+
+test('should fetch food from the database and store at store', (done)=>{
+    const store = createMockStore({})
+    store.dispatch(startSetFoods()).then(()=>{
+        const actions = store.getActions()
+        expect(actions[0]).toEqual({
+            type:'SET_FOODS',
+            foods:sampleFoods()
+        })
+        done()
     })
 })
-*/

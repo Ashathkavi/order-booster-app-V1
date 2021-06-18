@@ -26,7 +26,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100001,
             "description": "",
             "foodSize": "regular",
-            "id": 2,
+            "id": "2",
             "largeAvailability": true,
             "name": "Beef Fried Rice",
           },
@@ -39,7 +39,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100000,
             "description": "",
             "foodSize": "regular",
-            "id": 1,
+            "id": "1",
             "largeAvailability": true,
             "name": "Chicken Fried Rice",
           },
@@ -47,7 +47,7 @@ exports[`should render order list with orders 1`] = `
         },
       ]
     }
-    id={1}
+    id="1"
     key="1"
     kotStatus={
       Object {
@@ -85,7 +85,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100006,
             "description": "",
             "foodSize": "full",
-            "id": 3,
+            "id": "3",
             "largeAvailability": true,
             "name": "Chicken Fried Rice",
           },
@@ -98,7 +98,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100000,
             "description": "",
             "foodSize": "regular",
-            "id": 1,
+            "id": "1",
             "largeAvailability": true,
             "name": "Chicken Fried Rice",
           },
@@ -106,7 +106,7 @@ exports[`should render order list with orders 1`] = `
         },
       ]
     }
-    id={2}
+    id="2"
     key="2"
     kotStatus={
       Object {
@@ -144,7 +144,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100000,
             "description": "",
             "foodSize": "regular",
-            "id": 1,
+            "id": "1",
             "largeAvailability": true,
             "name": "Chicken Fried Rice",
           },
@@ -157,7 +157,7 @@ exports[`should render order list with orders 1`] = `
             "createdAt": 100006,
             "description": "",
             "foodSize": "full",
-            "id": 3,
+            "id": "3",
             "largeAvailability": true,
             "name": "Chicken Fried Rice",
           },
@@ -165,7 +165,7 @@ exports[`should render order list with orders 1`] = `
         },
       ]
     }
-    id={3}
+    id="3"
     key="3"
     kotStatus={
       Object {

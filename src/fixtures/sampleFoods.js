@@ -1,6 +1,6 @@
 export default () =>[
     {
-        id:1,
+        id:'1',
         name:'Chicken Fried Rice',
         category:'Fried Rice',
         amount:350,
@@ -9,7 +9,7 @@ export default () =>[
         createdAt:100000,
         description:''
     },{
-        id:2,
+        id:'2',
         name:'Beef Fried Rice',
         category:'Fried Rice',
         amount:380,
@@ -18,7 +18,7 @@ export default () =>[
         createdAt:100001,
         description:''
     },{        
-        id:3,
+        id:'3',
         name:'Chicken Fried Rice',
         category:'Fried Rice',
         amount:550,
@@ -27,7 +27,7 @@ export default () =>[
         createdAt:100006,
         description:''
     },{
-        id:4,
+        id:'4',
         name:'Chicken Briyani',
         category:'Briyani',
         amount:450,
