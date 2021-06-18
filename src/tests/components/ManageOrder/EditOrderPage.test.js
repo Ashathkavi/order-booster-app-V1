@@ -7,15 +7,15 @@ import OrderForm from '../../../components/ManageOrder/OrderForm'
 
 const sample_orders = sampleOrders()
 
-let editOrderSpy, historySpy, wrapper, removeOrderSpy
+let editOrderSpy, historySpy, wrapper, startRemoveOrderSpy
  
 beforeEach(()=>{
     editOrderSpy = jest.fn()
-    removeOrderSpy = jest.fn()
+    startRemoveOrderSpy = jest.fn()
     historySpy = {push: jest.fn()}
     wrapper = shallow(<EditOrderPage 
         editOrder={editOrderSpy} 
-        removeOrder = {removeOrderSpy} 
+        startRemoveOrder = {startRemoveOrderSpy} 
         history={historySpy}     
         order = {sample_orders[0]}   
     />)
@@ -34,5 +34,5 @@ test('should handle onSubmit', () => {
 test('should handle onSubmit', () => {
     wrapper.find('button').simulate('click')
     expect(historySpy.push).toHaveBeenLastCalledWith('/order')
-    expect(removeOrderSpy).toHaveBeenLastCalledWith(sample_orders[0].id)
+    expect(startRemoveOrderSpy).toHaveBeenLastCalledWith(sample_orders[0].id)
 })

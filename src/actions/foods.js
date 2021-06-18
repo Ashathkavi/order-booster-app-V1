@@ -49,6 +49,20 @@ export const removeFood = ({id} = {}) => ({
     id
 })
 
+
+export const startRemoveFood = ({id} = {})=> {
+    return (dispatch) => {        
+        return database.ref(`foods/${id}`).remove()
+            .then(() => {
+                console.log('Data is removed')
+                dispatch(removeFood({id}))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}
+
+
+
 //EDIT_FOOD : food reducer
 export const editFood = (id, updates) => ({
     type:'EDIT_FOOD',

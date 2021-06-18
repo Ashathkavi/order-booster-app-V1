@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
-import {removeFood} from '../../actions/foods'
+import {startRemoveFood} from '../../actions/foods'
 import {Link} from 'react-router-dom'
 
 class SingleTypeOrder {
@@ -37,7 +37,7 @@ export const FoodListItem = ({
             <Link to={`/food/edit/${id}`}><h2>{name}: {foodSize}</h2></Link>
             <p>{category}</p>
             <p>{amount}</p>
-            <button onClick={()=>{dispatch(removeFood({id}))}}>Remove</button>
+            <button onClick={()=>{dispatch(startRemoveFood({id}))}}>Remove</button>
         </div>
     )
 }

@@ -5,15 +5,15 @@ import sampleFoods from '../../../fixtures/sampleFoods'
 
 const sample_foods = sampleFoods()
 
-let editFoodSpy, historySpy, wrapper, removeFoodSpy
+let editFoodSpy, historySpy, wrapper, startRemoveFoodSpy
  
 beforeEach(()=>{
     editFoodSpy = jest.fn()
-    removeFoodSpy = jest.fn()
+    startRemoveFoodSpy = jest.fn()
     historySpy = {push: jest.fn()}
     wrapper = shallow(<EditFoodPage 
         editFood={editFoodSpy} 
-        removeFood = {removeFoodSpy} 
+        startRemoveFood = {startRemoveFoodSpy} 
         history={historySpy}     
         food = {sample_foods[0]}   
     />)
@@ -32,5 +32,5 @@ test('should handle onSubmit', () => {
 test('should handle onSubmit', () => {
     wrapper.find('button').simulate('click')
     expect(historySpy.push).toHaveBeenLastCalledWith('/food')
-    expect(removeFoodSpy).toHaveBeenLastCalledWith(sample_foods[0].id)
+    expect(startRemoveFoodSpy).toHaveBeenLastCalledWith(sample_foods[0].id)
 })

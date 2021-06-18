@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { editFood } from '../../actions/foods'
+import { editFood, startRemoveFood} from '../../actions/foods'
 import FoodForm from '../ManageFood/FoodForm'
 
 export const EditFoodPage = (props) => {
@@ -11,7 +11,7 @@ export const EditFoodPage = (props) => {
     }
 
     const onRemove = () => {
-        props.removeFood(props.food.id)
+        props.startRemoveFood(props.food.id)
         props.history.push('/food')
     }
     return(
@@ -23,7 +23,7 @@ export const EditFoodPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     editFood: (id, food) => dispatch(editFood(id, food)),
-    removeFood: (id) => dispatch(removeFood({id}))
+    startRemoveFood: (id) => dispatch(startRemoveFood({id}))
 })
 
 const mapStateToProps = (state, props) => {

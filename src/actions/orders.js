@@ -74,6 +74,17 @@ export const removeOrder = ({id} = {}) => ({
     id
 })
 
+export const startRemoveOrder = ({id} = {})=> {
+    return (dispatch) => {        
+        return database.ref(`orders/${id}`).remove()
+            .then(() => {
+                console.log('Data is removed')
+                dispatch(removeOrder({id}))
+            })
+            .catch((error)=>console.log('failed :', error))
+    }
+}
+
 //EDIT_ORDER : order reducer
 export const editOrder = (id, updates) => ({
     type:'EDIT_ORDER',
