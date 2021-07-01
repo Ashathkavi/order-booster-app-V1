@@ -1,20 +1,21 @@
 
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import './styles/styles.scss'
 import 'normalize.css/normalize.css'
-import AppRouter from './routers/AppRouter'
+import AppRouter, {history} from './routers/AppRouter'
 import configureStore from './stores/configureStore'
+import moment from 'moment'
+import numeral from 'numeral'
 
-import {addFood, startSetFoods} from './actions/foods'
-import {setNameFilter, setSize} from './actions/foodFilters'
+import { login, logout, checkUserAvailability, setAsMemeber } from './actions/auth' 
+
+import {startSetFoods} from './actions/foods'
 import getVisibleFoods from './selectors/foods'
-import sampleFoods from './fixtures/sampleFoods'
 
 import getVisibleorders from './selectors/orders'
-import sampleOrders from './fixtures/sampleOrders'
-import {addOrder, editOrder, removeOrder, startSetOrders} from './actions/orders'
+import {startSetOrders} from './actions/orders'
 import {
     setBoundryAmount,
     setAddressFilter,
@@ -31,13 +32,11 @@ import {
     sortByDuration
 } from './actions/orderFilters'
 import "react-datepicker/dist/react-datepicker.css";
-import database from "./firebase/firebase"
+import database,{firebase} from "./firebase/firebase"
+import LoadingPage from "./components/LoadingPage"
 
 
 
-
-
-database.ref().set(null)
 
 
 const store = configureStore()
@@ -58,12 +57,57 @@ const jsx = (
     </Provider>
 )
 
-ReactDOM.render(<p>Loading.....</p>, document.getElementById('app'))
-
-store.dispatch(startSetFoods()).then(()=>{
-    store.dispatch(startSetOrders()).then(()=>{
+let hasRender = false
+const renderApp = () => {
+    if(!hasRender){
         ReactDOM.render(jsx, document.getElementById('app'))
-    })
+        hasRender=true
+    }
+}
+
+ReactDOM.render(<LoadingPage/>, document.getElementById('app'))
+
+
+firebase.auth().onAuthStateChanged((user) => {
+    
+    
+    if(user){
+        store.dispatch(checkUserAvailability(user)).then(()=>{
+            if(store.getState().auth.role === 'unknown'){
+                store.dispatch(setAsMemeber(user.uid, user.displayName)).then(()=>{
+                    store.dispatch(startSetFoods()).then(()=>{
+                        store.dispatch(startSetOrders()).then(()=>{
+                            renderApp()
+                            if(history.location.pathname === '/'){
+                                history.push('/dashboard')
+                                
+
+                            }
+                            console.log('store.getState()', store.getState())
+                        })
+                    })      
+                })
+            }else{
+                store.dispatch(startSetFoods()).then(()=>{
+                    store.dispatch(startSetOrders()).then(()=>{
+                        renderApp()
+                        if(history.location.pathname === '/'){
+                            history.push('/dashboard')
+                            
+
+                        }
+                        console.log('store.getState()', store.getState())
+                    })
+                })      
+            }
+                 
+        })
+        
+    }else{
+        store.dispatch(logout())
+        renderApp()
+        history.push('/')
+    }
 })
 
 

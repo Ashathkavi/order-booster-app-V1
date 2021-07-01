@@ -6,7 +6,7 @@ import sampleOrders from '../../../fixtures/sampleOrders'
 const sample_orders = sampleOrders()
 
 test('should render order list with orders', () => {
-    const wrapper = shallow(<OrderList orders={sample_orders}/>)
+    const wrapper = shallow(<OrderList orders={sample_orders} autherizedAs='admin'/>)
     expect(wrapper).toMatchSnapshot()
 })
 

@@ -36,6 +36,9 @@ export const startAddOrder= (orderData = {})=> {
             },
             foods=[],
             amount=0,
+            deliverer='',
+            deliverMeth='',
+            count=0
         
         } = orderData
         const order = {
@@ -49,7 +52,10 @@ export const startAddOrder= (orderData = {})=> {
             kotStatus,
             billStatus,
             foods,
-            amount
+            amount,
+            deliverer,
+            deliverMeth,
+            count,
         }
         return database.ref('orders').push(order)
             .then((refOrder) => {

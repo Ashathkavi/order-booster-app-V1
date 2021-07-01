@@ -4,6 +4,7 @@ import foodFilterReducer from '../reducers/foodFilters'
 import ordersReducer from '../reducers/orders'
 import orderFilterReducer from '../reducers/orderFilters'
 import thunk from 'redux-thunk'
+import authReducer from '../reducers/auth'
 
 
 
@@ -18,7 +19,8 @@ export default ()=>{
             foods:foodsReducer,
             foodFilters:foodFilterReducer,
             orders:ordersReducer,
-            orderFilters:orderFilterReducer
+            orderFilters:orderFilterReducer,
+            auth:authReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     )

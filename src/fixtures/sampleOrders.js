@@ -39,7 +39,10 @@ export default () =>[
             time:moment().add(5, 'minutes').valueOf()
         },
         foods:[new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)],
-        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)])
+        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)]),
+        deliverer:'Ashath',
+        count:3,
+        deliverMeth:'delivery'
     },
     {
         id:'2',
@@ -62,7 +65,10 @@ export default () =>[
             time:moment().add(6, 'days').valueOf()
         },
         foods:[new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)],
-        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)])
+        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)]),
+        deliverer:'Push',
+        count:4,
+        deliverMeth:'delivery'
     },
     {
         id:'3',
@@ -85,6 +91,9 @@ export default () =>[
             time:0
         },
         foods:[new SingleOrder(sampleFoods()[0], 2), new SingleOrder(sampleFoods()[2], 3)],
-        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[0], 2), new SingleOrder(sampleFoods()[2], 3)])
+        amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[0], 2), new SingleOrder(sampleFoods()[2], 3)]),
+        deliverer:'Divasthan',
+        count:2,
+        deliverMeth:'delivery'
     }
 ]

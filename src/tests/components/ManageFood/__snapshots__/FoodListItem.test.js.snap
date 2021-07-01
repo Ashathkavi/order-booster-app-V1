@@ -17,10 +17,5 @@ exports[`should render food list Item with a food 1`] = `
   <p>
     350
   </p>
-  <button
-    onClick={[Function]}
-  >
-    Remove
-  </button>
 </div>
 `;

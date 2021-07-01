@@ -2,12 +2,29 @@
 
 exports[`should render MainDashboardPage 1`] = `
 <div>
-  <h4>
-    Jan 1st, 1970
-  </h4>
-  <h3>
-    This from Main dashboard componrnet
-  </h3>
+  <header
+    className="header"
+  >
+    <div
+      className="content-container"
+    >
+      <div
+        className="header__title"
+      >
+        <h1>
+          Order Booster
+        </h1>
+      </div>
+      <button
+        onClick={[Function]}
+      >
+        LogOut
+      </button>
+      <h4>
+        Jan 1st, 1970
+      </h4>
+    </div>
+  </header>
   <p>
     <Link
       to="/food"

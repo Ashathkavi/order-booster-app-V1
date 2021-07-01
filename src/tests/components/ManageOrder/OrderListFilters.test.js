@@ -98,7 +98,7 @@ test('should handle setPNoFilter', () => {
 
 test('should handle setboundryAmount', () => {
     const value = 756
-    wrapper.find('input').at(4).simulate('change', {
+    wrapper.find('input').at(5).simulate('change', {
         persist: () => { },
         target:{value}
     })
@@ -118,7 +118,7 @@ test('should handle setStatusFilter', () => {
 
 test('should handle setKotStatusFilter', () => {
     const value = 'conf'
-    wrapper.find('select').at(1).simulate('change', {
+    wrapper.find('select').at(3).simulate('change', {
         persist: () => { },
         target:{value}
     })
@@ -138,7 +138,7 @@ test('should handle setBillStatusFilter', () => {
 
 test('should handle sortbyamount', () => {
     const value = 'amount'
-    wrapper.find('select').at(3).simulate('change', {
+    wrapper.find('select').at(1).simulate('change', {
         persist: () => { },
         target:{value}
     })
@@ -148,7 +148,7 @@ test('should handle sortbyamount', () => {
 
 test('should handle sortByDate', () => {
     const value = 'date'
-    wrapper.find('select').at(3).simulate('change', {
+    wrapper.find('select').at(1).simulate('change', {
         persist: () => { },
         target:{value}
     })
@@ -158,7 +158,7 @@ test('should handle sortByDate', () => {
 
 test('should handle sortbyduration', () => {
     const value = 'duration'
-    wrapper.find('select').at(3).simulate('change', {
+    wrapper.find('select').at(1).simulate('change', {
         persist: () => { },
         target:{value}
     })

@@ -11,21 +11,38 @@ class Header extends React.Component {
     }
 
     FoodHeader = () => (
-        <header>
-            <h1>Food Manager</h1>
-            <NavLink activeClassName="is-active" to="/food" exact={true}>FoodManagerDashboard-</NavLink>
-            <NavLink activeClassName="is-active" to="/food/create">CreateFood-</NavLink>
-            <NavLink activeClassName="is-active" to="/" exact={true}>MainBoard</NavLink>
+        <header className="header">
+            <div className="content-container">
+                <div className="header__content">
+                    <div className="header__content-right">
+                        <NavLink activeClassName="is-active" to="/food" exact={true} className="header__title"><h1>Food Manager</h1></NavLink>
+                    </div>
+                    <div className="header__content-left">
+                        <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
+                        <button onClick= {this.props.startLogout} className="button button--linkLogout">LogOut</button>
+                    </div>
+                    
+                </div>                
+            </div>
         </header>
     )
 
     
     OrderHeader = () => (
-        <header>
-            <h1>Order Manager</h1>
-            <NavLink activeClassName="is-active" to="/order" exact={true}>OrderManagerDashboard-</NavLink>
-            <NavLink activeClassName="is-active" to="/order/create">CreateOrder-</NavLink>
-            <NavLink activeClassName="is-active" to="/" exact={true}>MainBoard</NavLink>
+        <header className="header">
+            <div className="content-container">
+                <div className="header__content">
+                    <div className="header__content-right">
+                        <NavLink activeClassName="is-active" to="/order" exact={true} className="header__title"><h1>Order Manager</h1></NavLink>
+
+                    </div>
+                    <div className="header__content-left">
+                        <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
+                        <button onClick= {this.props.startLogout} className="button button--linkLogout">LogOut</button>
+                    </div>
+                    
+                </div>                
+            </div>
         </header>
     )
 
@@ -45,7 +62,7 @@ class Header extends React.Component {
             return this.FoodHeader()
         }else if(this.props.location.pathname.indexOf('order') !== -1){
             return this.OrderHeader()
-        }else if(this.props.location.pathname === '/'){
+        }else if(this.props.location.pathname === '/dashboard' || this.props.location.pathname === '/'){
             return <div></div>
         }else{
             return this.NotFoundHeader()

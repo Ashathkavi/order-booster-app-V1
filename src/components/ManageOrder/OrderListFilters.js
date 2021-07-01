@@ -87,63 +87,103 @@ export const OrderListFilters = (props) => {
 
 
     return(
-        <div>
-            {/*setAddressFilter filter*/}
-            <input type="text" value={props.filters.address} placeholder="Type an Address" onChange={onAddressChange}/>
+        <div className = "content-container" >
+            <div className="input-group">
+                <div className="input-group__item">
+                    {/*setAddressFilter filter*/}
+                    <input className="text-input" type="text" value={props.filters.address} placeholder="Type an Address" onChange={onAddressChange}/>
+                </div>
+                <div className="input-group__item">
+                    {/*setCustomerFilter filter*/}
+                    <input className="text-input" type="text" value={props.filters.customerName} placeholder="Type a Customer Name" onChange={onCustomerChange}/>
+                </div>
+                <div className="input-group__item" >
+                    {/*setFoodFilter filter*/}
+                    <input className="text-input" type="text" value={props.filters.food} placeholder="Type a Food" onChange={onFoodChange}/>
+                </div>
+                <div className="input-group__item">
+                    {/*setPNoFilter filter*/}
+                    <input className="text-input" type="number" value={props.filters.phoneNumber} pattern={/^[0-9]{10}$/} placeholder="Type a PhoneNumber" onChange={onPhoneNumberChange}/>
+                </div>
+            </div>
+            <div className="input-group">
+                <div className="input-group__item input-group__item--range">
+                    {/*setBoundryAmount filter*/}                    
+                    <div>                    
+                        <input className="text-input" type='text' id='textInput' disabled value={boundryAmountDisplay}></input>
+                    </div>
+                    <div>                    
+                        <input className="text-input" type='range' min='0' max='20000' step='100' value={props.filters.boundryAmount} onChange={onBoundryAmountChange}/>
+                    </div>
+                </div>
+                <div className="input-group__item">
+                    {/*setStatusFilter filter*/}
+                    <label>Status : </label>
+                    <select className="select" value={props.filters.status} onChange={onStatusChange}>
+                        <option value=''>All</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="table">Table</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="on delivery">On Delivery</option>
+                        <option value="recieved">Recieved</option>
+                    </select>
+                </div>
+                <div className="input-group__item"> 
+                    {/*setBillStatusFilter filter*/}
+                    <label>Sort By : </label>
+                    <select className="select" value={props.filters.sortBy} onChange={onSortChange} placeholder="abcd">            
+                        <option value="date">Date</option>
+                        <option value="duration">Available Time</option>
+                        <option value="amount">Amount</option>
+                    </select>
+                </div>
+                <div className="input-group__item">
+                    {/*setStartDate setEndDate filter*/}
+                    <DatePicker    
+                        selected={props.filters.startDate}
+                        startDate={props.filters.startDate}   
+                        endDate={props.filters.endDate} 
+                        selectsRange
+                        onChange= {onDateChange}
+                        className="datePicker"
+                    />  
+                </div>
+                
+            </div>
+            <div className="input-group">
+                <div className="input-group__item">
+                    {/*setBillStatusFilter filter*/}
+                    <select value={props.filters.billStatus} onChange={onBillStatusChange}>
+                        <option defaultValue =''>All</option>
+                        <option value="printed">Printed</option>
+                        <option value="not">Not Printed</option>
+                    </select>
+                </div>
+                <div className="input-group__item">
+                    {/*setKotStatusFilter filter*/}
+                    <select value={props.filters.kotSatus} onChange={onKotStatusChange}>
+                        <option value=''>All</option>
+                        <option value="passed">Passed</option>
+                        <option value="not">Not Passed</option>
+                    </select>
+                </div>
+                
+            </div>
+            
+            
 
-            {/*setCustomerFilter filter*/}
-            <input type="text" value={props.filters.customerName} placeholder="Type a Customer Name" onChange={onCustomerChange}/>
+            
 
-            {/*setFoodFilter filter*/}
-            <input type="text" value={props.filters.food} placeholder="Type a Food" onChange={onFoodChange}/>
+            
 
-            {/*setPNoFilter filter*/}
-            <input type="number" value={props.filters.phoneNumber} pattern={/^[0-9]{10}$/} placeholder="Type a PhoneNumber" onChange={onPhoneNumberChange}/>
 
-            {/*setBoundryAmount filter*/}
-            <input type='range' min='0' max='20000' step='100' value={props.filters.boundryAmount} onChange={onBoundryAmountChange}/>
-            <input type='text' id='textInput' disabled value={boundryAmountDisplay}></input>
 
-            {/*setStatusFilter filter*/}
-            <select value={props.filters.status} onChange={onStatusChange}>
-                <option value=''>All</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="kitchen">Kitchen</option>
-                <option value="table">Table</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="on delivery">On Delivery</option>
-                <option value="recieved">Recieved</option>
-            </select>
+            
 
-            {/*setKotStatusFilter filter*/}
-            <select value={props.filters.kotSatus} onChange={onKotStatusChange}>
-                <option value=''>All</option>
-                <option value="passed">Passed</option>
-                <option value="not">Not Passed</option>
-            </select>
+            
 
-            {/*setBillStatusFilter filter*/}
-            <select value={props.filters.billStatus} onChange={onBillStatusChange}>
-                <option value =''>All</option>
-                <option value="printed">Printed</option>
-                <option value="not">Not Printed</option>
-            </select>
-
-            {/*setBillStatusFilter filter*/}
-            <select value={props.filters.sortBy} onChange={onSortChange}>            
-                <option value="date">Date</option>
-                <option value="duration">Available Time</option>
-                <option value="amount">Amount</option>
-            </select>
-
-            {/*setStartDate setEndDate filter*/}
-            <DatePicker    
-                selected={props.filters.startDate}
-                startDate={props.filters.startDate}   
-                endDate={props.filters.endDate} 
-                selectsRange
-                onChange= {onDateChange}
-            />           
+                     
 
         </div>
 )}

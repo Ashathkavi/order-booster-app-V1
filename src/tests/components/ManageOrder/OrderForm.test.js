@@ -86,10 +86,21 @@ test('should set status on input change', () => {
     expect(wrapper.state('statusTime')).toBe(moment().valueOf())
 })
 
+
+test('should set deliverer on input change', () => {
+    const value = 'ashath'
+    const wrapper = shallow(<OrderForm/>)
+    wrapper.find('select').at(1).simulate('change', {
+        target:{value},
+        persist: () => { }
+    })
+    expect(wrapper.state('deliverer')).toBe(value)
+})
+
 test('should set kot status on input change', () => {
     const value = 'passed'
     const wrapper = shallow(<OrderForm/>)
-    wrapper.find('select').at(1).simulate('change', {
+    wrapper.find('select').at(2).simulate('change', {
         target:{value},
         persist: () => { }
     })
@@ -100,7 +111,7 @@ test('should set kot status on input change', () => {
 test('should set bill status on input change', () => {
     const value = 'printed'
     const wrapper = shallow(<OrderForm/>)
-    wrapper.find('select').at(2).simulate('change', {
+    wrapper.find('select').at(3).simulate('change', {
         target:{value},
         persist: () => { }
     })
@@ -111,7 +122,7 @@ test('should set bill status on input change', () => {
 test('should set duration on input change', () => {
     const value = '20'
     const wrapper = shallow(<OrderForm/>)
-    wrapper.find('select').at(3).simulate('change', {
+    wrapper.find('select').at(4).simulate('change', {
         target:{value},
         persist: () => { }
     })
@@ -141,7 +152,8 @@ test('should call onSubmit props for valid form submission', () => {
         kotStatus:sample_order[0].kotStatus, 
         orderEndTime:sample_order[0].orderEndTime,
         phoneNumber:sample_order[0].phoneNumber,
-        status:sample_order[0].status 
+        status:sample_order[0].status,
+        deliverer:sample_order[0].deliverer
     
     })
 })

@@ -35,24 +35,36 @@ export const FoodListFilters = (props) => {
     
 
     return(
-        <div>
-            {/*setNameFilter filter*/}
-            <input type="text" value={props.filters.name} onChange={onNameChange}/>
-
-            {/*setSize filter*/}
-            <select value={props.filters.size} onChange={onSizeChange}>
-                <option value=''>All</option>
-                <option value="regular">Regular</option>
-                <option value="full">Full</option>
-            </select>
-
-            {/*setCatTextFilter filter*/}
-            <button onClick={handleOpenModal}>{props.filters.catText ? props.filters.catText : 'Select Category'}</button>           
+        <div className="content-container">
+            <div className="input-group">
+                <div className="input-group__item input-group__item--range">
+                    {/*setBoundryAmount filter*/}
+                    <div >
+                        <input className="text-input" placeholder="Search by Amount" type='text' id='textInput' disabled value={boundryAmountDisplay}></input>
+                    </div>
+                    <div>
+                        <input className="text-input" type='range' min='0' max='2000' step='10' value={props.filters.boundryAmount} onChange={onBoundryAmountChange}/>
+                    </div>
+                </div>
+                <div className="input-group__item">
+                    {/*setNameFilter filter*/}
+                    <input className="text-input" type="text" value={props.filters.name} placeholder="Search by Name" onChange={onNameChange}/>
+                </div>
+                <div className="input-group__item">
+                    {/*setSize filter*/}
+                    <select className="select" value={props.filters.size} onChange={onSizeChange}>
+                        <option value=''>All</option>
+                        <option value="regular">Regular</option>
+                        <option value="full">Full</option>
+                    </select>
+                </div>
+                <div className="input-group__item">
+                    {/*setCatTextFilter filter*/}
+                    <button className="button button--categoryModal" onClick={handleOpenModal}>{props.filters.catText ? props.filters.catText : 'Search by Food Category'}</button>                              
+                </div>
+                
+            </div>            
             <CategoryModal modalIsOpen={modalIsOpen} handleCloseModal={handleCloseModal} handleCategory={handleCategory}/>
-
-            {/*setBoundryAmount filter*/}
-            <input type='range' min='0' max='2000' step='10' value={props.filters.boundryAmount} onChange={onBoundryAmountChange}/>
-            <input type='text' id='textInput' disabled value={boundryAmountDisplay}></input>
 
         </div>
 )}

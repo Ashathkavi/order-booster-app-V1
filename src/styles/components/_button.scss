@@ -1,0 +1,42 @@
+.button{
+    background: $blue;
+    border:none;
+    color:white;
+    font-weight: 300;
+    font-size: $font-size-large ;
+    padding:$s-size;
+
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+
+}
+
+
+.button--categoryModal{
+    height: 30px;
+    padding:0.6rem;
+}
+
+.button--linkLogout{
+    background: rgba(151, 149, 149, 0.171);
+    color:rgb(51, 48, 48);
+
+}
+
+.button--buttonMainBoard{
+    background: rgba(151, 149, 149, 0.171);
+    color:rgba(255, 255, 255, 0.747);
+}
+
+.button--selectFood{
+    background-color: gray;
+    height: 30px;
+    padding:0.6rem;
+}
+
+.button--remove{
+    background-color: gray;
+}
+
+

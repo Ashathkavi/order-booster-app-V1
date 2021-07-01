@@ -14,7 +14,7 @@ if(process.env.NODE_ENV === 'test'){
 
 module.exports = {
     entry: {
-        app: './src/app.js',
+        app: ['@babel/polyfill','./src/app.js'],
     },
     output: {
         path:path.join(__dirname, 'public', 'dist'),
@@ -54,6 +54,13 @@ module.exports = {
                     options: {
                       sourceMap: true
                     }
+                }
+            ]
+        },{
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
                 }
             ]
         }]

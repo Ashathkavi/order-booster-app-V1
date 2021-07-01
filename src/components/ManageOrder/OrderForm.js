@@ -1,29 +1,34 @@
-import React from 'react'
+import React, {Component} from 'react'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import {connect} from 'react-redux'
 import OrderModal from './OrderModal'
 import FoodSingleOrder from './FoodSingleOrder'
+import database from '../../firebase/firebase'
+
+import configureStore from '../../stores/configureStore'
 
 
-
+const store = configureStore()
 const now = moment()
 //console.log(now.format('MMM do, YYYY'))
 const defaultOrderDuration = '20'
 
-class StatusTimer{
-    constructor(status, time){
-        this.status = status
-        this.time = time
+class Deliverer{
+    constructor(name, uid){
+        this.name = name
+        this.uid = uid
     }
 }
 
-
-export class OrderForm extends React.Component{
+console.log('store.getState()', store.getState())
+export class OrderForm extends Component{
      
+    
     constructor(props){
         super(props)
         this.state = {
+            orderNo:props.order ? props.order.count : 'new',  
             isModalOpen:false,
 
             customerName:props.order ? props.order.customerName : '',            
@@ -46,8 +51,33 @@ export class OrderForm extends React.Component{
 
             //amount:props.order ? (props.order.amount / 100).toString() : '', 
             createdAt:props.order ?  moment(props.order.createdAt).valueOf(): moment().valueOf(),
-            error:''
+            error:'',
+
+            deliverMeth:'',
+            deliverers:[new Deliverer('default','defaultId')],
+            deliverer:props.order ? props.order.deliverer : ''
+
         }
+    }
+
+    componentDidMount() {
+        const deliverers = []
+        database.ref(`users`).once('value')
+            .then((snap)=>{
+                snap.forEach((childSnapshot)=>{
+                    if(childSnapshot.val().role === 'deliverer'){
+                        const deliverer = new Deliverer(childSnapshot.val().name, childSnapshot.key)
+                        deliverers.push(deliverer)                        
+                    }
+                    //console.log(deliverers[0].name)
+                })
+                this.setState(()=>({
+                    deliverers:deliverers
+                }))
+                    
+            })
+            .catch((error)=>console.log('User gaining request failed :', error))
+        
     }
 
         //handling customer Name
@@ -91,6 +121,22 @@ export class OrderForm extends React.Component{
             this.setState(()=>({
                 status:e.target.value,
                 statusTime:moment().valueOf()
+            }))       
+        }
+
+        //handling deliverer Status
+        onDelivererChange = (e) => {
+            e.persist()
+            this.setState(()=>({
+                deliverer:e.target.value
+            }))       
+        }
+
+        //handling delivererMeth Status
+        onDeliverMethChange = (e) => {
+            e.persist()
+            this.setState(()=>({
+                deliverMeth:e.target.value
             }))       
         }
 
@@ -163,6 +209,8 @@ export class OrderForm extends React.Component{
             return billAmount
         }
 
+    
+
     onSubmit = (e) => {
         e.preventDefault()
         if(!this.state.customerName || !this.state.phoneNumber || !this.state.address ||
@@ -183,7 +231,9 @@ export class OrderForm extends React.Component{
                 kotStatus:{status:this.state.kotStatus, time:this.state.kotStatusTime} ,
                 orderEndTime:this.state.orderEndTime,
                 phoneNumber:this.state.phoneNumber,
-                status:{status:this.state.status, time:this.state.statusTime} 
+                status:{status:this.state.status, time:this.state.statusTime},
+                deliverer:this.state.deliverer,
+                deliverMeth:this.state.deliverMeth
             })
         }
     }
@@ -195,12 +245,13 @@ export class OrderForm extends React.Component{
 
     render(){
         let iterable = -1
-        //console.log('this.props.foods', this.props.foods)
+        console.log('this.props.orders', this.props)
         return(
             <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <button type='button' onClick={this.onVisibleChange}>Add Food</button>
+                
+                <form className="form" onSubmit={this.onSubmit}>
+                    {this.state.error && <p className="form__error">{this.state.error}</p>}
+                    
 
                     <OrderModal 
                         onVisibleChange={this.onVisibleChange} 
@@ -214,7 +265,8 @@ export class OrderForm extends React.Component{
                         type="text"
                         placeholder="Customer Name"
                         value={this.state.customerName}
-                        onChange={this.onCustomerNameChange}                        
+                        onChange={this.onCustomerNameChange}    
+                        className="text-input"                    
 
                     />
 
@@ -223,7 +275,8 @@ export class OrderForm extends React.Component{
                         type="number"
                         placeholder="Phone Number"
                         value={this.state.phoneNumber}
-                        onChange={this.onPhoneNumberChange }                        
+                        onChange={this.onPhoneNumberChange }  
+                        className="text-input"                       
 
                     />
 
@@ -232,7 +285,8 @@ export class OrderForm extends React.Component{
                         type="text"
                         placeholder="Customer Address"
                         value={this.state.address}
-                        onChange={this.onAddressChange }                        
+                        onChange={this.onAddressChange }  
+                        className="text-input"                       
 
                     />
 
@@ -241,8 +295,13 @@ export class OrderForm extends React.Component{
                         placeholder="Add a discription for your order (optional)"
                         autoFocus 
                         value={this.state.description}
-                        onChange={this.onDescriptionChange}>
+                        onChange={this.onDescriptionChange}
+                        className="textarea" >
+                        
                     </textarea>
+                    <div>
+                        <button className="button button--selectFood" type='button' onClick={this.onVisibleChange}>Select Food</button>
+                    </div>
 
                     {
                         
@@ -262,15 +321,57 @@ export class OrderForm extends React.Component{
                         
                     }
 
-                    {/*Adding Status*/}                    
-                    <select value={this.state.status} onChange={this.onStatusChange} >
-                        <option value ='confirmed'>Confirmed</option>
-                        <option value ='cancelled'>Cancelled</option>
-                        <option value ='kitchen'>Kitchen</option>
-                        <option value ='table'>Table</option>
-                        <option value ='on delivery'>On Delivery</option>
-                        <option value ='recieved'>Recieved</option>
-                    </select>
+                    <div className="form__selectors">
+                        {/*Adding Status*/}                    
+                        <select className="select" value={this.state.status} onChange={this.onStatusChange} >
+                            <option value ='confirmed'>Confirmed</option>
+                            <option value ='cancelled'>Cancelled</option>
+                            <option value ='kitchen'>Kitchen</option>
+                            <option value ='table'>Table</option>
+                            <option value ='on delivery'>On Delivery</option>
+                            <option value ='recieved'>Recieved</option>
+                        </select>
+
+                        
+                        {/*Adding DeliverMeth*/}                    
+                        <select className="select" value={this.state.deliverMeth} onChange={this.onDeliverMethChange} >
+                            <option value ='take away'>Take Away</option>
+                            <option value ='dinning'>Dinning</option>
+                            <option value ='delivery'>Delivery</option>
+                        </select>
+
+
+                        {/*Adding Order Duration*/}
+                        <select className="select" value={this.state.duration} onChange={this.onDurationChange} >
+                            <option value ='20'>20 minutes</option>
+                            <option value ='30'>30 minutes</option>
+                            <option value ='40'>40 minutes</option>
+                            <option value ='50'>50 minutes</option>
+                            <option value ='60'>1 hour</option>
+                            <option value ='70'>1 hour 10 minutes</option>
+                            <option value ='80'>1 hour 20 minute</option>
+                            <option value ='90'>1 and 1\2 hour </option>
+                        </select>
+
+                        {/*Adding Order Creation Date*/}
+                        <DatePicker
+                            selected={moment(this.state.createdAt).toDate()}
+                            onChange={this.onDateChange}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                            className="datePicker"
+                        />
+
+                        {/*Adding Deliverer*/}                    
+                        <select className="select" value={this.state.deliverer} onChange={this.onDelivererChange} disabled={this.state.deliverMeth !== 'delivery'}>
+                            <option selected value =''>Select a Deliverer</option>
+                        {
+                            this.state.deliverers.map((deliverer)=><option value ={deliverer.uid}>{deliverer.name}</option>)
+                        }                       
+                            
+                        </select>
+                    </div>
 
                     {/*Adding KOT status*/}  
                     <select value={this.state.kotStatus} onChange={this.onKotStatusChange} disabled={!this.props.order}>
@@ -282,33 +383,18 @@ export class OrderForm extends React.Component{
                     <select value={this.state.billStatus} onChange={this.onBillStatusChange} disabled={!this.props.order}>
                         <option value ='not'>Not Printed</option>
                         <option value ='printed'>Printed</option>
-                    </select>                    
+                    </select>  
 
-                    {/*Adding Order Duration*/}
-                    <select value={this.state.duration} onChange={this.onDurationChange} >
-                        <option value ='20'>20 minutes</option>
-                        <option value ='30'>30 minutes</option>
-                        <option value ='40'>40 minutes</option>
-                        <option value ='50'>50 minutes</option>
-                        <option value ='60'>1 hour</option>
-                        <option value ='70'>1 hour 10 minutes</option>
-                        <option value ='80'>1 hour 20 minute</option>
-                        <option value ='90'>1 and 1\2 hour </option>
-                    </select>
-
-                    {/*Adding Order Creation Date*/}
-                    <DatePicker
-                        selected={moment(this.state.createdAt).toDate()}
-                        onChange={this.onDateChange}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        dateFormat="MMMM d, yyyy h:mm aa"
-                    />
-                    <button>Save Order</button>
+                    
+                    <div>
+                        <button className="button">Save Order</button>
+                    </div>
+                    
 
                 </form>
-
-                <div>
+                {
+                /*
+                    <div>
                     <p>customerName: {this.state.customerName}</p>
                     <p>phoneNumber: {this.state.phoneNumber}</p>
                     <p>address: {this.state.address}</p>
@@ -321,8 +407,13 @@ export class OrderForm extends React.Component{
                     <p>foods: {this.state.foods.toString()}</p>
                     
                     <p>isModaOpen: {this.state.isModalOpen.toString()}</p>
+                    <p>deliverers: {this.state.deliverer}</p>
+                    <p>orderNo: {this.state.orderNo}</p>
 
-                </div>   
+                    </div>
+                */
+                }
+                   
             </div>
             
         )
@@ -331,12 +422,9 @@ export class OrderForm extends React.Component{
 }
 
 
-const mapStateToProps = (state, props) => {
-    console.log(state.foods)
-    return {
-        
-        foods:state.foods
-    }
-}
+
+const mapStateToProps = (state) => ({
+    orders:state.orders
+})
 
 export default connect(mapStateToProps)(OrderForm)

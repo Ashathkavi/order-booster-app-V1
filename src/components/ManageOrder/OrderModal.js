@@ -19,14 +19,12 @@ export class OrderModal extends React.Component {
         this.state={
             singleTypeOrders: props.singleTypeOrders ? props.singleTypeOrders : []
         }
-    }
-
-    
+    }   
 
     //handling single orders of food in Order Modal
-    onAddsingleTypeOrder = ({food, foodQuantity}) => {
+    onAddsingleTypeOrder = ({food, foodQuantity,prepared, preparedTime, prepearedBy}) => {
         this.setState((prevSate)=>({
-            singleTypeOrders:[...prevSate.singleTypeOrders, {food, foodQuantity}]
+            singleTypeOrders:[...prevSate.singleTypeOrders, {food, foodQuantity,prepared, preparedTime, prepearedBy}]
         }))
     }
 
@@ -39,7 +37,6 @@ export class OrderModal extends React.Component {
 
     //removing selected single order
     onRemoveSingleOrder = (arrayPosition) => {
-
         this.setState((prevState)=>{
             console.log('prevState.singleTypeOrders.length', prevState.singleTypeOrders.length, arrayPosition)
             if(prevState.singleTypeOrders.length !== 1){
@@ -93,10 +90,8 @@ export class OrderModal extends React.Component {
                                             singleTypeOrder={singleTypeOrder} 
                                             iterable={iterable} 
                                             onRemoveSingleOrder={this.onRemoveSingleOrder}                                            
-                                        />
-                                        
-                                    )
-                                    
+                                        />                                        
+                                    )                                    
                                 }
                             )
                         

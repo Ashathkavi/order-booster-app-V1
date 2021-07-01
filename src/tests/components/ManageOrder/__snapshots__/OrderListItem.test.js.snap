@@ -1,26 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render order list Item with a order 1`] = `
-<div>
-  <Link
-    to="/order/edit/1"
-  >
-    <h2>
-      Ashath
-      ::: 
-      0765822562
-       :::
+<div
+  className="list-item"
+>
+  <div>
+    <Link
+      to="/order/edit/1"
+    >
+      <h2
+        className="list-item__title"
+      >
+        Order No : 
+        3
+        :::::
+        confirmed
+      </h2>
+    </Link>
+    <p
+      className="list-item__sub-title"
+    >
+      Mamangam
+      :::::
+      January 1st, 1970
+    </p>
+  </div>
+  <div>
+    <h3
+      className="list-item__data"
+    >
       Rs 1,810.00
-    </h2>
-  </Link>
-  <p>
-    January 1st, 1970
-  </p>
-  <p>
-    Mamangam
-  </p>
-  <p>
-    confirmed
-  </p>
+    </h3>
+  </div>
+  <DelivererModal
+    handleCloseModal={[Function]}
+    modalIsOpen={false}
+    onDelivery={[Function]}
+  />
 </div>
 `;

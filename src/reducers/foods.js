@@ -17,7 +17,7 @@ const foodsReducer = (state=foodReducerDefaultState, action) => {
                 }else{
                     return food
                 } 
-            })
+            }) 
         case 'SET_FOODS':
             return action.foods
         default:

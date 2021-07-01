@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import "firebase/database"
+import "firebase/auth"
+
 import sampleFoods from '../fixtures/sampleFoods'
 /*
 console.log(JSON.stringify(process.env.FIREBASE_API_KEY), 'process.env.FIREBASE_API_KEY')
@@ -28,9 +30,10 @@ var firebaseConfig = {
 
 const database = firebase.database()
     
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 
-export {firebase, database as default }
+export {firebase, googleAuthProvider, database as default }
 
 /*
 database.ref().remove()

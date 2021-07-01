@@ -17,8 +17,16 @@ export const EditOrderPage = (props) => {
 
     return(
         <div>
-           <OrderForm order={props.order} onSubmit={onSubmit}/>
-           <button onClick={onRemove}>Remove</button>
+            <div className="page-header">
+                <div className="content-container">
+                    <h1 className="page-header__title">Edit Order</h1>
+                </div>
+            </div>
+           <div className="content-container">
+                <OrderForm order={props.order} onSubmit={onSubmit}/>
+                {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={onRemove}>Remove this Order</button>}
+
+           </div>
         </div>
 )}
 
@@ -32,7 +40,8 @@ const mapStateToProps = (state, props) => {
     //console.log(state.orders)
     return {
         
-        order:state.orders.find((order)=> order.id === props.match.params.id)
+        order:state.orders.find((order)=> order.id === props.match.params.id),
+        autherizedAs:state.auth.role
     }
 }
 

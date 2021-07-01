@@ -23,7 +23,10 @@ beforeEach((done) => {
         kotStatus,
         billStatus,
         foods,
-        amount
+        amount,
+        deliverer,
+        deliverMeth,
+        count
     }) => {
         orderData[id] = {
             createdAt, 
@@ -36,7 +39,10 @@ beforeEach((done) => {
             kotStatus,
             billStatus,
             foods,
-            amount
+            amount,
+            deliverer,
+            deliverMeth,
+            count
         }
         //console.log(orderData[id])
     })
@@ -170,7 +176,10 @@ test('should add orders to database and store', (done) => {
             time:123
         },
         foods:[new SingleOrder(sampleFoods()[0], 3), new SingleOrder(sampleFoods()[2], 3)],
-        amount:2000
+        amount:2000,
+        deliverer:'Ashath',
+        count:3,
+        deliverMeth:'delivery'
     }
     store.dispatch(startAddOrder(orderData)).then(()=>{
         const actions = store.getActions()
@@ -215,6 +224,9 @@ test('should add orders with default to database and store', (done) => {
         },
         foods:[],
         amount:0,
+        deliverer:'',
+        count:0,
+        deliverMeth:''
     }
     store.dispatch(startAddOrder()).then(()=>{
         const actions = store.getActions()
@@ -248,7 +260,10 @@ test('should add orders with default to database and store', (done) => {
                 status:'not',
                 time:0
             },
-            amount:0
+            amount:0,
+            deliverer:'',
+            count:0,
+            deliverMeth:''
         })
         done()
     })

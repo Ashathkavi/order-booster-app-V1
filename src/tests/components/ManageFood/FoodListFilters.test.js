@@ -47,7 +47,7 @@ test('should handle onBoundryChange', () => {
 
 test('should handle setNameFilter', () => {
     const value = 'soup'
-    wrapper.find('input').at(0).simulate('change', {
+    wrapper.find('input').at(2).simulate('change', {
         target:{value},
         persist: () => { }
     })

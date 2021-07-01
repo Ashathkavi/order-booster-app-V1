@@ -1,0 +1,22 @@
+.input-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $m-size;
+
+    @media(min-width:$desktop-breakpoint){
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: $s-size;
+    }
+}
+
+.input-group__item{
+    margin-bottom: 0.8rem;
+    @media(min-width:$desktop-breakpoint){
+        margin-right: $s-size;
+    }
+}
+
+.input-group__item--range{
+    flex-direction: row;
+}
