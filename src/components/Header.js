@@ -14,10 +14,10 @@ class Header extends React.Component {
         <header className="header">
             <div className="content-container">
                 <div className="header__content">
-                    <div className="header__content-right">
+                    <div className="header__content-left">
                         <NavLink activeClassName="is-active" to="/food" exact={true} className="header__title"><h1>Food Manager</h1></NavLink>
                     </div>
-                    <div className="header__content-left">
+                    <div className="header__content-right">
                         <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
                         <button onClick= {this.props.startLogout} className="button button--linkLogout">LogOut</button>
                     </div>
@@ -32,11 +32,11 @@ class Header extends React.Component {
         <header className="header">
             <div className="content-container">
                 <div className="header__content">
-                    <div className="header__content-right">
+                    <div className="header__content-left">
                         <NavLink activeClassName="is-active" to="/order" exact={true} className="header__title"><h1>Order Manager</h1></NavLink>
 
                     </div>
-                    <div className="header__content-left">
+                    <div className="header__content-right">
                         <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
                         <button onClick= {this.props.startLogout} className="button button--linkLogout">LogOut</button>
                     </div>

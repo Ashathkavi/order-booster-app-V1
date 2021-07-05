@@ -103,36 +103,43 @@ export default class FoodForm extends React.Component{
         // console.log('state.description',this.state.description)
         // console.log('state.name',this.state.name)
         return (
-            <div>
-                { !this.state.category && <p>Please Select a Food Category First</p>}
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <button type="button" onClick={this.handleOpenModal}> Select Category</button>
-                    <input type='text' id='selectedCat' value={this.state.category} disabled required></input>
-
+                
+                
+                <form onSubmit={this.onSubmit} className="form">
+                    
+                    {this.state.error && <p className="form__error">{this.state.error}</p>}
+                    <div>
+                        { !this.state.category && <span>  Please Select a Food Category First &nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                        <button type="button" onClick={this.handleOpenModal}> Select Category</button>
+                        &nbsp;&nbsp;
+                        <input type='text' id='selectedCat' value={this.state.category} disabled required></input>
+                    </div>
                     <input 
                         type="text" 
                         placeholder="Name" 
                         disabled={!this.state.category}
                         value={this.state.name}
                         onChange={this.onNameChange}
+                        className="text-input"
                     />
+                    <div>
+                        <input type='text' id='textInput' value={this.state.amount} disabled></input>
+                        <input type='range' min='0' max='2000' disabled={!this.state.category} step='10' value={this.state.amount} onChange={(e)=>{
+                            this.onAmountChange(e)
+                            //this.updateTextInput(e.target.value)
+                        }}/>
+                    </div>
+                    
 
-                    <input type='range' min='0' max='2000' disabled={!this.state.category} step='10' value={this.state.amount} onChange={(e)=>{
-                        this.onAmountChange(e)
-                        //this.updateTextInput(e.target.value)
-                    }}/>
-                    <input type='text' id='textInput' value={this.state.amount} disabled></input>
 
+                    <div>Is Full postion available &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <div>Is Full postion available::::::
-
-                        <input type="radio" value={true} checked={this.state.fullAvailability === true} onChange={this.onAvailabilityChange} /> Yes
+                        <input type="radio" value={true} checked={this.state.fullAvailability === true} onChange={this.onAvailabilityChange} /> Yes &nbsp;&nbsp;&nbsp;
                         <input type="radio" value={false} checked={this.state.fullAvailability === false} onChange={this.onAvailabilityChange} /> No
                     </div>
-                    <div hidden={!this.state.fullAvailability}>Set the size of the potion:::::
+                    <div hidden={!this.state.fullAvailability} >Set the size of the potion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="radio" value='regular' checked={this.state.foodSize === 'regular'} onChange={this.onSetSize} /> Normal
+                        <input type="radio" value='regular' checked={this.state.foodSize === 'regular'} onChange={this.onSetSize} /> Normal &nbsp;&nbsp;&nbsp;
                         <input type="radio" value='full' checked={this.state.foodSize === 'full'} onChange={this.onSetSize} /> Full
                     </div>
 
@@ -144,13 +151,16 @@ export default class FoodForm extends React.Component{
                         placeholder="Add a description about this food" 
                         disabled={!this.state.category}
                         value={this.state.description}
-                        onChange={this.onDescriptionChange}                        
+                        onChange={this.onDescriptionChange}   
+                        className="textarea"
                     />
-                    <button>Add Food</button>
+                    
+                    <div>
+                        <button className="button">Save Food</button>
+
+                    </div>
 
                 </form>
-                
-            </div>
         )
     }
 }

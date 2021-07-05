@@ -16,6 +16,7 @@ export const OrderListItemDeliverer = ({
     amount,
     address,
     status,
+    count,
     startEditOrder
 }) => {
     const now = moment()
@@ -25,13 +26,21 @@ export const OrderListItemDeliverer = ({
     }
 
     return(
-        <div>
-            <h2>{customerName}::: {phoneNumber} :::{numeral(amount).format('$0,0.00')}</h2>
-            <p>{moment(createdAt).format('MMMM Do, YYYY')}</p>
-            <p>{address}</p>
-            <p>{status.status}</p>            
-            <p>{moment(orderEndTime).format('MMMM Do, YYYY')}</p>  
+        <div className="list-item list-item--deliverer">
+            
+            <h2 className="list-item__title list-item__title--deliverer">{count}  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {numeral(amount).format('$0,0.00')}</h2>
+            <p><b>Customer Name: </b> {customerName}</p>
+            <p><b>Phone Number: </b>{phoneNumber}</p>
+            <p><b>Address: </b>{address}</p>
+            <p><b>Order Status: </b> {status.status}</p>  
+            <div>
+                <p>{moment(createdAt).format('MMMM Do, YYYY  -  HH : mm')}</p>  
+                <p>{moment(orderEndTime).format('MMMM Do, YYYY  -  HH : mm')}</p>  
+
+            </div>          
             {status.status === 'on delivery' && <button onClick={onChangeStatus}>Mark it as Delivered</button>}
+        
+            
                       
         </div>
 )}

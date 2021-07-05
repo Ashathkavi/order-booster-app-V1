@@ -1,13 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import { startEditOrder, startRemoveOrder} from '../../actions/orders'
 import OrderForm from './OrderForm'
+import MessageModal from '../MessageModal'
 
 export const EditOrderPage = (props) => {
+
+    const [visibleMessageModal, setVisibleMessageModal] = useState(false)
     
     const onSubmit = (order) => {
         props.startEditOrder(props.order.id ,order)
         props.history.push('/order')
+    }
+
+    const toggleVisibleModal = () =>{
+        setVisibleMessageModal(!visibleMessageModal)
     }
 
     const onRemove = () => {
@@ -24,11 +31,20 @@ export const EditOrderPage = (props) => {
             </div>
            <div className="content-container">
                 <OrderForm order={props.order} onSubmit={onSubmit}/>
-                {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={onRemove}>Remove this Order</button>}
+                {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={toggleVisibleModal}>Remove this Order</button>}
 
            </div>
+           <MessageModal 
+                onVisibleMessageModal={toggleVisibleModal} 
+                isMessageModalOpen = {visibleMessageModal}
+                onSubmit={onRemove}
+                orderNo={props.order.count}
+                message='Are You sure, Do you want to delete the Order'
+                title='Order Delete Alert'
+           />
         </div>
-)}
+    )
+}
 
 
 const mapDispatchToProps = (dispatch) => ({

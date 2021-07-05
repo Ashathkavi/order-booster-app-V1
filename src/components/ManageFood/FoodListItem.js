@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
+import numeral from 'numeral'
+
 import {startRemoveFood} from '../../actions/foods'
 import {Link} from 'react-router-dom'
 
@@ -31,20 +33,35 @@ export const FoodListItem = ({
         const singleTypeOrder = new SingleTypeOrder(food,foodQuantity,prepared, preparedTime, prepearedBy)
         //console.log('singleTypeOrder', singleTypeOrder)
         return(
-            <div>
-                <h3>{name}::::: {foodSize}::::: {amount}:::::::{category}</h3>
-                <input type='number' max='20' value={foodQuantity} onChange={(e)=>setFoodQuantity(e.target.value)}/>
-                <button type="button" onClick={()=>onAddsingleTypeOrder(singleTypeOrder)}>Select</button>
-            </div>
+                <tr>
+                    <td>{name}</td>
+                    <td>{foodSize}</td>
+                    <td>{category}</td>
+                    <td>{amount}</td>
+                    <td><input type='number' max='20' value={foodQuantity} onChange={(e)=>setFoodQuantity(e.target.value)}/></td>
+                    <td><button type="button" onClick={()=>onAddsingleTypeOrder(singleTypeOrder)}>Select</button></td>
+                </tr>
         )
     }
 
     return(
-        <div>
-            <Link to={`/food/edit/${id}`}><h2>{name}: {foodSize}</h2></Link>
-            <p>{category}</p>
-            <p>{amount}</p>
-        </div>
+        <div className="list-item">
+            <div>
+                <Link className="list-item__link" to={`/food/edit/${id}`}>
+                    <h2 className="list-item__title">{name} &nbsp;&nbsp;&nbsp; </h2>  <p>[{foodSize}]</p>
+                </Link> 
+                               
+            </div>
+            <div>
+                <p className="list-item__sub-title">{category}</p>
+            </div>
+            
+            <div>
+                <h3 className="list-item__data">{numeral(amount).format('$0,0.00')}</h3>
+            </div>            
+            
+        </div>    
+        
     )
 }
 

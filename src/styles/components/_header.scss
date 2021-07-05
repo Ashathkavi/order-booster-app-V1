@@ -9,11 +9,11 @@
     padding:$s-size 0;
 }
 
-.header__content-right{
+.header__content-left{
     flex:80%;
 }
 
-.header__content-left{
+.header__content-right{
     flex:20%;
     display: flex;
     justify-content:space-between;

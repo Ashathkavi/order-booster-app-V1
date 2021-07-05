@@ -16,8 +16,17 @@ export const EditFoodPage = (props) => {
     }
     return(
         <div>
-           <FoodForm food={props.food} onSubmit={onSubmit} />
-           <button onClick = {onRemove}>Remove</button>
+            <div className="page-header">
+                <div className="content-container">
+                    <h1 className="page-header__title">Edit Food</h1>
+                </div>
+            </div>
+           <div className="content-container">
+            <FoodForm food={props.food} onSubmit={onSubmit} />
+                {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={onRemove}>Remove this Food</button>}
+
+           </div>
+           
         </div>
 )}
 

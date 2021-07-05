@@ -8,15 +8,18 @@ import OrderListItemWaiter from '../ManageOrder/OrderListItemWaiter'
 import selectOrder from '../../selectors/orders'
 
 export const OrderList = (props) => {
+
+
+
     //console.log(props)
     return (
     <div className="content-container">
-        <div className= "list-header">
+        { props.autherizedAs !== 'deliverer' && <div className= "list-header">
             <div className="show-for-mobile">Orders</div>
             <div className="show-for-deskotp">Order</div>
             <div className="show-for-deskotp">Amount</div>
-        </div>
-        <div className="list-body">
+        </div>}
+        <div className={props.autherizedAs !== 'deliverer' ? "list-body" : "list-body--deliverer"}>
             {
                 props.orders.length === 0 ? (
                     <div className="list-item list-item--message">

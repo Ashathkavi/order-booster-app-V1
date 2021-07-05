@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import moment from 'moment'
 import numeral from 'numeral'
 import DelivererModal from './DelivererModal'
 import {startEditOrder} from '../../actions/orders'
+import {useReactToPrint} from 'react-to-print';
+import OrderViewModal from './OrderViewModal'
+import OrderToPrint from './OrderToPrint'
 
 const now = moment()
 
@@ -22,18 +25,42 @@ numeral.locale('sl');
 
 
 export const OrderListItem = ({
-    id,
-    createdAt,
-    customerName, 
-    phoneNumber, 
-    orderEndTime,
-    amount,
-    address,
-    status,
-    count,
-    startEditOrder
+        id,
+        createdAt,
+        customerName, 
+        phoneNumber, 
+        orderEndTime,
+        amount,
+        address,
+        status,
+        count,
+        foods,
+        deliverMeth,
+        startEditOrder,
 
-}) => {
+
+    }) => {
+
+    const componentRef = useRef();
+    const onOrderPrint = useReactToPrint({
+            content:()=>componentRef.current
+        })
+
+    const order = {
+        id,
+        createdAt,
+        customerName, 
+        phoneNumber, 
+        orderEndTime,
+        amount,
+        address,
+        status,
+        count,
+        foods,
+        deliverMeth
+    }
+
+    const [orderViewIsOpen, setOrderViewIsOpen ] = useState(false)
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
    
@@ -46,7 +73,7 @@ export const OrderListItem = ({
             deliverMeth:'delivery',
             deliverer:delivererUid
         })
-        printBill()
+        onOrderPrint()
     }
 
     const onTakeAway= () => {
@@ -55,7 +82,7 @@ export const OrderListItem = ({
             deliverMeth:'take away'
 
         })
-        printBill()
+        onOrderPrint()
     }
 
     const onDinning= () => {
@@ -65,31 +92,53 @@ export const OrderListItem = ({
         })
     }
 
-    const printBill = () => {
-
+    const onAfterDinning = () => {
+        startEditOrder(id ,{
+            status:{status:'recieved', time:now.valueOf()},
+        })
+        onOrderPrint()
     }
 
     return(
         <div className="list-item">
             <div>
-                <Link to={`/order/edit/${id}`}>
-                    <h2 className="list-item__title">Order No : {count}:::::{status.status}</h2>
+                <Link className="list-item__link" to={`/order/edit/${id}`} >
+                    <h4 className="list-item__title">No: {count} &nbsp;&nbsp;&nbsp; [ <sapn>{status.status}</sapn>]</h4>
                 </Link> 
-                <p className="list-item__sub-title">{address}:::::{moment(orderEndTime).format('MMMM Do, YYYY')}</p>
+                <p className="list-item__sub-title">{address} &nbsp;&nbsp;&nbsp; <button onClick={()=>setOrderViewIsOpen(true)}>See Order Details</button></p>
 
                 {
-                    status.status === 'table' &&
+                    status.status === 'table' &&(
                     <div>
                         <button onClick={onTakeAway}>Take Away</button>
                         <button onClick={handleOpenModal}>Delivery</button>
                         <button onClick={onDinning}>Dine In</button>
-                    </div>                
+                    </div>)
                 }
+                {
+                    (status.status === 'on Delivery' && deliverMeth === 'dinning')  &&(
+                        <div >
+                            <button onClick={onAfterDinning}>Print the bill</button>
+                        </div>)
+                }
+                <div style={{display:'none'}}>
+                    <OrderToPrint {...order} ref={componentRef} />
+                </div>
+
+                
+
             </div>
             <div>
                 <h3 className="list-item__data">{numeral(amount).format('$0,0.00')}</h3>
+                <p className="list-item__sub-title list-item__sub-title--date">{moment(orderEndTime).format('MMMM Do, YYYY')}</p>
             </div>            
             <DelivererModal modalIsOpen={modalIsOpen} handleCloseModal={handleCloseModal} onDelivery={onDelivery}/>
+            <OrderViewModal 
+                modalIsOpen={orderViewIsOpen} 
+                handleCloseModal={()=>setOrderViewIsOpen(false)} 
+                {...order}                
+                startEditOrder={startEditOrder}
+            />
                       
         </div>
 )}

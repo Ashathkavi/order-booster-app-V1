@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {startEditOrder} from '../../actions/orders'
 import selectedOrders from '../../selectors/orders'
-import {setStatusFilter} from '../../actions/orderFilters'
+import {setStatusFilter, setStartDate} from '../../actions/orderFilters'
 import categoryList from '../../fixtures/FoodCategoryList'
 import moment from 'moment'
 
@@ -98,17 +98,14 @@ export const ConfirmedFoodsPage = (props) => {
 
 
     useEffect(()=>{
-        if(props.filters.status !== 'kitchen'){
-            props.setStatusFilter('kitchen')
-        }
-    }, ()=>{
-
-    })
+        props.setStatusFilter('kitchen')
+        props.setStartDate(moment().subtract(1,'month').startOf('month').valueOf())
+    },[])
 
 
     
     return(
-        <div>
+        <div className="mainContainer">
         {
             categoryList.map((category)=>{
                 
@@ -118,28 +115,43 @@ export const ConfirmedFoodsPage = (props) => {
                         <div>
                             <h3>{category[0].food.category}</h3>
                             {
-                                
-                                category.map((food)=>{
-                                    let orderedFoods = []
-                                    props.orders.map((order)=>{
-                                        if(order.id === food.orderId){
-                                            orderedFoods = order.foods
-                                            console.log(orderedFoods, 'orderedFoods')
+                                <table className="modal__tableSelectedFoods">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Food Quantity</th>                                
+                                            <th>Food Size</th>
+                                            <th>Order No</th>
+                                            <th>Prepared Status</th>
+                                        </tr>
+                                        {
+                                            category.map((food)=>{
+                                            let orderedFoods = []
+                                            props.orders.map((order)=>{
+                                                if(order.id === food.orderId){
+                                                    orderedFoods = order.foods
+                                                    console.log(orderedFoods, 'orderedFoods')
+                                                }
+                                            })
+                                            console.log(category.indexOf(food), 'category.indexOf(food)')
+                                            
+                                            return (
+                                                <tr key={category.indexOf(food)}>
+                                                    <td>{food.food.name}</td>
+                                                    <td>{food.foodQuantity}</td>                                
+                                                    <td>{food.food.foodSize}</td>
+                                                    <td>{food.orderNo}</td>
+                                                    <td>{food.prepared === false ? <button onClick={()=>onChangePreparedStatus(food.orderId, food, orderedFoods)}>Mark it as Prepared</button> : 'Prepared'}</td>
+                                                    
+                                                    
+                                                </tr>
+                                            )
+                                                    
+                                            })
                                         }
-                                    })
-                                    
-                                    return (
-                                        <div>
-                                            <p>{food.food.name}:::
-                                            {food.food.foodSize}:::
-                                            {food.foodQuantity}:::
-                                            {food.orderNo}:::</p>
-                                            {food.prepared === false && <button onClick={()=>onChangePreparedStatus(food.orderId, food, orderedFoods)}>Mark it as Prepared</button>}
 
-                                        </div>
-                                    )
-                                        
-                                })
+                                </table>
+                                
+                                
                             }
                         </div>
                     )
@@ -156,7 +168,8 @@ export const ConfirmedFoodsPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     startEditOrder: (id, order) => dispatch(startEditOrder(id, order)),
-    setStatusFilter: (status) => dispatch(setStatusFilter(status))
+    setStatusFilter: (status) => dispatch(setStatusFilter(status)),
+    setStartDate:(startDate)=>dispatch(setStartDate(startDate))
 
 })
 

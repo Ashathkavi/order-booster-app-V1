@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
+import numeral from 'numeral'
 import {connect} from 'react-redux'
 import OrderModal from './OrderModal'
+
 import FoodSingleOrder from './FoodSingleOrder'
 import database from '../../firebase/firebase'
 
 import configureStore from '../../stores/configureStore'
+
+import MessageModal from '../MessageModal'
 
 
 const store = configureStore()
@@ -29,7 +33,9 @@ export class OrderForm extends Component{
         super(props)
         this.state = {
             orderNo:props.order ? props.order.count : 'new',  
+
             isModalOpen:false,
+            isMessageModalOpen:false,
 
             customerName:props.order ? props.order.customerName : '',            
             phoneNumber:props.order ? props.order.phoneNumber : 0,
@@ -175,6 +181,12 @@ export class OrderForm extends Component{
             this.setState((prevState)=>({isModalOpen: !prevState.isModalOpen}))
         }
 
+        //handling Food Modal  
+        onVisibleMessageModal = (e) => {
+            e.preventDefault()
+            this.setState((prevState)=>({isMessageModalOpen: !prevState.isMessageModalOpen}))
+        }
+
         //handle single Order 
         onSingleOrderChange = (singleOrders) => {
             //console.log('singleOrders', singleOrders)
@@ -249,7 +261,7 @@ export class OrderForm extends Component{
         return(
             <div>
                 
-                <form className="form" onSubmit={this.onSubmit}>
+                <form className="form" onSubmit={this.onVisibleMessageModal}>
                     {this.state.error && <p className="form__error">{this.state.error}</p>}
                     
 
@@ -260,6 +272,7 @@ export class OrderForm extends Component{
                         singleTypeOrders = {this.state.foods}
                         
                     />
+
                     {/*Adding Customer Name*/}
                     <input
                         type="text"
@@ -302,24 +315,43 @@ export class OrderForm extends Component{
                     <div>
                         <button className="button button--selectFood" type='button' onClick={this.onVisibleChange}>Select Food</button>
                     </div>
+                    <div>
+                        {
+                            this.state.foods.length !== 0 && (
+                                <div>
+                                    <table className="modal__tableSelectedFoods">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Food Quantity</th>                                
+                                            <th>Prepared</th>
+                                            <th></th>
+                                        </tr>
+                                        {
+                                            this.state.foods.map((food)=>{ 
+                                            iterable = iterable + 1
+                                                return (
+                                                    <FoodSingleOrder 
+                                                    key = {iterable}
+                                                    iterable = {iterable}
+                                                    singleTypeOrder = {food}
+                                                    onRemoveSingleOrder = {this.onRemoveSingleOrder}
+                                                    />
+                                                )                                    
+                                            }
+                                            )
+                                        }
+                                    </table>
+                                    <div className="modal__totalAmount">
+                                        
+                                        <h3>{numeral(this.onBillAmountCalculation()).format('$0,0.00') }</h3>
+                                        <div> </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
 
-                    {
-                        
-                        this.state.foods.map((food)=>{
-                            iterable = iterable + 1
-                            return <FoodSingleOrder 
-                                    key = {iterable}
-                                    iterable = {iterable}
-                                    singleTypeOrder = {food}
-                                    onRemoveSingleOrder = {this.onRemoveSingleOrder}
-                                />
-                        })
-                        
-                    }
-                    {
-                        <div><h3>:::::::::::::{this.onBillAmountCalculation().toString()}:::::::::::::</h3></div>
-                        
-                    }
+                    
 
                     <div className="form__selectors">
                         {/*Adding Status*/}                    
@@ -413,6 +445,14 @@ export class OrderForm extends Component{
                     </div>
                 */
                 }
+                <MessageModal
+                    onVisibleMessageModal={this.onVisibleMessageModal} 
+                    isMessageModalOpen = {this.state.isMessageModalOpen}
+                    onSubmit={this.onSubmit}
+                    orderNo={this.state.orderNo}
+                    message='Are You sure, Do you want to edit the Order'
+                    title='Order Edit Alert'
+                />
                    
             </div>
             

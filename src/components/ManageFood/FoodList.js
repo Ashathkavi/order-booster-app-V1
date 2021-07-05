@@ -6,16 +6,28 @@ import selectFood from '../../selectors/foods'
 export const FoodList = (props) => {
     //console.log(props)
     return (
-    <div>
-        {
-            props.foods.length === 0 ? (
-                <p>No Foods to Show</p>
-            ):(
-                props.foods.map((food)=>{
-                    return <FoodListItem key={food.id} {...food}/>
-                })
-            )
-        }
+    <div className="content-container">
+        <div className= "list-header">
+            <div className="show-for-mobile">Foods</div>
+            <div className="show-for-deskotp">Food</div>
+            <div className="show-for-deskotp">Category</div>
+            <div className="show-for-deskotp">Amount</div>
+        </div>
+        <div className="list-body">
+            {
+                props.foods.length === 0 ? (
+                    <div className="list-item list-item--message">
+                        <span>No Foods to Show</span>
+                    </div>
+                    
+                ):(
+                    props.foods.map((food)=>{
+                        return <FoodListItem key={food.id} {...food}/>
+                    })
+                )
+            }
+        </div>
+        
     </div>
 )}
 

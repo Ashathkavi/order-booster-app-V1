@@ -1,0 +1,132 @@
+
+.ReactModalPortal > div{
+    opacity: 0;
+    }
+    
+.ReactModalPortal .ReactModal__Overlay{ 
+    transition: opacity 1000ms ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open{
+    opacity:1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close{
+    opacity:0;
+}
+
+.modal-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal{
+    background: rgba(230, 228, 228, 0.667);
+
+}
+
+.modal--OrderView{
+    background: rgba(73, 71, 71, 0.667);
+    color:white;
+    max-width: 90rem;
+    outline: none;
+    text-align: center;
+    padding:$l-size;
+}
+
+
+
+.modal--OrderView__title{
+    margin:0 0 $m-size 0;
+}
+
+.modal--OrderView__body{
+    margin:0 0 $s-size 0;
+    font-size: 1.2rem;
+    font-weight: 200;
+    word-break:break-all;
+    text-align: left;
+}
+.modal__header{
+    text-align: center;
+}
+
+.modal__content{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding:$s-size;
+}
+
+.modal__content__item{
+    width: 25%;
+}
+
+.modal__content__item__deliverer{
+    width: 50%;
+} 
+
+.modal__buttons{
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+}
+
+.modal__tableAvailableFoods{
+    border: 1px solid rgb(26, 25, 25);
+    border-collapse: collapse;
+    th, td {
+        padding:$s-size;
+        text-align: left;
+    }
+    tr:nth-child(even) {
+        background-color: #eee;
+    }
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+    th {
+        background-color: rgb(83, 82, 82);
+        color: white;
+    }
+}
+
+.modal__tableSelectedFoods{
+    border: 1px solid rgb(54, 1, 1);
+    border-collapse: collapse;
+    margin-left: 1.6rem;
+    border-radius: 9rem;
+    th, td {
+        padding: $s-size;
+        text-align: left;
+    }
+    tr:nth-child(even) {
+        background-color: rgb(160, 155, 170);
+    }
+    tr:nth-child(odd) {
+        background-color: rgb(148, 142, 158);
+    }
+    th {
+        background-color: rgb(87, 85, 95);
+        color: white;
+    }
+}
+
+.modal__tablesContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.modal__totalAmount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 1.6rem;
+    h3{
+        margin:0;
+    }
+}

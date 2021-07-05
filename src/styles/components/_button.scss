@@ -38,5 +38,23 @@
 .button--remove{
     background-color: gray;
 }
+.button--closeModal{
+    background-color: rgb(124, 108, 103);
+    height: 30px;
+    padding:0.6rem;
+    flex:80%;
+}
+
+.button--selectNone{
+    background-color: rgb(94, 98, 121);
+    flex:20%;
+    height: 30px;
+    padding:0.6rem;
+}
+
+.button__splitter{
+    display: flex;
+    justify-content: space-between;
+}
 
 

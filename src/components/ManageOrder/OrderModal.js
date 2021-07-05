@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 import {connect} from 'react-redux'
+import numeral from 'numeral'
 import FoodListItem from '../ManageFood/FoodListItem'
 import FoodListFilters from '../ManageFood/FoodListFilters'
 import selectFood from '../../selectors/foods'
@@ -56,6 +57,14 @@ export class OrderModal extends React.Component {
         this.setState(()=>({singleTypeOrders:this.props.singleTypeOrders}))
     }
 
+    //handle total bill amount calculation  //................................not tested
+    onBillAmountCalculation = () => {
+        let billAmount = 0
+        this.state.singleTypeOrders.map((singleTypeOrder)=>billAmount=(singleTypeOrder.food.amount*singleTypeOrder.foodQuantity )+ billAmount)
+        //console.log(billAmount)
+        return billAmount
+    }
+
     render(){
         let iterable = -1
         console.log(this.props)
@@ -65,7 +74,7 @@ export class OrderModal extends React.Component {
         //     }))
         // }
 
-
+        console.log(this.state.singleTypeOrders)
         //console.log('singleTypeOrder.foodQuantity.toString()', singleTypeOrder.foodQuantity.toString())
         return(
             <Modal
@@ -75,43 +84,81 @@ export class OrderModal extends React.Component {
                 closeTimeoutMS={1000}
                 onAfterOpen={this.onModalOpen}
             >
-                <h3>Please Select Some Foods</h3>
+                <h3 className="modal__header">Please Select Some Foods</h3>
                 <FoodListFilters fromOrderModal={true}/>
-                <div >
-                    <div>
-                        {   
-                            this.state.singleTypeOrders.map((singleTypeOrder)=>{ 
-                                iterable = iterable + 1
-
-                                //console.log('singleTypeOrder.foodQuantity.toString()', singleTypeOrder)
-                                    return (
-                                        <FoodSingleOrder 
-                                            key = {iterable}
-                                            singleTypeOrder={singleTypeOrder} 
-                                            iterable={iterable} 
-                                            onRemoveSingleOrder={this.onRemoveSingleOrder}                                            
-                                        />                                        
-                                    )                                    
-                                }
-                            )
-                        
-                        }
-
-                    </div>
+                <div className="modal__tablesContainer">
+                    
                     <div>
                         {
-                            this.props.foods.map((food)=><FoodListItem key={food.id} {...food} 
-                                fromOrderModal={true} 
-                                onAddsingleTypeOrder={this.onAddsingleTypeOrder}/>)
+                            this.props.foods.length !== 0 && (
+                                <table className="modal__tableAvailableFoods">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Food Size</th>                                
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Type Quantity</th>
+                                        <th></th>
+                                    </tr>
+                                    {
+                                        this.props.foods.map((food)=><FoodListItem key={food.id} {...food} 
+                                            fromOrderModal={true} 
+                                            onAddsingleTypeOrder={this.onAddsingleTypeOrder}/>
+                                        )
+                                    }                        
+                                </table>
+                            )
                         }
-                        
+                                               
+                    </div>
+                    <div>
+                        {   
+                            this.state.singleTypeOrders.length !== 0 ? (
+                                <div>
+                                    <table className="modal__tableSelectedFoods">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Food Quantity</th>                                
+                                            <th>Prepared</th>
+                                            <th></th>
+                                        </tr>
+                                    {
+                                        this.state.singleTypeOrders.map((singleTypeOrder)=>{ 
+                                        iterable = iterable + 1
+                                        
+        
+                                        //console.log('singleTypeOrder.foodQuantity.toString()', singleTypeOrder)
+                                            return (
+                                                <FoodSingleOrder 
+                                                    key = {iterable}
+                                                    singleTypeOrder={singleTypeOrder} 
+                                                    iterable={iterable} 
+                                                    onRemoveSingleOrder={this.onRemoveSingleOrder}                                            
+                                                />                                        
+                                            )                                    
+                                        }
+                                        )
+                                    }
+                                    </table>
+                                    <div className="modal__totalAmount">
+                                        <div><button className="button button--closeModal" onClick={this.onSingleOrderFormPass}>Save</button> </div>
+                                        <h3>{numeral(this.onBillAmountCalculation()).format('$0,0.00') }</h3>
+                                    </div>
+                                </div>
+                            ):(
+                                null
+                            )      
+                        }
+
                     </div>
                     
 
                 </div>
-                
-                <button onClick={()=>this.props.onVisibleChange()}>Close</button>   
-                <button onClick={this.onSingleOrderFormPass}>Save</button>   
+                <div className="modal__buttons">
+                    <button className="button button--closeModal" onClick={()=>this.props.onVisibleChange()}>Close</button>   
+
+                </div>
+                   
 
                 
             </Modal>
