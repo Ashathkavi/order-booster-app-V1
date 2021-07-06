@@ -8,8 +8,8 @@ const orderFilterReducerDefaultState = {
     food:'',
     phoneNumber:'',
     status:'',
-    kotStatus:'',
-    billStatus:'',
+    // kotStatus:'',
+    // billStatus:'',
     sortBy:'date', // date or amount or duration
     startDate:moment().startOf('month').valueOf(),
     endDate:moment().endOf('month').valueOf()
@@ -29,10 +29,10 @@ const orderFilterReducer = (state=orderFilterReducerDefaultState, action) => {
             return {...state,phoneNumber:action.phoneNumber}
         case 'SET_STATUS_FILTER':
             return {...state,status:action.status}
-        case 'SET_KOT_STATUS_FILTER':
-            return {...state,kotStatus:action.kotStatus}
-        case 'SET_BILL_STATUS_FILTER':
-            return {...state,billStatus:action.billStatus }
+        // case 'SET_KOT_STATUS_FILTER':
+        //     return {...state,kotStatus:action.kotStatus}
+        // case 'SET_BILL_STATUS_FILTER':
+        //     return {...state,billStatus:action.billStatus }
         case 'SORT_BY_DATE':
             return {...state, sortBy:'date'}
         case 'SORT_BY_AMOUNT':

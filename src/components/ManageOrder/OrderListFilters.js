@@ -4,8 +4,8 @@ import moment from 'moment'
 import {
     setBoundryAmount,
     setFoodFilter,
-    setBillStatusFilter,
-    setKotStatusFilter,
+    // setBillStatusFilter,
+    // setKotStatusFilter,
     setStatusFilter,
     setPNoFilter,
     setCustomerFilter,
@@ -63,13 +63,13 @@ export const OrderListFilters = (props) => {
         props.setStatusFilter(e.target.value)
     }
 
-    const onKotStatusChange = (e) => {
-        props.setKotStatusFilter(e.target.value)
-    }
+    // const onKotStatusChange = (e) => {
+    //     props.setKotStatusFilter(e.target.value)
+    // }
 
-    const onBillStatusChange = (e) => {
-        props.setBillStatusFilter(e.target.value)
-    }
+    // const onBillStatusChange = (e) => {
+    //     props.setBillStatusFilter(e.target.value)
+    // }
 
     const onSortChange = (e) => {
         const billStatus = e.target.value
@@ -151,9 +151,9 @@ export const OrderListFilters = (props) => {
                 </div>
                 
             </div>
+            {/*
             <div className="input-group">
                 <div className="input-group__item">
-                    {/*setBillStatusFilter filter*/}
                     <select value={props.filters.billStatus} onChange={onBillStatusChange}>
                         <option defaultValue =''>All</option>
                         <option value="printed">Printed</option>
@@ -161,7 +161,6 @@ export const OrderListFilters = (props) => {
                     </select>
                 </div>
                 <div className="input-group__item">
-                    {/*setKotStatusFilter filter*/}
                     <select value={props.filters.kotSatus} onChange={onKotStatusChange}>
                         <option value=''>All</option>
                         <option value="passed">Passed</option>
@@ -170,6 +169,7 @@ export const OrderListFilters = (props) => {
                 </div>
                 
             </div>
+            */}
             
             
 

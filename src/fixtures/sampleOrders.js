@@ -30,14 +30,14 @@ export default () =>[
             status:'confirmed',
             time:moment().valueOf()
         },
-        kotStatus:{
-            status:'passed',
-            time:moment().add(5, 'minutes').valueOf()
-        },
-        billStatus:{
-            status:'printed',
-            time:moment().add(5, 'minutes').valueOf()
-        },
+        // kotStatus:{
+        //     status:'passed',
+        //     time:moment().add(5, 'minutes').valueOf()
+        // },
+        // billStatus:{
+        //     status:'printed',
+        //     time:moment().add(5, 'minutes').valueOf()
+        // },
         foods:[new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)],
         amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[1], 2), new SingleOrder(sampleFoods()[0], 3)]),
         deliverer:'Ashath',
@@ -56,14 +56,14 @@ export default () =>[
             status:'kitchen',
             time:moment().add(6, 'days').valueOf()
         },
-        kotStatus:{
-            status:'passed',
-            time:moment().add(6, 'days').valueOf()
-        },
-        billStatus:{
-            status:'printed',
-            time:moment().add(6, 'days').valueOf()
-        },
+        // kotStatus:{
+        //     status:'passed',
+        //     time:moment().add(6, 'days').valueOf()
+        // },
+        // billStatus:{
+        //     status:'printed',
+        //     time:moment().add(6, 'days').valueOf()
+        // },
         foods:[new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)],
         amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[2], 2), new SingleOrder(sampleFoods()[0], 1)]),
         deliverer:'Push',
@@ -82,14 +82,14 @@ export default () =>[
             status:'table',
             time:moment().add(8, 'days').valueOf()
         },
-        kotStatus:{
-            status:'not',
-            time:0
-        },
-        billStatus:{
-            status:'not',
-            time:0
-        },
+        // kotStatus:{
+        //     status:'not',
+        //     time:0
+        // },
+        // billStatus:{
+        //     status:'not',
+        //     time:0
+        // },
         foods:[new SingleOrder(sampleFoods()[0], 2), new SingleOrder(sampleFoods()[2], 3)],
         amount:onBillAmountCalculation([new SingleOrder(sampleFoods()[0], 2), new SingleOrder(sampleFoods()[2], 3)]),
         deliverer:'Divasthan',

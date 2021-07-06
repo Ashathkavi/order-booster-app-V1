@@ -5,7 +5,7 @@ const FoodSingleOrder = (props) => (
     <tr>
         <td>{props.singleTypeOrder.food.name}</td>
         <td>{props.singleTypeOrder.foodQuantity}</td>
-        <td>{props.singleTypeOrder.prepared ? "true" : "false"}</td>
+        <td>{props.singleTypeOrder.prepared ? "Prepared" : "Not Prepared"}</td>
         {!!props.onRemoveSingleOrder && <td><button type='button' onClick={()=>props.onRemoveSingleOrder(props.iterable)}>Remove</button></td>}
             
     </tr>

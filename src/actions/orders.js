@@ -26,14 +26,15 @@ export const startAddOrder= (orderData = {})=> {
                 status:'confirmed',
                 time:0
             },
-            kotStatus={
-                status:'not',
-                time:0
-            },
-            billStatus={
-                status:'not',
-                time:0
-            },
+
+            // kotStatus={
+            //     status:'not',
+            //     time:0
+            // },
+            // billStatus={
+            //     status:'not',
+            //     time:0
+            // },
             foods=[],
             amount=0,
             deliverer='',
@@ -49,8 +50,8 @@ export const startAddOrder= (orderData = {})=> {
             orderEndTime,
             address,
             status,
-            kotStatus,
-            billStatus,
+            // kotStatus,
+            // billStatus,
             foods,
             amount,
             deliverer,

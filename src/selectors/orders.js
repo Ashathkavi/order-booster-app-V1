@@ -9,8 +9,8 @@ const getVisibleorders = (orders, {
     food,
     phoneNumber,
     status,
-    kotStatus,
-    billStatus,
+    // kotStatus,
+    // billStatus,
     sortBy, 
     startDate,
     endDate,
@@ -36,8 +36,8 @@ const getVisibleorders = (orders, {
         const customerNameMatch = order.customerName.toLowerCase().includes(customerName.toLowerCase())       
         const phoneNumberMatch = order.phoneNumber.includes(phoneNumber)
         const statusMatch = order.status.status.toLowerCase().includes(status.toLowerCase())
-        const kotStatusMatch = order.kotStatus.status.toLowerCase().includes(kotStatus.toLowerCase())
-        const billStatusMatch = order.billStatus.status.toLowerCase().includes(billStatus.toLowerCase())
+        // const kotStatusMatch = order.kotStatus.status.toLowerCase().includes(kotStatus.toLowerCase())
+        // const billStatusMatch = order.billStatus.status.toLowerCase().includes(billStatus.toLowerCase())
         //console.log(order.foods.filter((food)=> food.name.toLowerCase().includes(food_recieved.toLowerCase())).length)
         const foodMatch = 0 !== order.foods.filter((food)=> food.food.name.toLowerCase().includes(food_recieved.toLowerCase())).length 
         /*
@@ -55,7 +55,7 @@ const getVisibleorders = (orders, {
         
         return startDateMatch && endDateMatch && addressMatch &&
             customerNameMatch && boundryAmountMatch && foodMatch && phoneNumberMatch &&
-            statusMatch && kotStatusMatch && billStatusMatch  
+            statusMatch //&& kotStatusMatch && billStatusMatch  
         
 
     }).sort((a, b)=>{

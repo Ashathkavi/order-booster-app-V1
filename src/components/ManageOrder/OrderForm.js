@@ -47,11 +47,11 @@ export class OrderForm extends Component{
             status:props.order ? props.order.status.status : 'confirmed',
             statusTime: props.order ? props.order.status.time : moment().valueOf(),
 
-            kotStatus:props.order ? props.order.kotStatus.status : 'not',
-            kotStatusTime: props.order ? props.order.kotStatus.time : moment().valueOf(),
+            //kotStatus:props.order ? props.order.kotStatus.status : 'not',
+            //kotStatusTime: props.order ? props.order.kotStatus.time : moment().valueOf(),
 
-            billStatus:props.order ? props.order.billStatus.status : 'not',
-            billStatusTime: props.order ? props.order.billStatus.time : moment().valueOf(), 
+            //billStatus:props.order ? props.order.billStatus.status : 'not',
+            //billStatusTime: props.order ? props.order.billStatus.time : moment().valueOf(), 
 
             foods:props.order ? props.order.foods : [],
 
@@ -146,23 +146,23 @@ export class OrderForm extends Component{
             }))       
         }
 
-        //handling kot Status
-        onKotStatusChange = (e) => {
-            e.persist()
-            this.setState(()=>({
-                kotStatus:e.target.value,
-                kotStatusTime:moment().valueOf()
-            }))       
-        }
+        // //handling kot Status
+        // onKotStatusChange = (e) => {
+        //     e.persist()
+        //     this.setState(()=>({
+        //         kotStatus:e.target.value,
+        //         kotStatusTime:moment().valueOf()
+        //     }))       
+        // }
 
-        //handling bill Status
-        onBillStatusChange = (e) => {
-            e.persist()
-            this.setState(()=>({
-                billStatus:e.target.value,
-                billStatusTime:moment().valueOf()
-            }))       
-        }
+        // //handling bill Status
+        // onBillStatusChange = (e) => {
+        //     e.persist()
+        //     this.setState(()=>({
+        //         billStatus:e.target.value,
+        //         billStatusTime:moment().valueOf()
+        //     }))       
+        // }
 
         //handling create date
         onDateChange = (date) => {
@@ -236,11 +236,11 @@ export class OrderForm extends Component{
                 address:this.state.address,
                 amount:this.onBillAmountCalculation(),
                 createdAt:this.state.createdAt,
-                billStatus:{status:this.state.billStatus, time:this.state.billStatusTime} ,
+                //billStatus:{status:this.state.billStatus, time:this.state.billStatusTime} ,
                 customerName:this.state.customerName,
                 description:this.state.description,
                 foods:this.state.foods,
-                kotStatus:{status:this.state.kotStatus, time:this.state.kotStatusTime} ,
+                //kotStatus:{status:this.state.kotStatus, time:this.state.kotStatusTime} ,
                 orderEndTime:this.state.orderEndTime,
                 phoneNumber:this.state.phoneNumber,
                 status:{status:this.state.status, time:this.state.statusTime},
@@ -261,7 +261,7 @@ export class OrderForm extends Component{
         return(
             <div>
                 
-                <form className="form" onSubmit={this.onVisibleMessageModal}>
+                <form className="form" onSubmit={this.props.order ? this.onVisibleMessageModal: this.onSubmit}>
                     {this.state.error && <p className="form__error">{this.state.error}</p>}
                     
 
@@ -406,16 +406,16 @@ export class OrderForm extends Component{
                     </div>
 
                     {/*Adding KOT status*/}  
-                    <select value={this.state.kotStatus} onChange={this.onKotStatusChange} disabled={!this.props.order}>
+                    {/*<select value={this.state.kotStatus} onChange={this.onKotStatusChange} disabled={!this.props.order}>
                         <option value ='not'>Not Passed</option>
                         <option value ='passed'>Passed</option>
-                    </select>
+                    </select>*/}
 
                     {/*Adding Bill Status*/}  
-                    <select value={this.state.billStatus} onChange={this.onBillStatusChange} disabled={!this.props.order}>
+                    {/*<select value={this.state.billStatus} onChange={this.onBillStatusChange} disabled={!this.props.order}>
                         <option value ='not'>Not Printed</option>
                         <option value ='printed'>Printed</option>
-                    </select>  
+                </select> */} 
 
                     
                     <div>

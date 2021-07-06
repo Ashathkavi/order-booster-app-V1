@@ -37,17 +37,17 @@ export const setStatusFilter = (status='') => ({
     status
 })
 
-//SET_KOT_STATUS_FILTER : order filter reducer
-export const setKotStatusFilter = (kotStatus='') => ({
-    type:'SET_KOT_STATUS_FILTER',
-    kotStatus
-})
+// //SET_KOT_STATUS_FILTER : order filter reducer
+// export const setKotStatusFilter = (kotStatus='') => ({
+//     type:'SET_KOT_STATUS_FILTER',
+//     kotStatus
+// })
 
-//SET_BILL_STATUS_FILTER : order filter reducer
-export const setBillStatusFilter = (billStatus='') => ({
-    type:'SET_BILL_STATUS_FILTER',
-    billStatus
-})
+// //SET_BILL_STATUS_FILTER : order filter reducer
+// export const setBillStatusFilter = (billStatus='') => ({
+//     type:'SET_BILL_STATUS_FILTER',
+//     billStatus
+// })
 
 //SORT_BY_DATE : order filter reducer
 export const sortByDate = () => ({

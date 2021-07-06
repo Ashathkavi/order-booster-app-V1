@@ -8,8 +8,8 @@ const orderFilter = {
     food:'',
     phoneNumber:'',
     status:'',
-    kotStatus:'',
-    billStatus:'',
+    // kotStatus:'',
+    // billStatus:'',
     sortBy:'date', // date or amount or duration
     startDate:moment().startOf('month').valueOf(),
     endDate:moment().endOf('month').valueOf()
@@ -23,8 +23,8 @@ const altOrderFilter = {
     food:'',
     phoneNumber:'',
     status:'',
-    kotStatus:'',
-    billStatus:'',
+    // kotStatus:'',
+    // billStatus:'',
     sortBy:'date', // date or amount or duration
     startDate:moment().startOf('month').valueOf(),
     endDate:moment().endOf('month').valueOf()
