@@ -4,17 +4,25 @@ import moment from 'moment'
 
 export default class FoodForm extends React.Component{
     
-    state={
-        modalIsOpen:false,
-        category: this.props.food? this.props.food.category : '',
-        fullAvailability:this.props.food ? this.props.food.largeAvailability : false,
-        foodSize:this.props.food ? this.props.food.foodSize : 'regular',
-        name:this.props.food ? this.props.food.name :  '',
-        description:this.props.food ? this.props.food.description :  '',
-        amount: this.props.food ? this.props.food.amount.toString() : '',
-        createdAt: this.props.food ? this.props.food.createdAt : moment().valueOf(),
-        error:''
+    constructor(props){
+
+        super(props)
+        
+        this.state={
+            modalIsOpen:false,
+            category: !!props.food? props.food.category  : (!!props.foodlargeAvailable ? props.foodlargeAvailable.category :''),
+            fullAvailability:props.food ? props.food.largeAvailability : (!!props.foodlargeAvailable ? true: false),
+            foodSize:props.food ? props.food.foodSize : (!!props.foodlargeAvailable ? props.foodlargeAvailable.foodSize : 'regular'),
+            name:props.food ? props.food.name :  (!!props.foodlargeAvailable ? props.foodlargeAvailable.name :''),
+            description:props.food ? props.food.description : (!!props.foodlargeAvailable ? props.foodlargeAvailable.description :  ''),
+            amount: props.food ? props.food.amount.toString() : '',
+            createdAt: props.food ? props.food.createdAt : moment().valueOf(),
+            error:''
+        }
+        console.log(this.state.category)
     }
+    
+    
 
     onSetSize = (e) => {
         this.setState(() => ({
@@ -70,12 +78,28 @@ export default class FoodForm extends React.Component{
         //document.getElementById('textInput').value=e.target.value; 
     }
 
+    onCheckFoodsPresents = (foodName, foodSize) => {
+        let presents = false
+        this.props.foods.map((food)=>{
+            if(food.name.toLowerCase() === foodName.toLowerCase() && food.foodSize === foodSize){
+                presents = true
+                if(!!this.props.food && (this.props.food.name.toLowerCase() === foodName.toLowerCase() && this.props.food.foodSize === foodSize)){
+                    presents = false
+                }
+            }
+        })
+        return presents
+    }
 
     onSubmit = (e) => {
         e.preventDefault()
         if(!this.state.name || !this.state.category || !this.state.foodSize ){
             this.setState(()=>({
                 error:'The field such as NAME, CATEGORY, FULL_AVAILABILITY and FOODSIZE are mandatoroy to fill'
+            }))
+        }else if(this.onCheckFoodsPresents(this.state.name, this.state.foodSize)){
+            this.setState(()=>({
+                error:'The Submitted Food is already Available'
             }))
         }else{
             this.setState(()=>({error:''}))
@@ -95,7 +119,8 @@ export default class FoodForm extends React.Component{
 
     //this.handleSizeRadio()
     render(){
-        //console.log(this.props.food.category)
+        console.log(this.props,'this.props')
+        console.log(this.state,'this.state')
         // console.log('state.modalIsOpen',this.state.modalIsOpen)
         // console.log('state.category',this.state.category)
         // console.log('state.fullAvailability',this.state.fullAvailability)
@@ -110,21 +135,21 @@ export default class FoodForm extends React.Component{
                     {this.state.error && <p className="form__error">{this.state.error}</p>}
                     <div>
                         { !this.state.category && <span>  Please Select a Food Category First &nbsp;&nbsp;&nbsp;&nbsp;</span>}
-                        <button type="button" onClick={this.handleOpenModal}> Select Category</button>
+                        <button disabled={!!this.props.foodlargeAvailable} type="button" onClick={this.handleOpenModal}> Select Category</button>
                         &nbsp;&nbsp;
-                        <input type='text' id='selectedCat' value={this.state.category} disabled required></input>
+                        <input disabled={!!this.props.foodlargeAvailable}  type='text' id='selectedCat' value={this.state.category} disabled required></input>
                     </div>
                     <input 
                         type="text" 
                         placeholder="Name" 
-                        disabled={!this.state.category}
+                        disabled={  !this.state.category || !!this.props.foodlargeAvailable}
                         value={this.state.name}
                         onChange={this.onNameChange}
                         className="text-input"
                     />
                     <div>
                         <input type='text' id='textInput' value={this.state.amount} disabled></input>
-                        <input type='range' min='0' max='2000' disabled={!this.state.category} step='10' value={this.state.amount} onChange={(e)=>{
+                        <input  type='range' min='0' max='2000' disabled={!this.state.category} step='10' value={this.state.amount} onChange={(e)=>{
                             this.onAmountChange(e)
                             //this.updateTextInput(e.target.value)
                         }}/>
@@ -132,15 +157,15 @@ export default class FoodForm extends React.Component{
                     
 
 
-                    <div>Is Full postion available &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div >Is Full postion available &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="radio" value={true} checked={this.state.fullAvailability === true} onChange={this.onAvailabilityChange} /> Yes &nbsp;&nbsp;&nbsp;
-                        <input type="radio" value={false} checked={this.state.fullAvailability === false} onChange={this.onAvailabilityChange} /> No
+                        <input disabled={!!this.props.foodlargeAvailable} type="radio" value={true} checked={this.state.fullAvailability === true} onChange={this.onAvailabilityChange} /> Yes &nbsp;&nbsp;&nbsp;
+                        <input disabled={!!this.props.foodlargeAvailable} type="radio" value={false} checked={this.state.fullAvailability === false} onChange={this.onAvailabilityChange} /> No
                     </div>
                     <div hidden={!this.state.fullAvailability} >Set the size of the potion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="radio" value='regular' checked={this.state.foodSize === 'regular'} onChange={this.onSetSize} /> Normal &nbsp;&nbsp;&nbsp;
-                        <input type="radio" value='full' checked={this.state.foodSize === 'full'} onChange={this.onSetSize} /> Full
+                        <input disabled={!!this.props.foodlargeAvailable} type="radio" value='regular' checked={this.state.foodSize === 'regular'} onChange={this.onSetSize} /> Normal &nbsp;&nbsp;&nbsp;
+                        <input disabled={!!this.props.foodlargeAvailable} type="radio" value='full' checked={this.state.foodSize === 'full'} onChange={this.onSetSize} /> Full
                     </div>
 
                     

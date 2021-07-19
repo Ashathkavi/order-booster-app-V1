@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import FoodListItem from '../ManageFood/FoodListItem'
 import selectFood from '../../selectors/foods'
+import {onStartSetFoods} from '../../actions/foods'
 
 export const FoodList = (props) => {
+
+    useEffect(()=>{
+        const g = props.onStartSetFoods()
+        return g
+    },[])
+
+    console.log(props.foods, 'props.foods')
     //console.log(props)
     return (
     <div className="content-container">
@@ -31,10 +39,14 @@ export const FoodList = (props) => {
     </div>
 )}
 
+const mapDispatchToProps = (dispatch) => ({
+    onStartSetFoods: () => dispatch(onStartSetFoods())
+})
+
 const mapStateToProps = (state) => {
     return {
         foods:selectFood(state.foods, state.foodFilters),
     }
 }
 
-export default connect(mapStateToProps)(FoodList)
+export default connect(mapStateToProps, mapDispatchToProps)(FoodList)

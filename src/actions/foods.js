@@ -34,10 +34,19 @@ export const startAddFood = (foodData = {})=> {
         return database.ref('foods').push(food)
             .then((refFood) => {
                 console.log('Data is Saved')
-                dispatch(addFood({
-                    id:refFood.key,
-                    ...food
-                }))
+                database.ref(`foods/${refFood.key}`).once('value').then((snap)=>{
+                    if(!snap.val()){
+                        dispatch(addFood({
+                            id:refFood.key,
+                            ...food
+                        }))
+                    }
+                    
+                })
+                // dispatch(addFood({
+                //     id:refFood.key,
+                //     ...food
+                // }))
             })
             .catch((error)=>console.log('failed :', error))
     }
@@ -93,21 +102,39 @@ export const setFoods = (foods) => ({
 export const startSetFoods = ()=> {
     return (dispatch) => {
         
-        return database.ref('foods').once('value')
-            .then((snapshot) => {
-                console.log('Data is fetched')
-                const foods = []
-                snapshot.forEach((childSnapshot)=>{
-                    foods.push({
-                        
-                        ...childSnapshot.val(),
-                        id:childSnapshot.key
-                    })
+        return database.ref('foods').once('value').then((snapshot) => {
+            console.log('Data is fetched')
+            const foods = []
+            snapshot.forEach((childSnapshot)=>{
+                foods.push({
+                    
+                    ...childSnapshot.val(),
+                    id:childSnapshot.key
                 })
-                dispatch(setFoods(foods))
             })
-            .catch((error)=>console.log('failed :', error))
+            dispatch(setFoods(foods))
+        }).catch((e)=>{
+            console.log('Error with data fetching: ', e)
+        })
+
     }
+}
+
+
+export const onStartSetFoods = ()=> {
+    return (dispatch) => {
+        return database.ref('foods').on('value', (snapshot) => {
+            const foods = []
+            snapshot.forEach((childSnapshot)=>{
+                foods.push({
+                    ...childSnapshot.val(),
+                    id:childSnapshot.key
+                })
+            })
+            dispatch(setFoods(foods))
+        })
+    }
+    
 }
 
 

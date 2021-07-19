@@ -9,9 +9,22 @@
 .form__error{
     margin:0 0 $m-size 0;
     font-style: italic;
+    color: rgb(223, 124, 140);
+    text-align: center;
 }
 
 .form__selectors{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form__selected-foods{
+    align-items: center;
+    flex:1;
+}
+
+.form__selected-foods-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

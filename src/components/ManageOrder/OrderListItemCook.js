@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import DurationDisplay from './DurationDisplay'
+import {setStatusFilter} from '../../actions/orderFilters'
 import {onStartSetOrders} from '../../actions/orders'
 import OrderViewModal from './OrderViewModal'
 import numeral from 'numeral'
@@ -11,7 +12,7 @@ import numeral from 'numeral'
 
 
 
-export const OrderListItemWaiter = ({
+export const OrderListItemCook = ({
     
     id,
     createdAt,
@@ -67,39 +68,53 @@ export const OrderListItemWaiter = ({
     }
 */
     return(
-        <div className="list-item list-item--deliverer">
-            <div className="list-item__title__container">
-                <h3 className="list-item__title list-item__title--deliverer">{count}</h3>
-                <h4>{deliverMeth}</h4>
-                <p> {status.status}</p>
-            </div>
+        <div className="list-item">
+            <div>
+                <div className="list-item_into-row">
+                    <h4 className="list-item__title">No: {count} &nbsp;&nbsp;&nbsp;</h4>
+                    [<sapn>{status.status}</sapn> ] 
+                    
+                </div>
+                 
+                <p className="list-item__sub-title">
+                    {status.status !== 'recieved' && status.status !== 'cancelled' && <DurationDisplay orderEndTime={orderEndTime}/>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            
-            
-            
-            <button onClick={()=>setOrderViewIsOpen(true)}>See Order Details</button> 
-            <div className="list-item__duration"><DurationDisplay orderEndTime={orderEndTime}/></div>
+                    {(deliverMeth === 'delivery' ) ? address : deliverMeth} 
+                </p>
+                
+            </div>
+            <div>
+
+                <h3 className="list-item__data">
+                    
+                    {numeral(amount).format('$0,0.00')}
+                </h3>
+                <p className="list-item__sub-title list-item__sub-title--date">
+                    <button onClick={()=>setOrderViewIsOpen(true)}>See Order Details</button> &nbsp;&nbsp;&nbsp;
+                    {moment(orderEndTime).format('YYYY MMMM Do, h:mm a')}
+                </p>
+            </div>            
             <OrderViewModal 
                 modalIsOpen={orderViewIsOpen} 
                 handleCloseModal={()=>setOrderViewIsOpen(false)} 
-                {...order}                
-                from={'handlerList'}
-            /> 
+                {...order}
+                from={'cookList'}
+            />                      
         </div>
-          
         
         
 )}
 
  
 const mapDispatchToProps = (dispatch) => ({
+    setStatusFilter: (status) => dispatch(setStatusFilter(status)),
     onStartSetOrders: () => dispatch(onStartSetOrders())
 })
 
+const mapStateToProps = (state) => {
+    return {        
+        auth:state.auth
+    }
+}
 
-export default connect(undefined, mapDispatchToProps)(OrderListItemWaiter)
-
-
-/*
-
-*/
+export default connect(mapStateToProps, mapDispatchToProps)(OrderListItemCook)

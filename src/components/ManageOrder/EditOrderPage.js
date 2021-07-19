@@ -3,13 +3,17 @@ import {connect} from 'react-redux'
 import { startEditOrder, startRemoveOrder} from '../../actions/orders'
 import OrderForm from './OrderForm'
 import MessageModal from '../MessageModal'
+import selectFood from '../../selectors/foods'
+
 
 export const EditOrderPage = (props) => {
+    //console.log(props, 'props')
 
     const [visibleMessageModal, setVisibleMessageModal] = useState(false)
     
     const onSubmit = (order) => {
-        props.startEditOrder(props.order.id ,order)
+        console.log(props.order, 'props.order')
+        props.startEditOrder(props.order.id ,order, props.order)
         props.history.push('/order')
     }
 
@@ -30,7 +34,7 @@ export const EditOrderPage = (props) => {
                 </div>
             </div>
            <div className="content-container">
-                <OrderForm order={props.order} onSubmit={onSubmit}/>
+                <OrderForm order={props.order} onSubmit={onSubmit} foods={props.foods}/>
                 {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={toggleVisibleModal}>Remove this Order</button>}
 
            </div>
@@ -48,7 +52,7 @@ export const EditOrderPage = (props) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startEditOrder: (id, order) => dispatch(startEditOrder(id, order)),
+    startEditOrder: (id, order, prev) => dispatch(startEditOrder(id, order, prev)),
     startRemoveOrder: (id) => dispatch(startRemoveOrder({id}))
 })
 
@@ -57,7 +61,8 @@ const mapStateToProps = (state, props) => {
     return {
         
         order:state.orders.find((order)=> order.id === props.match.params.id),
-        autherizedAs:state.auth.role
+        autherizedAs:state.auth.role,
+        foods:selectFood(state.foods, state.foodFilters)
     }
 }
 

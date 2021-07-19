@@ -2,6 +2,8 @@ import React from 'react'
 import {OrderForm} from './OrderForm'
 import {startAddOrder} from '../../actions/orders'
 import {connect} from 'react-redux'
+import selectFood from '../../selectors/foods'
+
 
 
 export const AddOrderPage = (props) => {
@@ -11,6 +13,7 @@ export const AddOrderPage = (props) => {
         let count = orders.length + 1
         let i = true
         while(i === true){
+
             orders.map((order) => {
                 i=false
                 if(order.count  === count){
@@ -18,6 +21,9 @@ export const AddOrderPage = (props) => {
                     i=true
                 }
             })
+            if(orders.length === 0){
+                i = false
+            }
         }
         return count
     } 
@@ -36,7 +42,7 @@ export const AddOrderPage = (props) => {
             </div>
 
             <div className="content-container">
-                <OrderForm onSubmit={ onSubmit}/>
+                <OrderForm orders={props.orders} onSubmit={ onSubmit} foods={props.foods}/>
             </div>
             
 
@@ -52,7 +58,8 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => {
     console.log(state.orders)
     return {
-        orders:state.orders
+        orders:state.orders,
+        foods:selectFood(state.foods, state.foodFilters)
     }
 }
 

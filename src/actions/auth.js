@@ -34,13 +34,13 @@ export const checkUserAvailability =  (user) => {
         return database.ref(`users/${user.uid}`).once('value')
             .then((snap)=>{
                 userAvailabiliity = !!snap.val()
-                console.log(userAvailabiliity, 'userAvailabiliity')
+                //console.log(userAvailabiliity, 'userAvailabiliity')
                 if(userAvailabiliity){
                     dispatch(login(user.uid, snap.val().name, snap.val().role, snap.val().createdAt))
                 }else{
                     dispatch(login(user.uid, user.displayName, 'unknown', 0))
                 }
-                console.log(userAvailabiliity, "userAvailabiliity")                
+                //console.log(userAvailabiliity, "userAvailabiliity")                
             })
             .catch((error)=>console.log('User availbaility request failed :', error))
         

@@ -31,6 +31,12 @@ export const setPNoFilter = (phoneNumber='') => ({
     phoneNumber
 })
 
+//SET_DELIVERMETH_FILTER : order filter reducer
+export const setDeliverMethFilter = (deliverMeth='') => ({
+    type:'SET_DELIVERMETH_FILTER',
+    deliverMeth
+})
+
 //SET_STATUS_FILTER : order filter reducer
 export const setStatusFilter = (status='') => ({
     type:'SET_STATUS_FILTER',

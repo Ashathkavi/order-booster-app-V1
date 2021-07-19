@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import './styles/styles.scss'
@@ -41,7 +41,7 @@ import LoadingPage from "./components/LoadingPage"
 
 const store = configureStore()
 
-console.log('store.getState()', store.getState())
+//console.log('store.getState()', store.getState())
 
 const state = store.getState()
 
@@ -70,35 +70,38 @@ ReactDOM.render(<LoadingPage/>, document.getElementById('app'))
 
 firebase.auth().onAuthStateChanged((user) => {
     
-    
+        
     if(user){
+        
         store.dispatch(checkUserAvailability(user)).then(()=>{
             if(store.getState().auth.role === 'unknown'){
+                
                 store.dispatch(setAsMemeber(user.uid, user.displayName)).then(()=>{
                     store.dispatch(startSetFoods()).then(()=>{
                         store.dispatch(startSetOrders()).then(()=>{
                             renderApp()
                             if(history.location.pathname === '/'){
                                 history.push('/dashboard')
-                                
-
                             }
                             console.log('store.getState()', store.getState())
                         })
-                    })      
+                        
+                    })
+                    
                 })
             }else{
+                
                 store.dispatch(startSetFoods()).then(()=>{
                     store.dispatch(startSetOrders()).then(()=>{
                         renderApp()
+                        console.log('kfkfkfkf')
                         if(history.location.pathname === '/'){
                             history.push('/dashboard')
-                            
-
                         }
-                        console.log('store.getState()', store.getState())
-                    })
-                })      
+                    })                    
+                    //console.log('store.getState()', store.getState())
+                })
+                
             }
                  
         })

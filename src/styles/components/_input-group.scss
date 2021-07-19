@@ -2,12 +2,22 @@
     display: flex;
     flex-direction: column;
     margin-bottom: $m-size;
-
+    
+    
     @media(min-width:$desktop-breakpoint){
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: $s-size;
     }
+}
+
+.input-group--border{
+    padding: $s-size;
+    border: 1px solid rgb(128, 125, 125);
+}
+
+.input-group--form{
+    max-width: 100%;
 }
 
 .input-group__item{

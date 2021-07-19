@@ -18,20 +18,50 @@ export class OrderModal extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            singleTypeOrders: props.singleTypeOrders ? props.singleTypeOrders : []
+            singleTypeOrders: !!props.singleTypeOrders ? props.singleTypeOrders : []
         }
+        //console.log('constructor this.state.singleTypeOrders', this.state.singleTypeOrders)
+
     }   
 
     //handling single orders of food in Order Modal
-    onAddsingleTypeOrder = ({food, foodQuantity,prepared, preparedTime, prepearedBy}) => {
-        this.setState((prevSate)=>({
-            singleTypeOrders:[...prevSate.singleTypeOrders, {food, foodQuantity,prepared, preparedTime, prepearedBy}]
-        }))
+    onAddsingleTypeOrder = ({food, foodQuantity, foodDescription,prepared, preparedTime, prepearedBy, handled, handledBy, handledTime}) => {
+        console.log('onAddsingleTypeOrder this.state.singleTypeOrders', this.state.singleTypeOrders)
+        this.setState((prevState)=>{
+            console.log('kkkkkkkkkkkkkk prevState.singleTypeOrders', this.state.singleTypeOrders)
+            if(prevState.singleTypeOrders === undefined){
+                return({singleTypeOrders:[{food, foodQuantity, foodDescription,prepared, preparedTime, prepearedBy, handled, handledBy, handledTime}]})
+            }else{
+                let foodAvailability = false
+                var single_typeOrders =  prevState.singleTypeOrders
+                let modifiedSingleTypeOrders =  single_typeOrders.map((singleTypeOrder)=>{
+                    if(singleTypeOrder.food.id === food.id && singleTypeOrder.foodDescription === foodDescription && singleTypeOrder.prepared === false && singleTypeOrder.handled === false){
+                        //console.log('mmmmmmmmmmm', prevState.singleTypeOrders)
+                        singleTypeOrder.foodQuantity = foodQuantity 
+                        
+                        foodAvailability = true
+                    }
+                    //console.log('mmmmmmmmmmm', singleTypeOrder)
+                    return singleTypeOrder
+                })
+                //console.log('lllllllllll', modifiedSingleTypeOrders)
+                console.log('lllllllllll modifiedSingleTypeOrders', modifiedSingleTypeOrders)
+                
+                if(foodAvailability){
+                    return({singleTypeOrders:[...modifiedSingleTypeOrders]})
+                }
+                return({singleTypeOrders:[...prevState.singleTypeOrders, {food, foodQuantity, foodDescription,prepared, preparedTime, prepearedBy, handled, handledBy, handledTime}]})
+                
+            }
+
+        })
+
+        this.setState((prevState)=>({isModalOpen: !prevState.isModalOpen}))
     }
 
     //handling single orders Passing
     onSingleOrderFormPass = () => {
-        console.log('this.state.singleTypeOrders', this.state.singleTypeOrders)
+        //console.log('this.state.singleTypeOrders', this.state.singleTypeOrders)
         this.props.onSingleOrderChange(this.state.singleTypeOrders)
         this.props.onVisibleChange()
     }
@@ -39,12 +69,12 @@ export class OrderModal extends React.Component {
     //removing selected single order
     onRemoveSingleOrder = (arrayPosition) => {
         this.setState((prevState)=>{
-            console.log('prevState.singleTypeOrders.length', prevState.singleTypeOrders.length, arrayPosition)
+            //console.log('prevState.singleTypeOrders.length', prevState.singleTypeOrders.length, arrayPosition)
             if(prevState.singleTypeOrders.length !== 1){
                 if(arrayPosition === 0){
                     return ({singleTypeOrders:prevState.singleTypeOrders.slice(1)})
                 }
-                console.log('fdffffffffffff', arrayPosition)
+                //console.log('fdffffffffffff', arrayPosition)
                 let singleTypeOrders = prevState.singleTypeOrders
                 singleTypeOrders.splice(arrayPosition, 1)
                 return ({singleTypeOrders:singleTypeOrders})
@@ -67,14 +97,14 @@ export class OrderModal extends React.Component {
 
     render(){
         let iterable = -1
-        console.log(this.props)
+        //console.log(this.props)
         // if(this.props.isModalOpen){
         //     this.setState(()=>({
         //         singleTypeOrders: this.props.singleTypeOrders
         //     }))
         // }
 
-        console.log(this.state.singleTypeOrders)
+        //console.log(this.state.singleTypeOrders)
         //console.log('singleTypeOrder.foodQuantity.toString()', singleTypeOrder.foodQuantity.toString())
         return(
             <Modal
@@ -113,13 +143,15 @@ export class OrderModal extends React.Component {
                     </div>
                     <div>
                         {   
-                            this.state.singleTypeOrders.length !== 0 ? (
+                            (!!this.state.singleTypeOrders && this.state.singleTypeOrders.length !== 0 )? (
                                 <div>
                                     <table className="modal__tableSelectedFoods">
                                         <tr>
                                             <th>Name</th>
+                                            <th>Potion Type</th>
                                             <th>Food Quantity</th>                                
                                             <th>Prepared</th>
+                                            <th>Description</th>
                                             <th></th>
                                         </tr>
                                     {
@@ -141,7 +173,7 @@ export class OrderModal extends React.Component {
                                     }
                                     </table>
                                     <div className="modal__totalAmount">
-                                        <div><button className="button button--closeModal" onClick={this.onSingleOrderFormPass}>Save</button> </div>
+                                        <div><button className="button button--closeModal" onClick={()=>this.onSingleOrderFormPass()}>Save</button> </div>
                                         <h3>{numeral(this.onBillAmountCalculation()).format('$0,0.00') }</h3>
                                     </div>
                                 </div>
@@ -166,7 +198,7 @@ export class OrderModal extends React.Component {
 
     }
 }
-
+/*
 
 const mapStateToProps = (state, props) => {
     
@@ -174,9 +206,9 @@ const mapStateToProps = (state, props) => {
         
         foods:selectFood(state.foods, state.foodFilters)
     }
-}
+}*/
 
-export default connect(mapStateToProps)(OrderModal);
+export default OrderModal;
 
 
 /*

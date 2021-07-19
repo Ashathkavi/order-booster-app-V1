@@ -14,21 +14,26 @@ const OrderViewModal = (props) => (
         closeTimeoutMS={1000}
         className ="modal--OrderView"
     >
-        <h3 className="modal--OrderView__title">The Order : {props.count} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {numeral(props.amount).format('$0,0.00')}</h3>
+        <div className="modal__view-modal-header">
+            <h3 className="modal--OrderView__title">Order No : {props.count} </h3>
+            <h4>{numeral(props.amount).format('$0,0.00')}</h4>
+        </div>
         <div className="modal--OrderView__body">
-            <p >Name : {props.customerName}</p>
-            <p >PhoneNumber : {props.phoneNumber}</p>
-            <p >Address : {props.address}</p>
+            {(props.from !== 'handlerList' && props.from !== 'cookList') && <p >Name : {props.customerName}</p>}
+            {(props.from !== 'handlerList' && props.from !== 'cookList') && <p >PhoneNumber : {props.phoneNumber}</p>}
+            {(props.from !== 'handlerList' && props.from !== 'cookList') && <p >Address : {props.address}</p>}
             <p >Order Status : {props.status.status}</p>
+            <p> Delivery Method : {props.deliverMeth}</p>
         </div>
         <div>
             {
                 props.foods.length !== 0 && (
                     <div>
-                        <table className="modal__tableSelectedFoods">
+                        <table className="table-order-view-modal">
                             <tr>
                                 <th>Name</th>
-                                <th>Food Quantity</th>                                
+                                <th>Potion Type</th>
+                                <th>Food Quantity</th>     
                                 <th>Prepared</th>
                             </tr>
                             {
@@ -40,7 +45,6 @@ const OrderViewModal = (props) => (
                                             key = {iterable}
                                             iterable = {iterable}
                                             singleTypeOrder = {food}
-                                            onRemoveSingleOrder = {false}
                                             />
                                         )                                    
                                     }
@@ -53,12 +57,14 @@ const OrderViewModal = (props) => (
             }
         </div>
         <div className="modal--OrderView__body">
-            <p >Created Time : {moment(props.createdAt).format('MMMM Do, YYYY  HH : mm : ss')}</p>
-            <p >Order End Time : {moment(props.orderEndTime).format('MMMM Do, YYYY  HH : mm : ss') }</p>
+            <p >Created Time : {moment(props.createdAt).format('MMMM Do, YYYY   h:mm a')}</p>
+            <p >Order End Time : {moment(props.orderEndTime).format('MMMM Do, YYYY   h:mm a') }</p>
+        </div>
+        <div className="button__splitter">
+            <button className="button " onClick={props.handleCloseModal}>Okay</button>
+            {(props.from !== 'delivererList' && props.from !== 'cookList'  && props.from !== 'handlerList') && <Link className="button button--selectFood" to={`/order/edit/${props.id}`} >Edit this Order</Link>}
         </div>
         
-        <button className="button button--closeModal" onClick={props.handleCloseModal}>Okay</button>
-        <Link className="button button--selectFood" to={`/order/edit/${props.id}`} >Edit this Order</Link>
         
     </Modal>
 )

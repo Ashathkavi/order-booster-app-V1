@@ -5,7 +5,21 @@
 }
 
 .page-header__action{
+    display: flex;
     margin-top:$m-size;
+    flex-direction: column;
+    
+    p{
+        margin: 0;
+    }
+    span{
+        font-weight: 700;
+    }
+    @media(min-width: $desktop-breakpoint){
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
     
 }
 

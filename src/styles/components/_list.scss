@@ -26,16 +26,30 @@
         padding: .8rem;
 
     }
+    .list-item__duration{
+        text-align: center;
+
+    }
+    
 }
+
+.list-item-order__inputs{
+    display: flex;
+    flex-direction: row;
+}
+
 
 .list-item--deliverer{
     margin: $s-size;
     background: rgb(189, 188, 183);
     flex-direction: column;
     border: 1px solid darken($off-white, 30%);
+    max-width: 30rem;
+    min-width: 30rem;
+    word-break: break-all;
     
     p{
-        margin: $s-size 0 0 0;
+        margin: 0.6rem 0 0 0;
         padding: .6rem;
     }
 }
@@ -57,6 +71,16 @@
     word-break:break-all;
 }
 
+.list-item__title__container{
+    width: inherit;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    h4,p{
+        margin: 0;
+    }
+}
+
 .list-item__title--deliverer{
     text-align: center;
     background: rgb(163, 161, 157);
@@ -66,8 +90,10 @@
 .list-item__link{
     text-decoration: none;
     color: rgb(42, 42, 43);
-    display: flex;
-    flex-direction: row;
+}
+
+.list-item__food-size{
+    margin: 0;
 }
 
 .list-item__sub-title{
@@ -76,13 +102,18 @@
     margin-bottom: 0.6rem;
 }
 
+
 .list-item__sub-title--date{
     text-align: right;
     margin-bottom: 0.6rem;
 }
 
+
+
+
 .list-item__data{
     margin: $s-size 0 0 0;
+    text-align: right;
     @media(min-width:$desktop-breakpoint){
         margin: 0;
         padding: .6rem;
@@ -101,6 +132,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 
 }
+
+.list-item_into-row{
+    display:flex;
+    flex-direction: row;
+    
+}
+.list-item_into-row--food{
+    flex: 50%;
+    justify-content: space-between;
+}
+
 

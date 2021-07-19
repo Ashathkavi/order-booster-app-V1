@@ -2,13 +2,18 @@ import React from 'react'
 import FoodForm from '../ManageFood/FoodForm'
 import {connect} from 'react-redux'
 import {startAddFood} from '../../actions/foods'
+import {useLocation} from 'react-router-dom'
 
 export const AddFoodPage = (props) => {
     //console.log(props.history)
     const onSubmit = (food) => {
-        props.startAddFood(food)
         props.history.push('/food')
+        props.startAddFood(food)
+        
     }
+
+    const location = useLocation()
+    const foodlargeAvailable = location.state
     return(
         <div>
             <div className="page-header">
@@ -18,7 +23,7 @@ export const AddFoodPage = (props) => {
             </div>
 
             <div className="content-container">
-                <FoodForm onSubmit={ onSubmit}/>
+                <FoodForm onSubmit={ onSubmit} foods={props.foods} foodlargeAvailable = {foodlargeAvailable}/>
             </div>
         </div>
 )}
@@ -27,4 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
     startAddFood: (food) => dispatch(startAddFood(food))
 })
 
-export default connect(undefined, mapDispatchToProps)(AddFoodPage)
+const mapStateToProps = (state) => {
+    return {
+        foods:state.foods
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFoodPage)

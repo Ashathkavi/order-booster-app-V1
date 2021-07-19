@@ -103,7 +103,7 @@ const DelivererModal = (props) => {
                     
                 <button className="button button--closeModal" onClick={()=>props.handleCloseModal()}>Close</button>
                 <button className="button button--selectNone" onClick={()=>{
-                    props.onDelivery('none') 
+                    props.onDelivery('') 
                     props.handleCloseModal()
                 }}>Select None</button>
             </div>

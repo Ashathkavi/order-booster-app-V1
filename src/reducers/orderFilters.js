@@ -7,6 +7,7 @@ const orderFilterReducerDefaultState = {
     boundryAmount:20000,
     food:'',
     phoneNumber:'',
+    deliverMeth:'',
     status:'',
     // kotStatus:'',
     // billStatus:'',
@@ -27,6 +28,8 @@ const orderFilterReducer = (state=orderFilterReducerDefaultState, action) => {
             return {...state,food:action.food}
         case 'SET_P_NO_FILTER':
             return {...state,phoneNumber:action.phoneNumber}
+        case 'SET_DELIVERMETH_FILTER':
+            return {...state,deliverMeth:action.deliverMeth}
         case 'SET_STATUS_FILTER':
             return {...state,status:action.status}
         // case 'SET_KOT_STATUS_FILTER':

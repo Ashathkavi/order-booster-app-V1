@@ -4,7 +4,7 @@ import { startEditFood, startRemoveFood} from '../../actions/foods'
 import FoodForm from '../ManageFood/FoodForm'
 
 export const EditFoodPage = (props) => {
-    //console.log(props)
+    console.log(props, 'props')
     const onSubmit = (food) => {
         props.startEditFood(props.food.id ,food)
         props.history.push('/food')
@@ -22,7 +22,7 @@ export const EditFoodPage = (props) => {
                 </div>
             </div>
            <div className="content-container">
-            <FoodForm food={props.food} onSubmit={onSubmit} />
+            <FoodForm food={props.food} onSubmit={onSubmit} foods={props.foods}/>
                 {props.autherizedAs === 'admin' && <button className="button button--remove" onClick={onRemove}>Remove this Food</button>}
 
            </div>
@@ -36,9 +36,12 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = (state, props) => {
-    console.log(state.foods)
+    console.log(state.foods, 'kkkk',props.match.params.id)
     return {
-        
+
+        autherizedAs:state.auth.role,
+        foods:state.foods,
+
         food:state.foods.find((food)=> food.id === props.match.params.id)
     }
 }

@@ -24,15 +24,20 @@
 
 }
 
-.button--buttonMainBoard{
+.button--buttonMainBoard{ // used at orderlistitemdeliverer
     background: rgba(151, 149, 149, 0.171);
     color:rgba(255, 255, 255, 0.747);
+    margin-left: $s-size;
 }
 
-.button--selectFood{
+.button--selectFood{ 
     background-color: gray;
     height: 30px;
     padding:0.6rem;
+}
+
+.button--selectFood__streched{
+    flex:1;
 }
 
 .button--remove{
@@ -50,6 +55,13 @@
     flex:20%;
     height: 30px;
     padding:0.6rem;
+}
+
+.button--view-filters{
+    background-color: rgb(147, 150, 170);
+    padding:0.6rem;
+    margin-bottom: $s-size;
+    
 }
 
 .button__splitter{

@@ -37,7 +37,10 @@ class Header extends React.Component {
 
                     </div>
                     <div className="header__content-right">
-                        <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
+                    {(this.props.autherizedAs === 'cook') && <NavLink activeClassName="is-active" to="/order/kitchen" exact={true} className="button button--buttonMainBoard">WorkSpace</NavLink>}
+                    {(this.props.autherizedAs === 'deliverer' ) && <NavLink activeClassName="is-active" to="/order/deliver" exact={true} className="button button--buttonMainBoard">WorkSpace</NavLink>}
+                    {(this.props.autherizedAs === 'handler' ) && <NavLink activeClassName="is-active" to="/order/handle" exact={true} className="button button--buttonMainBoard">WorkSpace</NavLink>}
+                    <NavLink activeClassName="is-active" to="/dashboard" exact={true} className="button button--buttonMainBoard">MainBoard</NavLink>
                         <button onClick= {this.props.startLogout} className="button button--linkLogout">LogOut</button>
                     </div>
                     

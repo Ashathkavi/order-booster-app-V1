@@ -16,13 +16,13 @@ export const MemberRoute = ({
             autherizedAs==='admin' || 
             autherizedAs==='manager' ||
             autherizedAs==='member' || 
-            autherizedAs==='waiter' ||
+            autherizedAs==='handler' ||
             autherizedAs==='unknown' ||  
             autherizedAs==='deliverer'||
             autherizedAs==='cook'
 
             )){
-            return <Component {...props}/>
+            return <Component {...props} autherizedAs = {autherizedAs}/>
         }else{
             return <Redirect to = "/"/>
         }

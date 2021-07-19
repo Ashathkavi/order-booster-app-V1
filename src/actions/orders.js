@@ -26,7 +26,8 @@ export const startAddOrder= (orderData = {})=> {
                 status:'confirmed',
                 time:0
             },
-
+            discount=0,
+            serviceCharge=0,
             // kotStatus={
             //     status:'not',
             //     time:0
@@ -50,6 +51,8 @@ export const startAddOrder= (orderData = {})=> {
             orderEndTime,
             address,
             status,
+            discount,
+            serviceCharge,
             // kotStatus,
             // billStatus,
             foods,
@@ -60,10 +63,17 @@ export const startAddOrder= (orderData = {})=> {
         }
         return database.ref('orders').push(order)
             .then((refOrder) => {
-                dispatch(addOrder({
-                    id:refOrder.key,
-                    ...order
-                }))
+                console.log('Data is Saved')
+                database.ref(`orders/${refOrder.key}`).once('value').then((snap)=>{
+                    if(!snap.val()){
+                        dispatch(addOrder({
+                            id:refOrder.key,
+                            ...order
+                        }))
+                    }
+                    
+                })
+                
             })
     }
 }
@@ -100,12 +110,59 @@ export const editOrder = (id, updates) => ({
 
 })
 
-export const startEditOrder = (id, updates)=> {
+const findChangedFields = (updates, prev) => {
+
+    let changedUpdates = {}
+    let unChangedOrder = {}
+    let keys = ['address', 'amount', 'createdAt', 'customerName', 'deliverMeth', 'deliverer', 'description',
+         'discount', 'orderEndTime', 'phoneNumber', 'serviceCharge']
+
+    keys.map((key)=>{
+        if(updates[`${key}`] !== prev[`${key}`]){
+            changedUpdates = {...changedUpdates, [key]:updates[`${key}`]}
+            unChangedOrder = {...unChangedOrder, [key]:prev[`${key}`]}
+        }
+    })
+
+    
+
+    if(updates.status.status !== prev.status.status){
+        changedUpdates = {...changedUpdates, status:updates.status}
+        unChangedOrder = {...unChangedOrder, status:prev.status}
+    }
+
+   // console.log('JSON.stringify(updates.foods', JSON.stringify(updates.foods))
+   // console.log('JSON.stringify(prev.foods', JSON.stringify(prev.foods))
+
+    if(JSON.stringify(updates.foods) !== JSON.stringify(prev.foods)){
+        //console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+        changedUpdates = {...changedUpdates, foods:updates.foods}
+        unChangedOrder = {...unChangedOrder, foods:prev.foods}
+    }
+    
+    console.log('updates', updates)
+    console.log('prev', prev)
+
+    console.log('unChangedOrder', unChangedOrder)
+    console.log('changedUpdates', changedUpdates)
+    
+    return {changedUpdates, unChangedOrder}
+}
+
+export const startEditOrder = (id, updates, prev)=> {
+    let todayStart = moment().startOf('day').valueOf()
+    let now = moment().valueOf()
+
     return (dispatch) => {        
         return database.ref(`orders/${id}`).update(updates)
             .then(() => {
                 console.log('Data is updated')
                 dispatch(editOrder(id, updates))
+                database.ref(`orders/changed/${todayStart}`).push({
+                    ...findChangedFields(updates, prev),
+                    id:prev.id,
+                    changedAt:now
+                })
             })
             .catch((error)=>console.log('failed :', error))
     }
@@ -121,19 +178,47 @@ export const setOrders = (orders) => ({
 export const startSetOrders = ()=> {
     return (dispatch) => {
         
-        return database.ref('orders').once('value')
-            .then((snapshot) => {
-                console.log('Data is fetched')
-                const orders = []
-                snapshot.forEach((childSnapshot)=>{
+        return database.ref('orders').once('value').then((snapshot) => {
+            console.log('Data is fetched')
+            const orders = []
+            snapshot.forEach((childSnapshot)=>{
+                if(childSnapshot.key !== 'changed'){
                     orders.push({
-                        
+                    
                         ...childSnapshot.val(),
                         id:childSnapshot.key
                     })
-                })
-                dispatch(setOrders(orders))
+                }
+                
             })
-            .catch((error)=>console.log('failed :', error))
+            dispatch(setOrders(orders))
+        }).catch((e)=>{  console.log('Error with data fetching: ', e)})
     }
+}
+
+
+export const onStartSetOrders = ()=> {
+    return (dispatch) => {
+        return database.ref('orders').on('value', (snapshot) => {
+            console.log('snapshot.val()',snapshot.val())
+            const orders = []
+            snapshot.forEach((childSnapshot)=>{
+                if(childSnapshot.key !== 'changed'){
+                    orders.push({
+                        ...childSnapshot.val(),
+                        id:childSnapshot.key
+                    })
+                }
+                
+            })
+            //console.log('llllllll')
+            dispatch(setOrders(orders))
+        })
+    }
+    
+}
+
+export const offStartSetOrders = ()=> {
+    database.ref('orders').off('value')
+    
 }
